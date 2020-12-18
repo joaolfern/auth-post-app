@@ -1,11 +1,7 @@
 const mongoose = require('mongoose');
 
 const PostSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
+    post: {
         type: String,
         required: true
     },
@@ -14,7 +10,19 @@ const PostSchema = mongoose.Schema({
         default: Date.now
     },
     user: {
-        type: String
+        type: String,
+    },
+    favorites: {
+        type: Number,
+        default: 0,
+    },
+    retweets: {
+        type: Number,
+        default: 0,
+    },
+    replies: {
+        type: Array,
+        default: [],
     }
 });
 

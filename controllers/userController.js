@@ -1,5 +1,5 @@
 const User = require('../models/User')
-const { storeValidation, loginValidation } = require('../validation')
+const { storeUserValidation, loginValidation, updateUserValidation } = require('../validation')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
@@ -14,14 +14,18 @@ module.exports = {
         }
     },
     store: async (req, res) => {
-        const { name, email, password } = req.body
+        const { display_name, name, email, password, date_of_birth } = req.body
 
         //validates
-        const { error } = storeValidation(req, res)
+        const { error } = storeUserValidation(req, res)
         if (error)
             return res.status(400).send(error.details[0].message)
 
         //checks if user already exists
+        const nameExists = await User.findOne({ name })
+        if (nameExists)
+            return res.status(400).send('Username already exists')
+
         const emailExists = await User.findOne({ email })
         if (emailExists)
             return res.status(400).send('Email already exists')
@@ -31,12 +35,18 @@ module.exports = {
         const hashedPassword = await bcrypt.hash(password, salt)
 
         //creates a new user
-        const user = new User({ name, email, password: hashedPassword })
+        const user = new User({
+            name,
+            email,
+            password: hashedPassword,
+            display_name,
+            date_of_birth
+        })
 
         try {
             const savedUser = await user.save()
-            res.send({ user: savedUser.id })
 
+            res.send(`${savedUser.name} registered`)
         } catch (e) {
             res.status(400).send(e)
         }
@@ -49,7 +59,7 @@ module.exports = {
             foundUsers = (
                 await User.find())
                 .filter(item =>
-                    item["id"].match(pattern) || item.name.match(pattern)
+                    item.display_name.match(pattern) || item.name.match(pattern)
                 )
             res.json(foundUsers)
         } catch (e) {
@@ -65,24 +75,34 @@ module.exports = {
     },
     update: async (req, res) => {
         const { id } = req.params;
-        const { name, email, password } = req.body;
 
-        const { error } = storeValidation(req, res)
+        const { error } = updateUserValidation(req, res)
         if (error)
             return res.status(400).send(error.details[0].message)
 
-        const salt = await bcrypt.genSalt(10)
-        const hashedPassword = await bcrypt.hash(password, salt)
-
         try {
-            const updatedUser = await User.updateOne(
-                { _id: id },
-                { $set: { name, email, password: hashedPassword } }
-            )
-            res.json(updatedUser)
+            if (req.body.password) {
+                const salt = await bcrypt.genSalt(10)
+                const hashedPassword = await bcrypt.hash(req.body.password, salt)
+
+                const updatedUser = await User.updateOne(
+                    { _id: id },
+                    { ...req.body, password: hashedPassword }
+                )
+                res.json(updatedUser)
+            }
+            else {
+                const updatedUser = await User.updateOne(
+                    { _id: id },
+                    { ...req.body }
+                )
+                res.json(updatedUser)
+            }
         } catch (err) {
             res.status(400).send(err)
         }
+
+
     },
     login: async (req, res) => {
         const { email, password } = req.body

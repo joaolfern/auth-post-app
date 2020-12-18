@@ -1,51 +1,74 @@
 const Joi = require('@hapi/joi')
 
-
 module.exports = {
-    storeValidation: (req, res) => {
-        const schema = Joi.object({
+    storeUserValidation: (req, res) => {
+        return Joi.object({
+            display_name: Joi
+                .string()
+                .min(1)
+                .max(50)
+                .required(),
             name: Joi
                 .string()
                 .min(4)
+                .max(15)
                 .required(),
             email: Joi
                 .string()
-                .min(6)
+                .max(500)
                 .required()
                 .email(),
             password: Joi
                 .string()
-                .min(6)
-                .required()
-        })
-        return schema.validate(req.body)
+                .max(300)
+                .required(),
+            date_of_birth: Joi
+                .date()
+        }).validate(req.body)
     },
-    loginValidation: (req, res) => {
-        const schema = Joi.object({
+    updateUserValidation: (req, res) => {
+        return Joi.object({
+            display_name: Joi
+                .string()
+                .min(1)
+                .max(50),
+            name: Joi
+                .string()
+                .min(4)
+                .max(15),
             email: Joi
                 .string()
-                .min(6)
-                .required()
+                .max(500)
                 .email(),
             password: Joi
                 .string()
                 .min(6)
-                .required()
-        })
-        return schema.validate(req.body)
+                .max(300),
+            date_of_birth: Joi
+                .date()
+        }).validate(req.body)
     },
     postValidation: (req, res) => {
         return Joi.object({
-            name: Joi
+            post: Joi
                 .string()
                 .min(6)
-                .max(100)
-                .required(),
-            description: Joi
-                .string()
-                .min(5)
-                .max(500)
+                .max(280)
                 .required()
         }).validate(req.body)
-    }
+    },
+
+    loginValidation: (req, res) => {
+        return Joi.object({
+            email: Joi
+                .string()
+                .min(6)
+                .required()
+                .email(),
+            password: Joi
+                .string()
+                .min(6)
+                .required()
+        }).validate(req.body)
+    },
 }

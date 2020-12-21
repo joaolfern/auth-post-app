@@ -4,7 +4,18 @@ const app = express()
 const mongoose = require('mongoose')
 const authRoute = require('./routes/auth')
 const postRoute = require('./routes/posts')
-const cors = require("cors")
+const cors = require('cors')
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Headers', '*')
+
+    if (req.method == 'OPTIONS') {
+        res.header('Access-COntrol-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET')
+        return res.status(200).json({})
+    }
+    next()
+})
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -12,7 +23,6 @@ app.use(express.json())
 app.use('/api/user', authRoute)
 app.use('/api/post', postRoute)
 
-app.use(cors())
 
 mongoose.connect(
     process.env.DB_CONNECTION,

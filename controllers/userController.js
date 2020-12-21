@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken')
 
 module.exports = {
     index: async (req, res) => {
-
         try {
             const users = await User.find()
             res.json(users)
@@ -109,18 +108,18 @@ module.exports = {
 
         const { error } = loginValidation(req, res)
         if (error)
-            return res.status(400).send(error.details[0].message)
+            return res.status(401).json(error.details[0].message)
 
         const user = await User.findOne({ email })
         if (!user)
-            return res.status(400).send('Invalid email')
+            return res.status(401).json('Invalid email')
 
         const validPassword = await bcrypt.compare(password, user.password)
         if (!validPassword)
-            return res.status(400).send('Invalid password')
+            return res.status(401).json('Invalid password')
 
         //token
         const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET)
-        res.header('auth-token', token).send(token)
+        res.header('auth-token', token).json(token)
     }
 } 

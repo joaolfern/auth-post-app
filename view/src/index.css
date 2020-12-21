@@ -1,0 +1,20 @@
+:root {
+    --main-blue: #1da1f2;
+    --dark-gray: #657786;
+    --black: #14171A;
+    --light-gray: #AAB8C2;
+    --x-light-gray: #e1e8ed;
+    --x-x-light-gray: #f5f8fa;
+    --white: #FFFFFF;
+    --red: #ff2c92;
+}
+
+.app {
+    font-family: '-apple-system', 'BlinkMacSystemFont', "Segoe UI",  'Roboto', 'Helvetica', 'Arial', 'sans-serif';
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}

@@ -1,3 +1,4 @@
+const { array } = require('@hapi/joi')
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
@@ -20,7 +21,15 @@ const UserSchema = new mongoose.Schema({
     date_of_birth: {
         type: Date,
         required: true
-    }
+    },
+    following: {
+        type: Array,
+        default: [],
+    },
+    followers: {
+        type: Array,
+        default: [],
+    },
 })
 
 module.exports = mongoose.model('User', UserSchema)

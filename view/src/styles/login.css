@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5em;
+    gap: .8em;
     width: 90vw;
     max-width: 540px;
     margin: 0 auto;
@@ -19,35 +19,13 @@
     font-size: 1.5em;
 }
 
-.login__field {
-    position: relative;
+.txt__field {
     width: 95%;
-}
-
-.login__input {
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 1.5em;
-    height: 110%;
-}
-
-.login__label {
-    position: absolute;
-    font-size: .8em;
-    opacity: .7;
-    top: .5em;
-    left: .5em;
-    z-index: 1;
 }
 
 .login__button {
     width: 100%;
-    background: var(--main-blue);
-    color: var(--white);
-    border: none;
-    font-weight: 600;
-    padding: 1em;
-    border-radius: 100px;
+    padding: 1em!important;
 }
 
 .login__signUp {

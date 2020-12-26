@@ -1,29 +1,43 @@
 const Joi = require('@hapi/joi')
 
 module.exports = {
-    storeUserValidation: (req, res) => {
+    signUpValidation1: (req, res) => {
         return Joi.object({
             display_name: Joi
                 .string()
                 .min(1)
                 .max(50)
                 .required(),
-            name: Joi
+            email: Joi
                 .string()
-                .min(4)
-                .max(15)
+                .max(500)
+                .required()
+                .email(),
+            date_of_birth: Joi
+                .date()
+                .required()
+        }).validate(req.body)
+    },
+    signUpValidation2: (req, res) => {
+        return Joi.object({
+            display_name: Joi
+                .string()
+                .min(1)
+                .max(50)
                 .required(),
             email: Joi
                 .string()
                 .max(500)
                 .required()
                 .email(),
+            date_of_birth: Joi
+                .date()
+                .required(),
             password: Joi
                 .string()
                 .max(300)
-                .required(),
-            date_of_birth: Joi
-                .date()
+                .min(8)
+                .required()
         }).validate(req.body)
     },
     updateUserValidation: (req, res) => {

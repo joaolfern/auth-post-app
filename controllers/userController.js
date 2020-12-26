@@ -1,7 +1,13 @@
 const User = require('../models/User')
-const { storeUserValidation, loginValidation, updateUserValidation } = require('../validation')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const {
+    signUpValidation2,
+    loginValidation,
+    updateUserValidation,
+    signUpValidation1
+} = require('../validation')
+const randomId = require('random-id')
 
 module.exports = {
     index: async (req, res) => {
@@ -9,25 +15,36 @@ module.exports = {
             const users = await User.find()
             res.json(users)
         } catch (e) {
-            res.status(400).send(e)
+            res.status(400).json(e)
         }
     },
     store: async (req, res) => {
-        const { display_name, name, email, password, date_of_birth } = req.body
+        const { display_name, email, password, date_of_birth, photo } = req.body
+        let name = display_name
 
-        //validates
-        const { error } = storeUserValidation(req, res)
-        if (error)
-            return res.status(400).send(error.details[0].message)
+        if (!password) { //first validation
+            const { error } = signUpValidation1(req, res)
+            if (error)
+                return res.status(401).json(error.details[0].message)
 
-        //checks if user already exists
-        const nameExists = await User.findOne({ name })
+            const emailExists = await User.findOne({ email })
+            if (emailExists)
+                return res.status(401).json('Email already exists')
+
+            return res.json('First validation passed')
+        }
+        if (!photo) {
+            //validates password
+            const { error } = signUpValidation2(req, res)
+            if (error)
+                return res.status(401).json(error.details[0].message)
+
+            return res.json('Second validation passed')
+        }
+
+        const nameExists = await User.findOne({ display_name })
         if (nameExists)
-            return res.status(400).send('Username already exists')
-
-        const emailExists = await User.findOne({ email })
-        if (emailExists)
-            return res.status(400).send('Email already exists')
+            name = display_name + randomId(4, 'aA0')
 
         //hashes passwords
         const salt = await bcrypt.genSalt(10)
@@ -39,15 +56,15 @@ module.exports = {
             email,
             password: hashedPassword,
             display_name,
-            date_of_birth
+            date_of_birth,
+            photo
         })
 
         try {
             const savedUser = await user.save()
-
-            res.send(`${savedUser.name} registered`)
+            res.json(`${savedUser.name} registered`)
         } catch (e) {
-            res.status(400).send(e)
+            res.status(400).json(e)
         }
     },
     search: async (req, res) => {
@@ -62,7 +79,7 @@ module.exports = {
                 )
             res.json(foundUsers)
         } catch (e) {
-            res.status(400).send(e)
+            res.status(400).json(e)
         }
     },
     delete: async (req, res) => {
@@ -77,7 +94,7 @@ module.exports = {
 
         const { error } = updateUserValidation(req, res)
         if (error)
-            return res.status(400).send(error.details[0].message)
+            return res.status(400).json(error.details[0].message)
 
         try {
             if (req.body.password) {
@@ -98,7 +115,7 @@ module.exports = {
                 res.json(updatedUser)
             }
         } catch (err) {
-            res.status(400).send(err)
+            res.status(400).json(err)
         }
 
 
@@ -121,5 +138,22 @@ module.exports = {
         //token
         const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET)
         res.header('auth-token', token).json(token)
-    }
+    },
+    follow: async (req, res) => {
+        const { id: followed } = req.params
+        const { _id: follower } = req.user
+
+        const updatedFollower = await User.updateOne(
+            { _id: follower },
+            { $push: { following: followed } }
+        )
+
+        const updatedFollowed = await User.updateOne(
+            { _id: followed },
+            { $push: { followers: follower } }
+        )
+        res.json(`${follower} followed ${followed}`)
+
+
+    },
 } 

@@ -1,0 +1,23 @@
+.txtField {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    color: var(--dark-gray);
+    margin: 10px 0;
+}
+
+.txtField__input {
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 1.7em;
+    padding-bottom: .5em;
+}
+
+.txtField__label {
+    position: absolute;
+    font-size: .9em;
+    opacity: .7;
+    top: .3em;
+    left: .5em;
+    z-index: 1;
+}

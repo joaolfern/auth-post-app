@@ -1,0 +1,75 @@
+.signUp {
+    padding: 1em;
+    position: relative;
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+.signUp__icon {
+    color: var(--main-blue);
+    font-size: 1.7em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.signUp__button {
+    display: block;
+    margin-left: auto;
+}
+
+.signUp__title {
+    font-size: 1.4em;
+    margin: 1em 0;
+}
+
+.signUp__form .txtField {
+    margin: 1em 0;
+}
+
+.signUp__birth__title {
+    margin-top: 2em;
+}
+
+.signUp__birth__text {
+    color: var(--dark-gray);
+    font-size: .9em;
+}
+
+.signUp__date {
+    display: grid;
+    gap: .5em;
+    grid-template-columns: 2fr .8fr 1.3fr;
+}
+
+.txtField--signUpPassword{
+    margin: 2em 0;
+}
+
+.signUp__picture {
+    border: none;
+    position: relative;
+    height: 200px;
+    width: 200px; 
+    border-radius: 200px;
+    display: block;
+    margin: 3em auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.signUp__picture:hover {
+    opacity: .8;
+}
+
+.signUp__picture__icon {
+    color: white;
+    font-size: 1.5em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;;
+}

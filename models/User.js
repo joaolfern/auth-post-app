@@ -1,4 +1,3 @@
-const { array } = require('@hapi/joi')
 const mongoose = require('mongoose')
 
 const UserSchema = new mongoose.Schema({
@@ -9,6 +8,14 @@ const UserSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
+    },
+    photo: {
+        type: String,
+        default: ''
+    },
+    bio: {
+        type: String,
+        default: ''
     },
     email: {
         type: String,
@@ -30,6 +37,10 @@ const UserSchema = new mongoose.Schema({
         type: Array,
         default: [],
     },
+    posts: {
+        type: Array,
+        default: []
+    }
 })
 
 module.exports = mongoose.model('User', UserSchema)

@@ -22,8 +22,7 @@ function Home() {
 
         if (posts.length === 0)
             fetchData()
-        console.log(posts)
-    }, [posts])
+    }, [posts, API, token])
 
     return (
         posts.map(post => (

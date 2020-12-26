@@ -1,29 +1,23 @@
 import React, { useState, useContext } from 'react'
 import { Context } from '../context/token'
+import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
+
+import InputField from '../components/InputField'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 import '../styles/login.css'
-import { Link } from 'react-router-dom'
+import '../styles/general.css'
 
 function Login() {
-    const { API, setToken } = useContext(Context)
+    const { API, setToken, convertMessage } = useContext(Context)
     const [input, setInput] = useState({
         email: '',
         password: ''
     })
     const [errorMessage, setErrorMessage] = useState('')
-
-    function handleInput(e) {
-        const { value, name } = e.target
-
-        setInput(prev => ({
-            ...prev,
-            [name]: value
-        }))
-
-    }
 
     async function handleLogin(e) {
         e.preventDefault()
@@ -38,7 +32,7 @@ function Login() {
             if (response.ok)
                 setToken(data)
             else
-                setErrorMessage(data)
+                setErrorMessage(convertMessage[data] || data)
 
         } catch (e) {
             console.log(e)
@@ -47,37 +41,31 @@ function Login() {
 
     return (
         <form className='login'>
+            <Helmet>
+                <title>Login on Twitter</title>
+            </Helmet>
             <FontAwesomeIcon className='login__icon' icon={faTwitter} />
             <h3 className='login__title'>Log in to Twitter</h3>
 
-            <div className='login__field'>
-                <label className='login__label'>email</label>
-                <input
-                    className='login__email login__input'
-                    type='text'
-                    name='email'
-                    value={input.email}
-                    onChange={handleInput}
-                />
-            </div>
-            <div className='login__field'>
-                <label className='login__label'>password</label>
-                <input
-                    className='login__password login__input'
-                    type='password'
-                    name='password'
-                    value={input.password}
-                    onChange={handleInput}
-                />
-            </div>
+            <InputField
+                name='email'
+                input={input}
+                setInput={setInput}
+            />
+            <InputField
+                name='password'
+                input={input}
+                setInput={setInput}
+            />
 
             <button
-                className='login__button'
+                className='login__button blueButton'
                 onClick={handleLogin}
             >
                 Log in
             </button>
-            <Link className='login__signUp' to=''>Sign up for Twitter</Link>
+            <Link className='login__signUp' to='/sign-up'>Sign up for Twitter</Link>
+
             <p className='login__errorMessage'>{errorMessage}</p>
         </form>
     )

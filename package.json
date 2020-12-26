@@ -21,8 +21,13 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.11.7",
-    "react-router-dom": "^5.2.0"
+    "random-id": "^1.0.4",
+    "react-helmet": "^6.1.0",
+    "react-moment": "^1.1.1",
+    "react-router-dom": "^5.2.0",
+    "use-deep-compare-effect": "^1.6.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

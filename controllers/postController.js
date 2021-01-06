@@ -10,12 +10,11 @@ module.exports = {
             const user = await User.find({ _id })
             const followedUsers = await User.find({ _id: { $in: user[0].following } })
 
-            const postsByFollowedUsers = followedUsers.reduce(
+            const timelinePosts = [...followedUsers, ...user].reduce(
                 (acc, item) => [...acc, ...item.posts], []
             )
 
-            const posts = await Post.find({ _id: { $in: postsByFollowedUsers } })
-            //const posts = await Post.find({ user:  { $in: user[0].following } })
+            const posts = await Post.find({ _id: { $in: timelinePosts } })
 
             res.json(posts)
         } catch (err) {
@@ -28,7 +27,7 @@ module.exports = {
 
         const { error } = postValidation(req, res)
         if (error)
-            return res.status(400).send(error.details[0].message)
+            return res.status(400).json(error.details[0].message)
 
         const newPost = new Post({ post, user: _id })
 
@@ -41,7 +40,7 @@ module.exports = {
 
             res.json(savedPost)
         } catch (err) {
-            res.status(400).send(err)
+            res.status(400).json(err)
         }
     },
     search: async (req, res) => {
@@ -57,7 +56,7 @@ module.exports = {
 
             res.json(foundRegistry)
         } catch (err) {
-            res.status(400).send(err)
+            res.status(400).json(err)
         }
     },
     delete: async (req, res) => {
@@ -67,14 +66,14 @@ module.exports = {
         try {
             const post = await Post.findOne({ _id: postId })
             if (post.user != userId)
-                return res.status(401).send('Access denied')
+                return res.status(401).json('Access denied')
 
             console.log(post.user, userId)
 
             const deletedRegistry = await Post.deleteOne({ _id: postId })
             res.json(deletedRegistry)
         } catch (err) {
-            res.status(400).send(err)
+            res.status(400).json(err)
         }
     },
     profile: async (req, res) => {
@@ -84,7 +83,7 @@ module.exports = {
             const posts = await Post.find({ user: _id })
             res.json(posts)
         } catch (err) {
-            res.status(400).send(err)
+            res.status(400).json(err)
         }
     },
 };

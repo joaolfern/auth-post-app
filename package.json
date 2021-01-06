@@ -23,6 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mongoose": "^5.11.7",
+    "multer": "^1.4.2",
     "random-id": "^1.0.4",
     "react-helmet": "^6.1.0",
     "react-moment": "^1.1.1",

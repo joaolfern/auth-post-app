@@ -7,3 +7,27 @@
     border-radius: 100px;
     cursor: pointer;
 }
+
+.blueButton:hover {
+    background: #1786ca;
+}
+
+.profilePicture {
+    border: none;
+    position: relative;
+    height: 200px;
+    width: 200px; 
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 200px;
+    display: block;
+    margin: auto;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.profilePicture:hover {
+    opacity: .8;
+}

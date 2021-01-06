@@ -1,0 +1,64 @@
+.tweet { 
+    display: flex;
+    padding: .5rem 1rem;
+    gap: .5rem;
+    border: .1px var(--x-x-light-gray) solid;
+}
+
+.tweet:hover {
+    background: var(--x-x-light-gray);
+}
+
+.tweet__profilePicture {
+    width: 50px;
+    height: 50px;
+}
+
+.tweet__header {
+    display: flex;
+    gap: .5em;
+    cursor: pointer;
+}
+
+.tweet__displayName {
+    font-size: 1rem;
+}
+
+.tweet__username {
+    color: var(--dark-gray);
+    font-weight: 300;
+}
+
+.tweet__footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tweet__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: .25rem;
+}
+
+.tweet__footer__item {
+    display: flex;
+    gap: .5rem;
+    color: var(--dark-gray);
+}
+
+.tweet__footer__item:hover {
+    cursor: pointer;
+}
+
+.tweet__footer__item--reply:hover {
+    color: var(--main-blue);
+}
+
+.tweet__footer__item--retweet:hover {
+    color: var(--green)
+}
+
+.tweet__footer__item--heart:hover {
+    color: var(--red)
+}

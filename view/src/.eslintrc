@@ -1,0 +1,6 @@
+{
+    "rules": {
+        "eqeqeq": "off",
+        "no-useless-computed-key": "off"
+    }
+}

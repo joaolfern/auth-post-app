@@ -68,26 +68,24 @@ module.exports = {
         }
     },
     search: async (req, res) => {
-        const { match } = req.params
-        const pattern = new RegExp(`${match}`, "ig")
-
-        try {
-            foundUsers = (
-                await User.find())
-                .filter(item =>
-                    item.display_name.match(pattern) || item.name.match(pattern)
-                )
-            res.json(foundUsers)
-        } catch (e) {
-            res.status(400).json(e)
-        }
-    },
-    delete: async (req, res) => {
         const { id } = req.params
 
-        deletedUser = await User.deleteOne({ _id: id })
-        res.json(deletedUser)
+        foundUsers = (
+            await User.find({
+                _id: id
+            }))
+        res.json(foundUsers)
 
+    },
+    delete: async (req, res) => {
+        try {
+            const { id } = req.params
+
+            const deletedUser = await User.deleteOne({ _id: id })
+            res.json(deletedUser)
+        } catch (e) {
+            res.json(e)
+        }
     },
     update: async (req, res) => {
         const { id } = req.params;
@@ -156,4 +154,26 @@ module.exports = {
 
 
     },
+    unfollow: async (req, res) => {
+        const { id: unfollowed } = req.params
+        const { _id: unfollower } = req.user
+
+        const updatedUnfollower = await User.updateOne(
+            { _id: unfollower },
+            { $pull: { following: unfollowed } }
+        )
+
+        const updatedUnfollowed = await User.updateOne(
+            { _id: unfollowed },
+            { $pull: { followers: unfollower } }
+        )
+
+        res.json(`${unfollower} unfollowed ${unfollowed}`)
+    },
+    profile: async (req, res) => {
+        const { _id } = req.user
+        const user = await User.find({ _id })
+
+        res.json(user[0])
+    }
 } 

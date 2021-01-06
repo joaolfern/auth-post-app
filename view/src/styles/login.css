@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: .8em;
+    gap: .8rem;
     width: 90vw;
     max-width: 540px;
     margin: 0 auto;
@@ -19,8 +19,11 @@
     font-size: 1.5em;
 }
 
-.txt__field {
-    width: 95%;
+
+.login__input {
+    width: 98%;
+    display: flex;
+    flex-direction: column;
 }
 
 .login__button {

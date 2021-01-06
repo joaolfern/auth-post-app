@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Context } from '../context/token'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
@@ -12,7 +12,7 @@ import '../styles/login.css'
 import '../styles/general.css'
 
 function Login() {
-    const { API, setToken, convertMessage } = useContext(Context)
+    const { API, setToken, parseMessage } = useContext(Context)
     const [input, setInput] = useState({
         email: '',
         password: ''
@@ -32,12 +32,22 @@ function Login() {
             if (response.ok)
                 setToken(data)
             else
-                setErrorMessage(convertMessage[data] || data)
+                setErrorMessage(parseMessage[data] || data)
 
         } catch (e) {
             console.log(e)
         }
     }
+
+    useEffect(() => {
+        return () => {
+            setInput({
+                email: '',
+                password: ''
+            })
+            setErrorMessage('')
+        }
+    }, [])
 
     return (
         <form className='login'>
@@ -46,17 +56,19 @@ function Login() {
             </Helmet>
             <FontAwesomeIcon className='login__icon' icon={faTwitter} />
             <h3 className='login__title'>Log in to Twitter</h3>
+            <div className='login__input'>
+                <InputField
+                    name='email'
+                    input={input}
+                    setInput={setInput}
+                />
+                <InputField
+                    name='password'
+                    input={input}
+                    setInput={setInput}
+                />
+            </div>
 
-            <InputField
-                name='email'
-                input={input}
-                setInput={setInput}
-            />
-            <InputField
-                name='password'
-                input={input}
-                setInput={setInput}
-            />
 
             <button
                 className='login__button blueButton'

@@ -15,8 +15,6 @@ function App() {
 
             {!token ? <Redirect to="/login" /> : <Redirect to='/' />}
 
-            {console.log(token)}
-
             <Switch>
 
                 <Route path='/login'>

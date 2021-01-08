@@ -27,7 +27,10 @@ function Home() {
             })
 
             const data = await response.json()
-            setter(data)
+            if (response.ok)
+                setter(data)
+            else
+                setErrorMessage(data)
         }
 
         if (!isFetched) {
@@ -93,7 +96,6 @@ function Home() {
                             className='tweetar__input'
                         />
                     </div>
-                    <p>{errorMessage}</p>
                     <button
                         className='blueButton tweetar__button'
                         onClick={handleTweet}
@@ -105,6 +107,8 @@ function Home() {
             {
                 timeline
             }
+            <p>{errorMessage}</p>
+
         </div>
 
     )

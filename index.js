@@ -2,9 +2,9 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const authRoute = require('./routes/auth')
+const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
-const cors = require('cors')
+const path = require('path')
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
@@ -20,9 +20,12 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.use('/api/user', authRoute)
+app.use('/api/user', userRoute)
 app.use('/api/post', postRoute)
-
+app.use(
+    '/files',
+    express.static('./temp/uploads')
+)
 
 mongoose.connect(
     process.env.DB_CONNECTION,

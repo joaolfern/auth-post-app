@@ -8,44 +8,8 @@ const {
     updateUserValidation,
     signUpValidation1
 } = require('../validation')
-const Image = require('../models/Image')
 
 module.exports = {
-    imageStore: async (req, res) => {
-        const { originalname: photoName, size, key, location: url = '' } = req.file
-        console.log(req.file)
-
-        try {
-            const image = await Image.create({
-                photoName,
-                size,
-                key,
-                url
-            })
-            res.json(image)
-        } catch (e) {
-            res.status(400).json(e)
-        }
-
-    },
-    imageIndex: async (req, res) => {
-        try {
-            const images = await Image.find()
-            res.json(images)
-        } catch (e) {
-            res.status(400).json(e)
-        }
-    },
-    imageDelete: async (req, res) => {
-        try {
-            const { id } = req.params
-
-            const deletedImage = await Image.deleteOne({ _id: id })
-            res.json(deletedImage)
-        } catch (e) {
-            res.status(400).json(e)
-        }
-    },
     index: async (req, res) => {
         try {
             const users = await User.find()

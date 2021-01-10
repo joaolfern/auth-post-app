@@ -4,14 +4,15 @@ const multer = require('multer')
 const multerConfig = require('../config/multer')
 
 const userController = require('../controllers/userController')
-const { get } = require('mongoose')
+const imageController = require('../controllers/imageController')
 
 router.get('/', userController.index)
 router.get('/profile', verify, userController.profile)
 router.post('/register', userController.store)
 
-router.post('/image', multer(multerConfig).single('photo'), userController.imageStore)
-router.get('/images', userController.imageIndex)
+router.post('/image', multer(multerConfig).single('photo'), imageController.store)
+router.get('/image', imageController.index)
+router.delete('/image/:id', imageController.delete)
 
 router.get('/:id', userController.search)
 router.delete('/:id', userController.delete)

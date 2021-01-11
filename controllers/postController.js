@@ -68,9 +68,9 @@ module.exports = {
             if (post.user != userId)
                 return res.status(401).json('Access denied')
 
-            console.log(post.user, userId)
+            const deletedRegistry = await Post.findById(postId)
+            deletedRegistry.remove()
 
-            const deletedRegistry = await Post.deleteOne({ _id: postId })
             res.json(deletedRegistry)
         } catch (err) {
             res.status(400).json(err)

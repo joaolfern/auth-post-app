@@ -19,6 +19,7 @@ module.exports = {
         }
     },
     store: async (req, res) => {
+
         const { display_name, email, password, date_of_birth, photo } = req.body
         let name = display_name
 

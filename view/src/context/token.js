@@ -1,9 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const Context = React.createContext()
 
 function ContextProvider({ children }) {
-    const [token, setToken] = useState('')
+    const [token, setToken] = useState(localStorage.getItem('token') || '')
+
+    useEffect(() => {
+        if (token && !localStorage.getItem('token')) {
+            logIn()
+        }
+    }, [token])
+
+    function logIn() {
+        localStorage.setItem('token', token)
+    }
+
+    function logOff() {
+        localStorage.removeItem('token')
+        setToken('')
+    }
+
     const API = "http://localhost:1234/api"
 
     const parseMessage = {
@@ -15,7 +31,7 @@ function ContextProvider({ children }) {
     }
 
     return (
-        <Context.Provider value={({ token, setToken, API, parseMessage })}>
+        <Context.Provider value={({ token, setToken, API, parseMessage, logOff })}>
             {children}
         </Context.Provider>
     )

@@ -1,12 +1,13 @@
+.wrapper { 
+    position: relative;
+}
+
 .tweet { 
     display: flex;
     padding: .5rem 1rem;
     gap: .5rem;
     border: .1px var(--x-x-light-gray) solid;
-}
-
-.tweet:hover {
-    background: var(--x-x-light-gray);
+    overflow: scroll;
 }
 
 .tweet__profilePicture {
@@ -18,15 +19,57 @@
     display: flex;
     gap: .5em;
     cursor: pointer;
+    color: var(--dark-gray);
+    font-weight: 300;
 }
 
 .tweet__displayName {
     font-size: 1rem;
+    color: black;
 }
 
 .tweet__username {
-    color: var(--dark-gray);
     font-weight: 300;
+}
+
+.tweet__showOptions {
+    margin-left: auto;
+    color: var(--dark-gray);
+}
+
+.tweet__options {
+    width: 200px;
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    background: white;
+    box-shadow: 0 0 4px black;
+    transition: transform .1s;
+    transform-origin: top;
+}
+
+.options__btn {
+    padding: .7rem 1rem;
+    border: none;
+    background: transparent;    
+    font-size: 16px;
+    font-family: 'Arial';
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.options__icon {
+    color: var(--dark-gray);
+}
+
+.options__delete {
+    color: var(--red);
+}
+
+.tweet__post {
+    word-wrap: break-word;
+    
 }
 
 .tweet__footer {
@@ -45,6 +88,10 @@
     display: flex;
     gap: .5rem;
     color: var(--dark-gray);
+}
+
+.tweet:hover, .options__btn:hover {
+    background: var(--x-x-light-gray);
 }
 
 .tweet__footer__item:hover {

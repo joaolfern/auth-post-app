@@ -31,6 +31,5 @@ module.exports = {
         const deletedImage = await Image.findById(_id)
         await deletedImage.remove()
         res.json(deletedImage)
-
     },
 }

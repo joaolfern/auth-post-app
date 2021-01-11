@@ -9,7 +9,7 @@ import { Context } from '../context/token'
 import '../styles/home.css'
 
 function Home() {
-    const { API, token } = useContext(Context)
+    const { API, token, logOff } = useContext(Context)
     const [posts, setPosts] = useState([])
     const [user, setUser] = useState({ photo: '' })
     const [isFetched, setIsFetched] = useState(false)
@@ -36,7 +36,6 @@ function Home() {
         if (!isFetched) {
             getData(`${API}/post`, setPosts)
             getData(`${API}/user/profile`, setUser)
-
             setIsFetched(true)
         }
     }, [posts, API, token, isFetched])
@@ -74,7 +73,11 @@ function Home() {
     }
 
     const timeline = posts.map(post => (
-        <TweetCard key={post['_id']} post={post} />
+        <TweetCard
+            key={post['_id']}
+            post={post} user={user}
+            setPosts={setPosts}
+        />
     ))
 
     return (
@@ -82,6 +85,7 @@ function Home() {
             <Helmet>
                 <title>Página Inicial / Twitter</title>
             </Helmet>
+            <p onClick={logOff}>logOff</p>
             <header className='home__header'>
                 <h1 className='home__title'>Página Inicial</h1>
                 <div className='home__tweetar'>
@@ -96,12 +100,15 @@ function Home() {
                             className='tweetar__input'
                         />
                     </div>
-                    <button
-                        className='blueButton tweetar__button'
-                        onClick={handleTweet}
-                    >
-                        Tweetar
-                    </button>
+                    <div className='tweetar__footer'>
+
+                        <button
+                            className='blueButton tweetar__button'
+                            onClick={handleTweet}
+                        >
+                            Tweetar
+                        </button>
+                    </div>
                 </div>
             </header>
             {

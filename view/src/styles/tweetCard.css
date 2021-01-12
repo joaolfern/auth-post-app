@@ -7,7 +7,6 @@
     padding: .5rem 1rem;
     gap: .5rem;
     border: .1px var(--x-x-light-gray) solid;
-    overflow: scroll;
 }
 
 .tweet__profilePicture {
@@ -69,7 +68,6 @@
 
 .tweet__post {
     word-wrap: break-word;
-    
 }
 
 .tweet__footer {

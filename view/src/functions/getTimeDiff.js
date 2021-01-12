@@ -1,7 +1,9 @@
 import datetimeDifference from "datetime-difference"
 
 export default (earlierDate, laterDate = Date.now()) => {
-    const timeDiff = datetimeDifference(new Date(earlierDate), new Date(laterDate))
+    earlierDate = new Date(earlierDate)
+    laterDate = new Date(laterDate)
+    const timeDiff = datetimeDifference(earlierDate, laterDate)
     const timeDiffStamp = Object.entries(timeDiff).find(timestamp => timestamp[1])
 
     const parseStamp = {
@@ -10,5 +12,16 @@ export default (earlierDate, laterDate = Date.now()) => {
         'hours': 'h',
     }
 
-    return [parseStamp[timeDiffStamp[0]] || timeDiffStamp[0], timeDiffStamp[1]]
+    if (timeDiffStamp[0].days > 7) {
+        const month = new Intl.DateTimeFormat('pt-BR', { month: 'short' }).format(earlierDate)
+        return `${earlierDate.getDay()} ${month} ${earlierDate.getYear()}`
+    }
+
+    return {
+        label: parseStamp[timeDiffStamp[0]] ||
+            timeDiffStamp[1] != 1 ?
+            timeDiffStamp[0] :
+            timeDiffStamp[0].slice(0, timeDiffStamp[0].length - 1),
+        value: timeDiffStamp[1]
+    }
 }

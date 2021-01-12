@@ -86,7 +86,7 @@ function TweetCard({ post, user, setPosts }) {
                     <div className='tweet__header'>
                         <h3 className='tweet__displayName'>{author['display_name']}</h3>
                         <h4 className='tweet__username'>@{author.name}</h4>
-                        <p>· {`${timeDiff[1]} ${timeDiff[0]}`} </p>
+                        <p>· {timeDiff.label ? `${timeDiff.value} ${timeDiff.label}` : timeDiff}</p>
                         <FontAwesomeIcon
                             className='tweet__showOptions'
                             icon={faEllipsisH}

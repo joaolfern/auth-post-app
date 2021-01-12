@@ -1,19 +1,24 @@
 import { useContext, useEffect, useState } from "react"
 import { Helmet } from "react-helmet";
 
-import TextareaAutosize from 'react-textarea-autosize'
 import ProfilePicture from "../components/ProfilePicture"
+import Tweetar from '../components/Tweetar'
 import TweetCard from "../components/TweetCard"
 
 import { Context } from '../context/token'
 import '../styles/home.css'
 
 function Home() {
-    const { API, token, logOff } = useContext(Context)
+    const {
+        API,
+        token,
+        logOff,
+        user,
+        setUser,
+        isFetched,
+        setIsFetched
+    } = useContext(Context)
     const [posts, setPosts] = useState([])
-    const [user, setUser] = useState({ photo: '' })
-    const [isFetched, setIsFetched] = useState(false)
-    const [postInput, setPostInput] = useState('')
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
@@ -40,38 +45,6 @@ function Home() {
         }
     }, [posts, API, token, isFetched])
 
-    function handleChange(e) {
-        const { value } = e.target
-
-        setPostInput(value)
-    }
-
-    async function handleTweet() {
-        const reqJson = {
-            "post": postInput
-        }
-
-        const response = await fetch(`${API}/post`, {
-            mode: 'cors',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'auth-token': token
-            },
-            body: JSON.stringify(reqJson)
-        })
-
-        if (response.ok) {
-            setIsFetched(false)
-            setPostInput('')
-            setErrorMessage('')
-        }
-        else {
-            const data = await response.json()
-            setErrorMessage(data)
-        }
-    }
-
     const timeline = posts.map(post => (
         <TweetCard
             key={post['_id']}
@@ -87,29 +60,13 @@ function Home() {
             </Helmet>
             <p onClick={logOff}>logOff</p>
             <header className='home__header'>
-                <h1 className='home__title'>Página Inicial</h1>
-                <div className='home__tweetar'>
-                    <div className='tweetar__header'>
-                        <div className='home__profilePicture'>
-                            <ProfilePicture url={user.photo} />
-                        </div>
-                        <TextareaAutosize
-                            value={postInput}
-                            onChange={handleChange}
-                            placeholder='O que está acontecendo?'
-                            className='tweetar__input'
-                        />
+                <div className='header__wrapper'>
+                    <div className='header__profilePicture'>
+                        <ProfilePicture url={user.photo} />
                     </div>
-                    <div className='tweetar__footer'>
-
-                        <button
-                            className='blueButton tweetar__button'
-                            onClick={handleTweet}
-                        >
-                            Tweetar
-                        </button>
-                    </div>
+                    <h1 className='header__title'>Página Inicial</h1>
                 </div>
+                <Tweetar />
             </header>
             {
                 timeline

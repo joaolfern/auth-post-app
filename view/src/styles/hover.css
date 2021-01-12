@@ -1,0 +1,22 @@
+
+.tweet:hover, .options__btn:hover {
+    background: var(--x-x-light-gray);
+}
+
+.tweet__footer__item--reply:hover,
+.navbar__item:hover
+{
+    color: var(--main-blue);
+}
+
+.tweet__footer__item--retweet:hover {
+    color: var(--green);
+}
+
+.tweet__footer__item--heart:hover {
+    color: var(--red)
+}
+
+.navbar__item:hover {
+    background-color: var(--light-blue);
+}

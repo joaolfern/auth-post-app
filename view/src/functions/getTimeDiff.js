@@ -18,10 +18,10 @@ export default (earlierDate, laterDate = Date.now()) => {
     }
 
     return {
-        label: parseStamp[timeDiffStamp[0]] ||
+        label: parseStamp[timeDiffStamp[0]] ? parseStamp[timeDiffStamp[0]] :
             timeDiffStamp[1] != 1 ?
-            timeDiffStamp[0] :
-            timeDiffStamp[0].slice(0, timeDiffStamp[0].length - 1),
+                timeDiffStamp[0] :
+                timeDiffStamp[0].slice(0, timeDiffStamp[0].length - 1),
         value: timeDiffStamp[1]
     }
 }

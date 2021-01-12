@@ -24,7 +24,7 @@
 
 .tweet__displayName {
     font-size: 1rem;
-    color: black;
+    color: var(--black);
 }
 
 .tweet__username {
@@ -86,24 +86,6 @@
     display: flex;
     gap: .5rem;
     color: var(--dark-gray);
-}
-
-.tweet:hover, .options__btn:hover {
-    background: var(--x-x-light-gray);
-}
-
-.tweet__footer__item:hover {
     cursor: pointer;
-}
 
-.tweet__footer__item--reply:hover {
-    color: var(--main-blue);
-}
-
-.tweet__footer__item--retweet:hover {
-    color: var(--green)
-}
-
-.tweet__footer__item--heart:hover {
-    color: var(--red)
 }

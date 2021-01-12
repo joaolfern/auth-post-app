@@ -4,6 +4,8 @@ const Context = React.createContext()
 
 function ContextProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem('token') || '')
+    const [user, setUser] = useState({ photo: '' })
+    const [isFetched, setIsFetched] = useState(false)
 
     useEffect(() => {
         if (token && !localStorage.getItem('token')) {
@@ -31,7 +33,17 @@ function ContextProvider({ children }) {
     }
 
     return (
-        <Context.Provider value={({ token, setToken, API, parseMessage, logOff })}>
+        <Context.Provider value={({
+            token,
+            setToken,
+            API,
+            parseMessage,
+            logOff,
+            user,
+            setUser,
+            isFetched,
+            setIsFetched
+        })}>
             {children}
         </Context.Provider>
     )

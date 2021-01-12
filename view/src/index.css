@@ -1,13 +1,14 @@
 :root {
     --main-blue: #1da1f2;
     --dark-gray: #6b7b88;
-    --black: #14171A;
+    --black: #0f1419;
     --light-gray: #AAB8C2;
     --x-light-gray: #e1e8ed;
     --x-x-light-gray: #f5f3fa;
     --white: #FFFFFF;
     --red: #ff2c92;
     --green: #1db954;
+    --light-blue: #1da0f228;
 }
 
 .app {
@@ -15,9 +16,10 @@
     color: var(--black);
 }
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     transition: background-color .15s ease-in, color .15s ease-out;
+    outline: 0;
 }

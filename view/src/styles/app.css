@@ -1,7 +1,7 @@
 .app {
     display: flex;
+    justify-content: center;
 }
-
 
 .app__sideBar {
     width: 275px;
@@ -9,13 +9,21 @@
     flex-direction: column;
     align-items: center;
     font-size: 1.2em;
-    margin: .5rem 0;
+    position: sticky;
+    display: inline-block;
+    max-height: 100vh;
+    margin: 0 1em;
+    top:0;
+}
+
+.navbar {
+
 }
 
 .navbar__list {
     display: flex;
     flex-direction: column;
-    
+    padding: .5rem 0;
 }
 
 .navbar__item {
@@ -44,6 +52,68 @@
     display: none;
 }
 
+.navlist__tweetarBtn {
+    width: 100%;
+    padding: 1em 3em;
+    margin-top: .5rem;
+}
+
+.navlist__tweetarBtn--small {
+    display: none;
+    border-radius: 50%;
+    padding: 1em;
+    font-size: 1.1rem;
+    position: relative;
+    margin-top: .5rem;
+}
+
+.tweetarBtn__icon2 {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+    font-size: .7em;
+}
+
+.app__tweetar {
+    position: absolute;
+    z-index: 3;
+    background: white;
+    position: absolute;
+    left: 50%;
+    top: 2.5rem;
+    width: 600px;
+    height: 280px;
+    transform: translateX(-50%);
+    border: black 1px solid;
+    border-radius: 2em;
+}
+
+.app__tweetar__header {
+    height: 50px;
+    border-bottom: 1px rgba(0, 0, 0, 0.329) solid;
+    display: flex;
+    align-items: center;
+}
+
+.app__tweetar__close {
+    background: transparent;
+    border: none;
+    margin-left: 1em;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: .4rem .5rem;
+    border-radius: 50%;
+    color: var(--main-blue);
+}
+
+.app__tweetar__main {
+    padding: .5em;
+}
+
+.app__tweetar__input {
+    min-height: 100px;
+}
+
 @media screen and (max-width: 1277px) {
     .app__sideBar {
         width: unset;
@@ -56,5 +126,24 @@
     }
     .navbar__list {
         align-items: center;
+    }
+    .navlist__tweetarBtn {
+        display: none;
+    }
+    .navlist__tweetarBtn--small {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .app__sideBar {
+        margin: 0 .5rem;
+    }
+
+    .app__tweetar {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        border: none
     }
 }

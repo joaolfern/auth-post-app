@@ -17,6 +17,6 @@
     color: var(--red)
 }
 
-.navbar__item:hover {
+.navbar__item:hover, .app__tweetar__close:hover {
     background-color: var(--light-blue);
 }

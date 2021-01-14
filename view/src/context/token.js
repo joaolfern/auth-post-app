@@ -6,6 +6,7 @@ function ContextProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem('token') || '')
     const [user, setUser] = useState({ photo: '' })
     const [isFetched, setIsFetched] = useState(false)
+    //const [pictureCache, setPictureCache] = useState({})
 
     useEffect(() => {
         if (token && !localStorage.getItem('token')) {

@@ -23,3 +23,7 @@
     transition: background-color .15s ease-in, color .15s ease-out;
     outline: 0;
 }
+
+ul {
+    list-style: none;
+}

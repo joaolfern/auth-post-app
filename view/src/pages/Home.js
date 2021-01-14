@@ -66,7 +66,7 @@ function Home() {
                     </div>
                     <h1 className='header__title'>Página Inicial</h1>
                 </div>
-                <Tweetar />
+                <Tweetar customClass={{ container: 'home' }} />
             </header>
             {
                 timeline

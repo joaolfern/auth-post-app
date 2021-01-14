@@ -14,7 +14,7 @@ export default (earlierDate, laterDate = Date.now()) => {
 
     if (timeDiffStamp[0].days > 7) {
         const month = new Intl.DateTimeFormat('pt-BR', { month: 'short' }).format(earlierDate)
-        return `${earlierDate.getDay()} ${month} ${earlierDate.getYear()}`
+        return `${earlierDate.getDay()} de ${month} ${timeDiffStamp[0].years && earlierDate.getYear()}`
     }
 
     return {

@@ -24,6 +24,16 @@
     height: 30px;
 }
 
+.tweetar__button {
+    padding: .7em 1.2em;
+    align-content: center;
+}
+
+.home__tweetar {
+    max-width: 600px;
+    border: 1px rgba(0, 0, 0, 0.068) solid;
+}
+
 @media screen and (max-width: 500px) {
     .header__profilePicture {
         display: block;

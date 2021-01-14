@@ -7,7 +7,7 @@ import { Context } from '../context/token'
 
 import '../styles/tweetar.css'
 
-function Tweetar() {
+function Tweetar({ customClass }) {
 
     const {
         API,
@@ -51,10 +51,13 @@ function Tweetar() {
     }
 
     return (
-        <div className='home__tweetar'>
+        <div className={`tweetar ${customClass.container ?
+            customClass.container + '__tweetar' :
+            ''
+            }`}>
 
             <p>{errorMessage}</p>
-            <div className='tweetar__header'>
+            <div className={`tweetar__header `}>
                 <div className='tweetar__profilePicture'>
                     <ProfilePicture url={user.photo} />
                 </div>
@@ -62,17 +65,17 @@ function Tweetar() {
                     value={postInput}
                     onChange={handleChange}
                     placeholder='O que está acontecendo?'
-                    className='tweetar__input'
+                    className={
+                        `tweetar__input ${customClass.input ?
+                            customClass.input + '__tweetar__input' :
+                            ''
+                        }`}
                 />
             </div>
             <div className='tweetar__footer'>
-
-                <button
-                    className='blueButton tweetar__button'
-                    onClick={handleTweet}
-                >
+                <button className='blueButton tweetar__button' onClick={handleTweet}>
                     Tweetar
-                        </button>
+                </button>
             </div>
         </div>
     )

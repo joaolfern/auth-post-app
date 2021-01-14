@@ -1,16 +1,14 @@
-.home__tweetar {
+.tweetar {
     padding: .5em;
-    border: 1px rgba(0, 0, 0, 0.068) solid;
-    max-width: 600px;
 }
 
-.tweetar__header{
+.tweetar__header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-.tweetar__profilePicture{
+.tweetar__profilePicture {
     height: 50px;
     width: 50px;
     margin: 0 .5rem;
@@ -18,7 +16,6 @@
 
 .tweetar__input {
     border: none;
-    margin-left: 1em;
     width: 100%;
     max-height: 80vh;
     padding: 2px;

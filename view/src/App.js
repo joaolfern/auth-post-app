@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { Switch, Route, Redirect } from "react-router-dom"
 
@@ -14,7 +14,10 @@ import {
     faHashtag,
     faEnvelope,
     faUser,
-    faSearch
+    faSearch,
+    faTimes,
+    faFeatherAlt,
+    faPlus
 } from '@fortawesome/free-solid-svg-icons'
 import {
     faBell as farBell,
@@ -25,9 +28,11 @@ import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 import './styles/app.css'
 import './styles/hover.css'
+import Tweetar from './components/Tweetar'
 
 function App() {
     const { token } = useContext(Context)
+    const [showTweetar, setShowTweetar] = useState(false)
 
     const navbarItens = [
         {
@@ -80,11 +85,50 @@ function App() {
                                     {item.label && <p className='navbar__item__label'>{item.label}</p>}
                                 </li>
                             ))}
+                            <li>
+                                <button
+                                    className='blueButton navlist__tweetarBtn'
+                                    onClick={() => setShowTweetar(true)}
+                                >
+                                    Tweetar
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className='blueButton navlist__tweetarBtn--small'
+                                    onClick={() => setShowTweetar(true)}
+                                >
+                                    <div >
+                                        <FontAwesomeIcon
+                                            className='tweetarBtn__icon1'
+                                            icon={faFeatherAlt}
+                                        />
+                                        <FontAwesomeIcon
+                                            className='tweetarBtn__icon2'
+                                            icon={faPlus}
+                                        />
+                                    </div>
+                                </button>
+                            </li>
                         </ul>
-                    </nav>
 
+
+                    </nav>
                 </div>}
 
+            <div className='app__tweetar' style={{ display: showTweetar ? 'unset' : 'none' }}>
+                <div className='app__tweetar__header'>
+                    <button
+                        className='app__tweetar__close'
+                        onClick={() => setShowTweetar(false)}
+                    >
+                        <FontAwesomeIcon icon={faTimes} />
+                    </button>
+                </div>
+                <div className='app__tweetar__main'>
+                    <Tweetar customClass={{ input: 'app' }} />
+                </div>
+            </div>
 
             <Switch>
 

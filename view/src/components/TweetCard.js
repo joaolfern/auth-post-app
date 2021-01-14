@@ -16,9 +16,11 @@ import {
     faTrashAlt
 } from '@fortawesome/free-solid-svg-icons'
 
+
 import '../styles/tweetCard.css'
 
 function TweetCard({ post, user, setPosts }) {
+
     const { API, token } = useContext(Context)
     const [author, setAuthor] = useState({
         photo: ''

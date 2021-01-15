@@ -1,5 +1,8 @@
 
-.tweet:hover, .options__btn:hover {
+.tweet:hover,
+.options__btn:hover,
+.profileCard__details__logOff:hover
+{
     background: var(--x-x-light-gray);
 }
 
@@ -17,6 +20,9 @@
     color: var(--red)
 }
 
-.navbar__item:hover, .app__tweetar__close:hover {
+.navbar__item:hover,
+.app__tweetar__close:hover,
+.sidebar__profileCard__wrapper:hover
+{
     background-color: var(--light-blue);
 }

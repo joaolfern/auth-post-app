@@ -4,20 +4,15 @@
 }
 
 .app__sideBar {
-    width: 275px;
+    width: 245px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     font-size: 1.2em;
     position: sticky;
-    display: inline-block;
+    z-index: 4;
     max-height: 100vh;
-    margin: 0 1em;
+    margin: .5rem 1rem;
     top:0;
-}
-
-.navbar {
-
 }
 
 .navbar__list {
@@ -53,9 +48,10 @@
 }
 
 .navlist__tweetarBtn {
-    width: 100%;
+    width: 90%;
+    max-width: 200px;
     padding: 1em 3em;
-    margin-top: .5rem;
+    margin: 0 auto;
 }
 
 .navlist__tweetarBtn--small {
@@ -78,14 +74,22 @@
     position: absolute;
     z-index: 3;
     background: white;
-    position: absolute;
     left: 50%;
     top: 2.5rem;
     width: 600px;
     height: 280px;
     transform: translateX(-50%);
-    border: black 1px solid;
     border-radius: 2em;
+}
+
+.app__tweetar__wrapper {
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+    z-index: 4;
+    background: rgba(0, 0, 0, 0.589);
+    transition: opacity .2s;
 }
 
 .app__tweetar__header {
@@ -111,8 +115,58 @@
 }
 
 .app__tweetar__input {
-    min-height: 100px;
+    min-height: 150px;
+    max-height: 150px;
 }
+
+.sidebar__profileCard {
+    display: flex;
+    gap: .5rem;
+}
+
+.sidebar__profileCard__wrapper {
+    margin: 0 auto;
+    width: 90%;
+    padding: .5rem;
+    border-radius: 2rem;
+    margin-top: auto;
+    position: relative;
+}
+
+.profileCard__photo {
+    width: 2.7rem;
+    height: 2.7rem;
+}
+
+.profileCard__id {
+    display: flex;
+    flex-direction: column;
+}
+
+.profileCard__details {
+    bottom: 110%;
+    position: absolute;
+    z-index: 3;
+    background: white;
+    box-shadow: 0 0 3px  black;
+    border-radius: 1rem;
+    width: 200px;
+    transition: transform .2s ease-in-out;
+    transform-origin: 0% 100%;
+}
+
+.profileCard__details__header {
+    padding: 1.25rem 1rem .5rem 1rem;
+}
+
+.profileCard__details__logOff{
+    padding: 1rem;
+    font-size: .75em;
+    border-top: 1px solid var(--x-light-gray);
+    border-radius: 0 0 1rem 1rem;
+    cursor:pointer
+}
+
 
 @media screen and (max-width: 1277px) {
     .app__sideBar {
@@ -133,17 +187,32 @@
     .navlist__tweetarBtn--small {
         display: block;
     }
+    .profileCard__id--mediaQuerry {
+        display: none;
+    }
+    .sidebar__profileCard__wrapper:hover {
+        background: none!important;
+    }
 }
 
 @media screen and (max-width: 700px) {
     .app__sideBar {
-        margin: 0 .5rem;
+        margin:.5rem;
     }
 
     .app__tweetar {
         height: 100%;
         width: 100%;
         top: 0;
-        border: none
+        border: none;
+        border-radius: 0;
+    }
+
+    .navbar__item--search {
+        display: block;
+    }
+
+    .navbar__item--hashtag {
+        display: none;
     }
 }

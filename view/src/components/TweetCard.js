@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Context } from '../context/token'
 
 import ProfilePicture from './ProfilePicture'
-import getTimeDiff from '../functions/getTimeDiff'
+
+import { getTimeDiff } from '../functions/useDates'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
@@ -18,15 +19,18 @@ import {
 
 
 import '../styles/tweetCard.css'
+import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
 
 function TweetCard({ post, user, setPosts }) {
-
     const { API, token } = useContext(Context)
     const [author, setAuthor] = useState({
         photo: ''
     })
-    const [showOptions, setShowOptions] = useState(false)
-    const optionsRef = useRef(null)
+    const {
+        ref: refOptions,
+        visible: visibleOptions,
+        setVisible: setVisibleOptions
+    } = useHideOnOutsideClick()
 
     useEffect(() => {
         async function getAuthor() {
@@ -40,24 +44,7 @@ function TweetCard({ post, user, setPosts }) {
         if (!author.name)
             getAuthor()
 
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside)
-        };
-    }, [optionsRef, API, author.name, post.user])
-
-    function toggleOptions() {
-        setShowOptions(true)
-
-        document.addEventListener("mousedown", handleClickOutside)
-    }
-
-    function handleClickOutside(event) {
-        if (optionsRef.current && !optionsRef.current.contains(event.target)) {
-            setShowOptions(false)
-
-            document.removeEventListener("mousedown", handleClickOutside)
-        }
-    }
+    }, [API, author.name, post.user])
 
     function isFollowed() {
         return user.following.some(followedUser => followedUser === author['_id'])
@@ -78,6 +65,7 @@ function TweetCard({ post, user, setPosts }) {
 
     const timeDiff = getTimeDiff(post.date)
 
+
     return (
         <div className='wrapper' key={post['_id']}>
             <div className='tweet'>
@@ -86,13 +74,16 @@ function TweetCard({ post, user, setPosts }) {
                 </div>
                 <div className='tweet__content'>
                     <div className='tweet__header'>
-                        <h3 className='tweet__displayName'>{author['display_name']}</h3>
-                        <h4 className='tweet__username'>@{author.name}</h4>
+                        <h3 className='displayName'>{author['display_name']}</h3>
+                        <h4 className='username'>@{author.name}</h4>
                         <p>· {timeDiff.label ? `${timeDiff.value} ${timeDiff.label}` : timeDiff}</p>
                         <FontAwesomeIcon
                             className='tweet__showOptions'
                             icon={faEllipsisH}
-                            onClick={toggleOptions}
+                            onClick={() => {
+                                setVisibleOptions(true)
+                                console.log(visibleOptions)
+                            }}
                         />
 
                     </div>
@@ -115,9 +106,9 @@ function TweetCard({ post, user, setPosts }) {
             </div>
 
             <div className='tweet__options'
-                ref={optionsRef}
+                ref={refOptions}
                 style={{
-                    transform: `scaleY(${showOptions ? 1 : 0})`
+                    transform: `scaleY(${visibleOptions ? 1 : 0})`
                 }}
             >
                 {author['_id'] !== user['_id'] ?

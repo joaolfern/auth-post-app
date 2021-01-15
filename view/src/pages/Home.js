@@ -12,7 +12,6 @@ function Home() {
     const {
         API,
         token,
-        logOff,
         user,
         setUser,
         isFetched,
@@ -58,7 +57,6 @@ function Home() {
             <Helmet>
                 <title>Página Inicial / Twitter</title>
             </Helmet>
-            <p onClick={logOff}>logOff</p>
             <header className='home__header'>
                 <div className='header__wrapper'>
                     <div className='header__profilePicture'>

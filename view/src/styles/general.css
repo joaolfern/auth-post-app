@@ -31,3 +31,18 @@
 .profilePicture:hover {
     opacity: .8;
 }
+
+.selectedIcon {
+    color: var(--main-blue);
+}
+
+.displayName {
+    font-size: 1rem;
+    color: var(--black);
+}
+
+.username {
+    font-weight: 300;
+    color: var(--dark-gray);
+    font-size: 16px;
+}

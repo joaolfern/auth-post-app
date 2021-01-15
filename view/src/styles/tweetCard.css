@@ -18,17 +18,8 @@
     display: flex;
     gap: .5em;
     cursor: pointer;
+    font-weight: 300;
     color: var(--dark-gray);
-    font-weight: 300;
-}
-
-.tweet__displayName {
-    font-size: 1rem;
-    color: var(--black);
-}
-
-.tweet__username {
-    font-weight: 300;
 }
 
 .tweet__showOptions {
@@ -87,5 +78,4 @@
     gap: .5rem;
     color: var(--dark-gray);
     cursor: pointer;
-
 }

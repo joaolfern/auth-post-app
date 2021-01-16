@@ -4,8 +4,7 @@ const Context = React.createContext()
 
 function ContextProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem('token') || '')
-    const [user, setUser] = useState({ photo: '' })
-    const [isFetched, setIsFetched] = useState(false)
+    const [user, setUser] = useState({ following: [] })
 
     useEffect(() => {
         if (token && !localStorage.getItem('token')) {
@@ -20,6 +19,7 @@ function ContextProvider({ children }) {
     function logOff() {
         localStorage.removeItem('token')
         setToken('')
+        setUser({ following: [] })
     }
 
     const API = "http://localhost:1234/api"
@@ -40,9 +40,7 @@ function ContextProvider({ children }) {
             parseMessage,
             logOff,
             user,
-            setUser,
-            isFetched,
-            setIsFetched
+            setUser
         })}>
             {children}
         </Context.Provider>

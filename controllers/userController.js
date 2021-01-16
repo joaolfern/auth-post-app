@@ -21,7 +21,7 @@ module.exports = {
     store: async (req, res) => {
 
         const { display_name, email, password, date_of_birth, photo } = req.body
-        let name = display_name
+        let name = display_name.split(' ').join('').normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 
         if (!password) { //first validation
             const { error } = signUpValidation1(req, res)

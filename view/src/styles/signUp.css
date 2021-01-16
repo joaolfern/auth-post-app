@@ -1,6 +1,7 @@
 .signUp {
     padding: 1em;
     position: relative;
+    width: 100%;
     max-width: 540px;
     margin: 0 auto;
 }

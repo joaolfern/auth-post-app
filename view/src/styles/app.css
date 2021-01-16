@@ -26,7 +26,7 @@
     gap: 1em;
     font-weight: bold;
     cursor: pointer;
-    padding: .65rem;
+    padding: .5em;
     width: fit-content;
     border-radius: 1em;
     margin: 0 .5em;
@@ -41,6 +41,7 @@
 
 .navbar__item--twitter {
     color: var(--main-blue);
+    font-size: 1.3em;
 }
 
 .navbar__item--search {
@@ -121,14 +122,20 @@
 
 .sidebar__profileCard {
     display: flex;
+    align-items: center;
     gap: .5rem;
+}
+
+.sidebar__profileCard--min {
+    border-radius: 2rem;
+    padding: .5rem;
+    cursor: pointer;
+    padding-right: 1em;
 }
 
 .sidebar__profileCard__wrapper {
     margin: 0 auto;
-    width: 90%;
-    padding: .5rem;
-    border-radius: 2rem;
+    width: 100%;
     margin-top: auto;
     position: relative;
 }
@@ -190,7 +197,14 @@
     .profileCard__id--mediaQuerry {
         display: none;
     }
-    .sidebar__profileCard__wrapper:hover {
+
+    .sidebar__profileCard--min {
+        padding-right: 0;
+    }
+
+    .sidebar__profileCard--min:hover,
+    .navbar__item--twitter
+    {
         background: none!important;
     }
 }

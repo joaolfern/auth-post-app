@@ -22,7 +22,7 @@
 
 .navbar__item:hover,
 .app__tweetar__close:hover,
-.sidebar__profileCard__wrapper:hover
+.sidebar__profileCard--min:hover
 {
     background-color: var(--light-blue);
 }

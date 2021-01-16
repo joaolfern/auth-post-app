@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/token'
 
 import ProfilePicture from './ProfilePicture'
@@ -64,7 +64,6 @@ function TweetCard({ post, user, setPosts }) {
     }
 
     const timeDiff = getTimeDiff(post.date)
-
 
     return (
         <div className='wrapper' key={post['_id']}>

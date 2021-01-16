@@ -18,11 +18,11 @@ function Home() {
         setIsFetched
     } = useContext(Context)
     const [posts, setPosts] = useState([])
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
         async function getData(url, setter) {
-            const response = await fetch(url, {
+            const response = await fetch(`${API}/${url}`, {
                 mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,24 +30,29 @@ function Home() {
                 },
             })
 
-            const data = await response.json()
+            let data = await response.json()
+            if (url === 'post') {
+                data.sort((a, b) => new Date(b.date) - new Date(a.date))
+            }
+
             if (response.ok)
                 setter(data)
             else
                 setErrorMessage(data)
         }
 
-        if (!isFetched) {
-            getData(`${API}/post`, setPosts)
-            getData(`${API}/user/profile`, setUser)
-            setIsFetched(true)
+        if (!posts.length) {
+            getData(`post`, setPosts)
+            getData(`user/profile`, setUser)
         }
-    }, [posts, API, token, isFetched])
+
+    }, [posts, API, token])
 
     const timeline = posts.map(post => (
         <TweetCard
             key={post['_id']}
-            post={post} user={user}
+            post={post}
+            user={user}
             setPosts={setPosts}
         />
     ))

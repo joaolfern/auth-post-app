@@ -4,22 +4,21 @@ const { postValidation } = require('../validation')
 
 module.exports = {
     index: async (req, res) => {
-        const { _id } = req.user
+        const { _id: userId } = req.user
 
-        try {
-            const user = await User.find({ _id })
+            const user = await User.find({ _id: userId })
             const followedUsers = await User.find({ _id: { $in: user[0].following } })
 
             const timelinePosts = [...followedUsers, ...user].reduce(
                 (acc, item) => [...acc, ...item.posts], []
             )
 
-            const posts = await Post.find({ _id: { $in: timelinePosts } })
+            const posts = await Post.find({ $or:
+                [{ _id: { $in: timelinePosts } }, { retweets: userId }]
+            })
 
             res.json(posts)
-        } catch (err) {
-            res.status(400).json(err)
-        }
+
     },
     store: async (req, res) => {
         const { post } = req.body
@@ -86,4 +85,34 @@ module.exports = {
             res.status(400).json(err)
         }
     },
+    favorite: async (req, res) => {
+        const { _id: userId } = req.user
+        const { id: postId } = req.params
+        
+        const result = await Post.updateOne({ _id: postId }, { 
+            $addToSet: { favorites: userId }
+        })
+
+        if(result.nModified === 0) {
+            await Post.updateOne({ _id: postId }, {
+                $pull: { favorites: userId }
+            })
+        }
+        res.json(`Post ${postId} was ${result.nModified ? '' : 'un'}liked by ${userId}`)
+    },
+    retweet: async (req, res) => {
+        const { _id: userId } = req.user
+        const { id:postId } = req.params
+        
+        const result = await Post.updateOne({ _id: postId }, {
+            $addToSet: { retweets: userId }
+        })
+
+        if(result.nModified === 0) {
+            await Post.updateOne({ _id: postId }, {
+                $pull: { retweets: userId }
+            })
+        }
+        res.json(`Post ${postId} was ${result.nModified ? '' : 'un'}retweeted by ${userId}`)
+    }
 };

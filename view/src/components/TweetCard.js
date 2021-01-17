@@ -94,11 +94,11 @@ function TweetCard({ post, user, setPosts }) {
                         </div>
                         <div className='tweet__footer__item tweet__footer__item--retweet'>
                             <FontAwesomeIcon icon={faRetweet} />
-                            <p>{post.retweets}</p>
+                            <p>{post.retweets.length}</p>
                         </div>
                         <div className='tweet__footer__item tweet__footer__item--heart'>
                             <FontAwesomeIcon icon={farHeart} />
-                            <p>{post.favorites}</p>
+                            <p>{post.favorites.length}</p>
                         </div>
                     </div>
                 </div>

@@ -13,12 +13,12 @@ const PostSchema = mongoose.Schema({
         type: String,
     },
     favorites: {
-        type: Number,
-        default: 0,
+        type: Array,
+        default: [],
     },
     retweets: {
-        type: Number,
-        default: 0,
+        type: Array,
+        default: [],
     },
     replies: {
         type: Array,

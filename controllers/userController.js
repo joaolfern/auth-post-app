@@ -176,5 +176,5 @@ module.exports = {
         const user = await User.find({ _id })
 
         res.json(user[0])
-    }
+    },
 } 

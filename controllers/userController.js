@@ -152,8 +152,6 @@ module.exports = {
             { $push: { followers: follower } }
         )
         res.json(`${follower} followed ${followed}`)
-
-
     },
     unfollow: async (req, res) => {
         const { id: unfollowed } = req.params

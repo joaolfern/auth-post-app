@@ -68,7 +68,9 @@ module.exports = {
                 .string()
                 .min(6)
                 .max(280)
-                .required()
+                .required(),
+            repliedTo: Joi
+                .string()
         }).validate(req.body)
     },
 

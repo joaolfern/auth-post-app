@@ -23,6 +23,10 @@ const PostSchema = mongoose.Schema({
     replies: {
         type: Array,
         default: [],
+    },
+    repliedTo: {
+        type: String,
+        default: ''
     }
 });
 

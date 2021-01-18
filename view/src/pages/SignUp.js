@@ -10,10 +10,11 @@ import DateInput from '../components/DateInput'
 import '../styles/signUp.css'
 import ProfilePicture from '../components/ProfilePicture'
 import { Helmet } from 'react-helmet'
+import { Redirect } from 'react-router-dom'
 
 function SignUp() {
     const inpFileRef = useRef(null)
-    const { API, parseMessage, setToken } = useContext(Context)
+    const { API, parseMessage, setToken, token } = useContext(Context)
     const [input, setInput] = useState({
         name: '',
         email: '',
@@ -183,6 +184,7 @@ function SignUp() {
 
     return (
         <div className='signUp'>
+            {token && <Redirect to='/' />}
             <Helmet>
                 <title>Sign up for Twitter / Twitter</title>
             </Helmet>

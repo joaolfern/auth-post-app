@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { Context } from '../context/token'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 
 import InputField from '../components/InputField'
@@ -12,7 +12,7 @@ import '../styles/login.css'
 import '../styles/general.css'
 
 function Login() {
-    const { API, setToken, parseMessage } = useContext(Context)
+    const { API, setToken, parseMessage, token } = useContext(Context)
     const [input, setInput] = useState({
         email: '',
         password: ''
@@ -29,8 +29,9 @@ function Login() {
             })
             const data = await response.json()
 
-            if (response.ok)
+            if (response.ok) {
                 setToken(data)
+            }
             else
                 setErrorMessage(parseMessage[data] || data)
 
@@ -51,6 +52,7 @@ function Login() {
 
     return (
         <form className='login'>
+            {token && <Redirect to='/' />}
             <Helmet>
                 <title>Login on Twitter</title>
             </Helmet>

@@ -1,8 +1,9 @@
 .home {
     flex-basis: 600px;
+    margin-bottom: 50px;
 }
 
-.header__wrapper {
+.header{
     display: flex;
     padding: .7rem 1rem;
     border: 1px rgba(0, 0, 0, 0.068) solid;

@@ -1,7 +1,8 @@
 
 .tweet:hover,
 .options__btn:hover,
-.profileCard__details__logOff:hover
+.profileCard__details__logOff:hover,
+.toggleableSideBar__buttons__item:hover
 {
     background: var(--x-x-light-gray);
 }

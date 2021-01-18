@@ -8,7 +8,7 @@ import TweetCard from "../components/TweetCard"
 import { Context } from '../context/token'
 import '../styles/home.css'
 
-function Home() {
+function Home({ setVisibleTgSideBar }) {
     const {
         API,
         token,
@@ -41,12 +41,13 @@ function Home() {
                 setErrorMessage(data)
         }
 
-        if (!posts.length) {
+        if (!isFetched) {
             getData(`post`, setPosts)
             getData(`user/profile`, setUser)
+            setIsFetched(true)
         }
 
-    }, [posts, API, token])
+    }, [API, token, isFetched])
 
     const timeline = posts.map(post => (
         <TweetCard
@@ -62,18 +63,14 @@ function Home() {
             <Helmet>
                 <title>Página Inicial / Twitter</title>
             </Helmet>
-            <header className='home__header'>
-                <div className='header__wrapper'>
-                    <div className='header__profilePicture'>
-                        <ProfilePicture url={user.photo} />
-                    </div>
-                    <h1 className='header__title'>Página Inicial</h1>
+            <div className='header'>
+                <div className='header__profilePicture'>
+                    <ProfilePicture url={user.photo} callback={() => setVisibleTgSideBar(true)} />
                 </div>
-                <Tweetar customClass={{ container: 'home' }} />
-            </header>
-            {
-                timeline
-            }
+                <h1 className='header__title'>Página Inicial</h1>
+            </div>
+            <Tweetar customClass={{ container: 'home' }} />
+            {timeline}
             <p>{errorMessage}</p>
 
         </div>

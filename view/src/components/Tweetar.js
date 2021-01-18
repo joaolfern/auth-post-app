@@ -7,7 +7,7 @@ import { Context } from '../context/token'
 
 import '../styles/tweetar.css'
 
-function Tweetar({ customClass }) {
+function Tweetar({ customClass, setVisible }) {
 
     const {
         API,
@@ -40,9 +40,11 @@ function Tweetar({ customClass }) {
         })
 
         if (response.ok) {
-            setIsFetched(false)
             setPostInput('')
             setErrorMessage('')
+            setIsFetched(false)
+            if (setVisible)
+                setVisible(false)
         }
         else {
             const data = await response.json()
@@ -67,13 +69,14 @@ function Tweetar({ customClass }) {
                     placeholder='O que está acontecendo?'
                     className={
                         `tweetar__input ${customClass.input ?
-                            customClass.input + '__tweetar__input' :
-                            ''
+                            customClass.input + '__tweetar__input' : ''
                         }`}
                 />
             </div>
             <div className='tweetar__footer'>
-                <button className='blueButton tweetar__button' onClick={handleTweet}>
+                <button className={`blueButton tweetar__button ${customClass.button ?
+                    customClass.button + '__tweetar__button' : ''
+                    }`} onClick={handleTweet}>
                     Tweetar
                 </button>
             </div>

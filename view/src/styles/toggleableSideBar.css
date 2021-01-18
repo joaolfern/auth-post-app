@@ -1,0 +1,69 @@
+.toggleableSideBar {
+    background-color: white;
+    width: 290px;
+    height: 100vh;
+    transform-origin: left;
+    position: absolute;
+    left: 0;
+    z-index: 4;
+}
+
+.toggleableSideBar__header {
+    display: flex;
+    align-items: baseline;
+    padding: .5rem 1em;
+    border-bottom: 1px var(--x-light-gray) solid;
+}
+
+.toggleableSideBar__title {
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.toggleableSideBar__profile {
+    padding: .5rem 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.toggleableSideBar__picture {
+    height: 40px;
+    width: 40px;
+}
+
+.toggleableSideBar__followingStatus {
+    color: var(--dark-gray);
+    display: flex;
+    gap: 1em
+}
+
+.followingStatus__number {
+    font-weight: bold;
+    color: var(--black);
+}
+
+.toggleableSideBar__buttons__item {
+    background: none;
+    border: none;
+    display: flex;
+    gap: .5rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+.toggleableSideBar__icon {
+    min-width: 15px;
+}
+
+.toggleableSideBar__buttons__item--sair {
+    border-top: 1px var(--x-light-gray) solid;;
+}
+
+@media screen and (min-width: 500px) {
+    .toggleableSideBar--wrapper {
+        display: none;
+    }
+}

@@ -28,8 +28,46 @@ import '../styles/hover.css'
 import Tweetar from './Tweetar'
 import ProfilePicture from './ProfilePicture'
 import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
+import ShadedBox from './ShadedBox'
 
-function SideBar() {
+const navbarItens = [
+    {
+        icon: faTwitter,
+        label: '',
+        class: 'navbar__item--twitter',
+    },
+    {
+        icon: faHome,
+        label: 'Página Inicial',
+        path: '/'
+    },
+    {
+        icon: faHashtag,
+        label: 'Explorar',
+        class: 'navbar__item--hashtag'
+    },
+
+    {
+        icon: faSearch,
+        label: 'Pesquisar',
+        class: 'navbar__item--search'
+    },
+    {
+        icon: farBell,
+        label: 'Notificações'
+    },
+    {
+        icon: farEnvelope,
+        label: 'Mensagens'
+    },
+    {
+        icon: farUser,
+        label: 'Perfil',
+        class: 'navbar__item--profile'
+    }
+]
+
+function MainmainSideBar() {
     const { token, user, logOff } = useContext(Context)
     const location = useLocation()
 
@@ -45,46 +83,12 @@ function SideBar() {
         setVisible: setVisibleProfileDetails
     } = useHideOnOutsideClick()
 
-    const navbarItens = [
-        {
-            icon: faTwitter,
-            label: '',
-            class: 'navbar__item--twitter',
-        },
-        {
-            icon: faHome,
-            label: 'Página Inicial',
-            path: '/'
-        },
-        {
-            icon: faHashtag,
-            label: 'Explorar',
-            class: 'navbar__item--hashtag'
-        },
 
-        {
-            icon: faSearch,
-            label: 'Pesquisar',
-            class: 'navbar__item--search'
-        },
-        {
-            icon: farBell,
-            label: 'Notificações'
-        },
-        {
-            icon: farEnvelope,
-            label: 'Mensagens'
-        },
-        {
-            icon: farUser,
-            label: 'Perfil'
-        }
-    ]
 
     return (
         <>
             {token &&
-                <div className='app__sideBar'>
+                <div className='app__mainSideBar'>
                     <nav className='navbar'>
                         <ul className='navbar__list'>
                             {navbarItens.map(item => (
@@ -102,9 +106,9 @@ function SideBar() {
                                     }
                                 </li>
                             ))}
-                            <li>
+                            <li className='navlist__tweetarBtn--circular--mainSideBar'>
                                 <button
-                                    className='blueButton navlist__tweetarBtn--small'
+                                    className='blueButton navlist__tweetarBtn--circular--mainSideBar navlist__tweetarBtn--circular'
                                     onClick={() => setVisibleTweetar(true)}
                                 >
                                     <div >
@@ -128,9 +132,9 @@ function SideBar() {
                         </button>
                     </nav>
 
-                    <div className='sidebar__profileCard__wrapper' ref={refProfileDetails}>
+                    <div className='mainSideBar__profileCard__wrapper' ref={refProfileDetails}>
                         <div
-                            className='sidebar__profileCard--min sidebar__profileCard'
+                            className='mainSideBar__profileCard--min mainSideBar__profileCard'
                             onClick={() => setVisibleProfileDetails(prev => !prev)}
                         >
                             <div className='profileCard__photo'>
@@ -149,7 +153,7 @@ function SideBar() {
                                 transform: `scale(${visibleProfileDetails ? '1' : '0'})`
                             }}
                         >
-                            <div className='sidebar__profileCard profileCard__details__header'>
+                            <div className='mainSideBar__profileCard profileCard__details__header'>
                                 <div className='profileCard__photo'>
                                     <ProfilePicture url={user.photo} />
                                 </div>
@@ -166,14 +170,7 @@ function SideBar() {
                     </div>
                 </div>}
 
-            <div
-                className='app__tweetar__wrapper'
-                style={{
-                    transform: `scale(${visibleTweetar ? '1' : '0'})`,
-                    opacity: visibleTweetar ? '1' : '0',
-                    transition: visibleTweetar ? 'opacity .2s' : 'none'
-                }}
-            >
+            <ShadedBox condition={visibleTweetar}>
                 <div
                     className='app__tweetar' ref={refTweetar}
                     style={{ display: visibleTweetar ? 'unset' : 'none' }}
@@ -187,13 +184,33 @@ function SideBar() {
                         </button>
                     </div>
                     <div className='app__tweetar__main'>
-                        <Tweetar customClass={{ input: 'app' }} />
+                        <Tweetar
+                            setVisible={setVisibleTweetar}
+                            customClass={{ input: 'app', button: 'app' }}
+                        />
                     </div>
                 </div>
-            </div>
+            </ShadedBox>
+
+
+            <button
+                className='blueButton navlist__tweetarBtn--circular navlist__tweetarBtn--circular--absolute'
+                onClick={() => setVisibleTweetar(true)}
+            >
+                <div >
+                    <FontAwesomeIcon
+                        className='tweetarBtn__icon1'
+                        icon={faFeatherAlt}
+                    />
+                    <FontAwesomeIcon
+                        className='tweetarBtn__icon2'
+                        icon={faPlus}
+                    />
+                </div>
+            </button>
         </>
 
     )
 }
 
-export default SideBar
+export default MainmainSideBar

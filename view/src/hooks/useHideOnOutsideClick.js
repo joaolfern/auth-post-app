@@ -16,6 +16,8 @@ const useHideOnOutsideClick = () => {
         document.addEventListener('click', handleClickOutside, true)
         return () => {
             document.addEventListener('click', handleClickOutside, true)
+            setVisible(false)
+            console.log(visible)
         }
     }, [ref])
 

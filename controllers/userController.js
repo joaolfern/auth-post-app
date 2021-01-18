@@ -19,7 +19,6 @@ module.exports = {
         }
     },
     store: async (req, res) => {
-
         const { display_name, email, password, date_of_birth, photo } = req.body
         let name = display_name.split(' ').join('').normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 
@@ -42,6 +41,10 @@ module.exports = {
 
             return res.json('Second validation passed')
         }
+
+        const emailExists = await User.findOne({ email })
+        if (emailExists)
+            return res.status(401).json('Email already exists')
 
         const nameExists = await User.findOne({ display_name })
         if (nameExists)

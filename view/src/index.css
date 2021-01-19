@@ -1,14 +1,18 @@
 :root {
-    --main-blue: #1da1f2;
+    --main-color: hsla(203, 89%, 53%, 1);
+    --light-main-color: #1da0f228;
+    --dark-main-color: hsla(203, 89%, 40%, 1);
+    --secondary-bg-color: #f5f3fa;
+    --bg-color: #ffffff;
+    --border-color: #f5f3fa;
     --dark-gray: #6b7b88;
-    --black: #0f1419;
+    --logo: #1da0f2;
+    --txt-color: #0f1419;
     --light-gray: #AAB8C2;
     --x-light-gray: #e1e8ed;
     --x-x-light-gray: #f5f3fa;
-    --white: #FFFFFF;
     --red: #ff2c92;
     --green: #1db954;
-    --light-blue: #1da0f228;
 }
 
 #root {
@@ -16,9 +20,9 @@
 
 .app {
     font-family: '-apple-system', 'BlinkMacSystemFont', "Segoe UI",  'Roboto', 'Helvetica', 'Arial', 'sans-serif';
-    color: var(--black);
+    color: var(--txt-color);
     min-height: 100vh;
-
+    background-color: var(--bg-color);
 }
 
 * {

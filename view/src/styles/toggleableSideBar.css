@@ -1,9 +1,9 @@
 .toggleableSideBar {
-    background-color: white;
+    background-color: var(--bg-color);
     width: 290px;
     height: 100vh;
     transform-origin: left;
-    position: absolute;
+    position: fixed;
     left: 0;
     z-index: 4;
 }
@@ -12,7 +12,7 @@
     display: flex;
     align-items: baseline;
     padding: .5rem 1em;
-    border-bottom: 1px var(--x-light-gray) solid;
+    border-bottom: 1px var(--border-color) solid;
 }
 
 .toggleableSideBar__title {
@@ -42,7 +42,8 @@
 
 .followingStatus__number {
     font-weight: bold;
-    color: var(--black);
+    color: var(--txt-color);
+
 }
 
 .toggleableSideBar__buttons__item {
@@ -52,18 +53,121 @@
     gap: .5rem;
     padding: 1rem;
     width: 100%;
+    color: var(--txt-color);
+    cursor: pointer;
 }
 
 .toggleableSideBar__icon {
     min-width: 15px;
+    color: var(--dark-gray);
 }
 
 .toggleableSideBar__buttons__item--sair {
-    border-top: 1px var(--x-light-gray) solid;;
+    border-top: 1px var(--border-color) solid;;
+}
+
+.themes {
+    background-color: var(--bg-color);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 90vh;
+    max-height: 90vh;
+    width: 600px;
+    border-radius: 1rem;
+    padding: 2rem 1rem;
+    overflow-y: auto;
+}
+
+.themes__box {
+    background-color: var(--secondary-bg-color);
+    border-radius: 1rem;
+    margin-bottom: 1em;
+}
+
+.themes__color {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 1rem;
+}
+
+.themes__color__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.color__item__button {
+    border-radius: 100%;
+    background: none;
+    border: none;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+
+.color__item__icon {
+    width: 20px;
+    height: 20px;
+}
+
+.themes__label {
+    font-weight: bold;
+    color: var(--dark-gray);
+    font-size: .8rem;
+}
+
+.themes__bg {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.themes__bg__item {
+    flex-basis: 30%;
+    min-width: 30%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1em;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.bg__item__label {
+}
+
+.themes__button {
+    margin: 2rem auto;
+    display: block;
+}
+
+@media screen and (max-width: 700px) {
+    .themes {
+        top: 0;
+        left: 0;
+        transform: none;
+        border-radius: 0;
+        width: 100vw;
+        max-height: 100vh;
+        height: 100vh;
+    }
+
+    .themes--wrapper{
+        max-width: 540px;
+        margin: 0 auto;
+    }
+
+    .themes__color__item {
+        width: 25%;
+    }
 }
 
 @media screen and (min-width: 500px) {
     .toggleableSideBar--wrapper {
-        display: none;
     }
 }

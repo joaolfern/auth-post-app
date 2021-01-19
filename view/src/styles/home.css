@@ -6,8 +6,8 @@
 .header{
     display: flex;
     padding: .7rem 1rem;
-    border: 1px rgba(0, 0, 0, 0.068) solid;
-    background-color: white;
+    border: .1px var(--border-color) solid;
+    background-color: var(--bg-color);
     position: sticky;
     top:0;
     z-index: 2;
@@ -32,7 +32,7 @@
 
 .home__tweetar {
     max-width: 600px;
-    border: 1px rgba(0, 0, 0, 0.068) solid;
+    border: .1px var(--border-color) solid;
 }
 
 @media screen and (max-width: 500px) {

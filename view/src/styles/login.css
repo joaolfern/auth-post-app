@@ -12,7 +12,7 @@
 
 .login__icon {
     font-size: 2.5em;
-    color: var(--main-blue); 
+    color: var(--main-color); 
 }
 
 .login__title {
@@ -34,7 +34,7 @@
 .login__signUp {
     text-decoration: none;
     font-size: .9em;
-    color: var(--main-blue);
+    color: var(--main-color);
 }
 
 .login__errorMessage {

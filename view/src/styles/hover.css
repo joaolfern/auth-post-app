@@ -4,13 +4,13 @@
 .profileCard__details__logOff:hover,
 .toggleableSideBar__buttons__item:hover
 {
-    background: var(--x-x-light-gray);
+    background: var(--secondary-bg-color);
 }
 
 .tweet__footer__item--reply:hover,
 .navbar__item:hover
 {
-    color: var(--main-blue);
+    color: var(--main-color);
 }
 
 .tweet__footer__item--retweet:hover {
@@ -23,7 +23,7 @@
 
 .navbar__item:hover,
 .app__tweetar__close:hover,
-.sidebar__profileCard--min:hover
+.mainSideBar__profileCard--min:hover
 {
-    background-color: var(--light-blue);
+    background-color: var(--light-main-color);
 }

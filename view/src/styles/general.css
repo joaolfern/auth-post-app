@@ -1,6 +1,6 @@
 .blueButton {
-    background: var(--main-blue);
-    color: var(--white);
+    background: var(--main-color);
+    color: #ffffff;
     border: none;
     font-weight: 600;
     padding: .5rem 1rem;
@@ -9,7 +9,7 @@
 }
 
 .blueButton:hover {
-    background: #1786ca;
+    background: var(--dark-main-color);
 }
 
 .profilePicture {
@@ -33,12 +33,12 @@
 }
 
 .selectedIcon {
-    color: var(--main-blue);
+    color: var(--main-color);
 }
 
 .displayName {
     font-size: 1rem;
-    color: var(--black);
+    color: var(--txt-color);
 }
 
 .username {
@@ -48,8 +48,9 @@
 }
 
 .shadedBox {
-    position: absolute;
+    position: fixed;
     top:0;
+    left: 0;
     width: 100%;
     height: 100%;
     z-index: 4;

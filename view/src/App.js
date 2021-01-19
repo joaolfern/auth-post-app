@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { Switch, Route, Redirect, useLocation } from "react-router-dom"
 
@@ -12,7 +12,7 @@ import ToggleableSideBar from './components/ToggleableSideBar'
 import useHideOnOutsideClick from './hooks/useHideOnOutsideClick'
 
 function App() {
-    const { token } = useContext(Context)
+    const { token, switchColorTheme, switchBgTheme } = useContext(Context)
     const location = useLocation()
 
     const {

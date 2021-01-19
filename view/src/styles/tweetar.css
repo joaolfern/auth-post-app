@@ -22,6 +22,8 @@
     font-family: '-apple-system', 'BlinkMacSystemFont', "Segoe UI",  'Roboto', 'Helvetica', 'Arial', 'sans-serif';
     resize: none;
     font-size: 1.2rem;
+    background-color: var(--bg-color);
+    color: var(--txt-color)
 }
  
 .tweetar__input:focus {

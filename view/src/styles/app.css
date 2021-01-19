@@ -44,7 +44,7 @@
 }
 
 .navbar__item--twitter {
-    color: var(--main-blue);
+    color: var(--logo);
 }
 
 .navbar__item--search {
@@ -84,7 +84,7 @@
 .app__tweetar {
     position: absolute;
     z-index: 3;
-    background: white;
+    background: var(--bg-color);
     left: 50%;
     top: 2.5rem;
     width: 600px;
@@ -118,7 +118,7 @@
     cursor: pointer;
     padding: .4rem .6rem;
     border-radius: 50%;
-    color: var(--main-blue);
+    color: var(--main-color);
 }
 
 .app__tweetar__main {
@@ -163,7 +163,7 @@
     bottom: 110%;
     position: absolute;
     z-index: 3;
-    background: white;
+    background: var(--bg-color);
     box-shadow: 0 0 3px  black;
     border-radius: 1rem;
     width: 200px;
@@ -252,7 +252,7 @@
 @media screen and (max-width: 500px) {
 
     .app__mainSideBar {
-        background-color: white;
+        background-color: var(--bg-color);
         position: fixed;
         bottom: 0;
         top: unset;

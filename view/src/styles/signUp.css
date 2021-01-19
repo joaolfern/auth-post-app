@@ -7,7 +7,7 @@
 }
 
 .signUp__icon {
-    color: var(--main-blue);
+    color: var(--main-color);
     font-size: 1.7em;
     position: absolute;
     left: 50%;
@@ -52,7 +52,7 @@
 }
 
 .signUp__picture__icon {
-    color: white;
+    color: var(--bg-color);
     font-size: 1.5em;
     position: absolute;
     left: 50%;

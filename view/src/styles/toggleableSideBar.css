@@ -76,8 +76,29 @@
     max-height: 90vh;
     width: 600px;
     border-radius: 1rem;
-    padding: 2rem 1rem;
+    padding: 2em 0rem;
     overflow-y: auto;
+}
+
+.themes__header {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    justify-content: center;
+}
+
+.themes__title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.5rem;
+}
+
+.themes__close {
+    color: var(--main-color);
+    font-size: 1.3rem;
+    display: none;
+    cursor: pointer;
 }
 
 .themes__box {
@@ -138,12 +159,15 @@
     border-radius: 5px;
 }
 
-.bg__item__label {
-}
-
 .themes__button {
     margin: 2rem auto;
     display: block;
+}
+
+.themes--wrapper {
+    max-width: min(540px, 90vw);
+    margin: 0 auto;
+    margin-top: 2rem;
 }
 
 @media screen and (max-width: 700px) {
@@ -153,13 +177,23 @@
         transform: none;
         border-radius: 0;
         width: 100vw;
+        max-width: 100vw;
         max-height: 100vh;
         height: 100vh;
+        padding: 0;
     }
 
-    .themes--wrapper{
-        max-width: 540px;
-        margin: 0 auto;
+    .themes__header {
+        padding: .8em 1em;
+        justify-content: flex-start;
+        border-bottom: 1px var(--border-color) solid;
+        position: sticky;
+        top: 0;
+        background-color: var(--bg-color);
+    }
+
+    .themes__close {
+        display: block;
     }
 
     .themes__color__item {
@@ -169,5 +203,20 @@
 
 @media screen and (min-width: 500px) {
     .toggleableSideBar--wrapper {
+    }
+
+    .toggleableSideBar__header{
+        display: none;
+    }
+
+    .toggleableSideBar__profile {
+        display: none;
+    }
+
+    .toggleableSideBar {
+        height: auto;
+        box-shadow: 0 0 3px var(--txt-color);
+        top: 15vh;
+        left: 5vw;
     }
 }

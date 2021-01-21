@@ -45,7 +45,7 @@ function ContextProvider({ children }) {
 
     const bgThemes = [
         { primary: [0, 100, 100, 1], secondary: [257, 41, 97, 1], txt: '#000000', border: '#f5f3fa' },
-        { primary: [210, 34, 13, 1], txt: '#ffffff', border: '#2f3336' },
+        { primary: [210, 34, 13, 1], txt: '#ffffff', border: '#38444d' },
         { primary: [0, 0, 0, 1], txt: '#ffffff', border: '#2f3336' },
     ]
 

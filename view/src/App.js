@@ -26,7 +26,11 @@ function App() {
             {!token && <Redirect to="/login" />}
             {!location.pathname.match(/(\/login|\/sign-up)/) &&
                 <>
-                    <MainSideBar />
+                    <MainSideBar
+                        refTgSideBar={refTgSideBar}
+                        setVisibleTgSideBar={setVisibleTgSideBar}
+                        visibleTgSideBar={visibleTgSideBar}
+                    />
                     <ToggleableSideBar
                         refTgSideBar={refTgSideBar}
                         setVisibleTgSideBar={setVisibleTgSideBar}
@@ -54,7 +58,9 @@ function App() {
 
                 </Switch>
             </div>
+            <div className='app__trending' style={{ width: 400 }}>
 
+            </div>
         </div >
     )
 }

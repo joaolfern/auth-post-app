@@ -105,7 +105,7 @@
 
 .app__tweetar__header {
     height: 50px;
-    border-bottom: 1px rgba(0, 0, 0, 0.329) solid;
+    border-bottom: 1px var(--border-color) solid;
     display: flex;
     align-items: center;
 }
@@ -218,6 +218,12 @@
     }
 }
 
+@media screen and (max-width: 1000px) {
+    .app__trending {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 700px) {
     .app__mainSideBar {
         margin: 0 .25rem 0 .25rem;
@@ -263,10 +269,6 @@
         max-height: 50px;
     }
 
-    .mainSideBar__profileCard__wrapper {
-        display: none;
-    }
-
     .navbar__list {
         flex-direction: row;
         justify-content: space-around;
@@ -281,15 +283,13 @@
         z-index: 3;
     }
 
-    .navbar__item--twitter {
+    .navbar__item--profile,
+    .navbar__item--more,
+    .navbar__item--twitter,
+    .navlist__tweetarBtn--circular--mainSideBar,
+    .mainSideBar__profileCard__wrapper 
+    {
         display: none;
     }
 
-    .navbar__item--profile {
-        display: none;
-    }
-
-    .navlist__tweetarBtn--circular--mainSideBar {
-        display: none;
-    }
 }

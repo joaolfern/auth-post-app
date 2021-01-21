@@ -70,7 +70,7 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
             <div
                 className='toggleableSideBar' ref={refTgSideBar}
                 style={{
-                    transform: `translateX(${visibleTgSideBar ? '0' : '-100%'})`,
+                    transform: `translateX(${visibleTgSideBar ? '0' : '-125%'})`,
                     transition: 'transform .2s ease-in-out'
                 }}
             >
@@ -122,8 +122,14 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
             </div>
             <ShadedBox condition={visibleThemes}>
                 <div className='themes' ref={refThemes}>
-                    <div className='themes--wrapper'>
+                    <div className='themes__header' >
+                        <FontAwesomeIcon
+                            className='themes__close' icon={faTimes}
+                            onClick={() => setVisibleThemes(false)}
+                        />
                         <h1 className='themes__title'>Personalizar sua exibição</h1>
+                    </div>
+                    <div className='themes--wrapper'>
                         <p className='themes__label'>Color</p>
                         <div className='themes__color themes__box'>
                             {colorItens.map((item, i) => (
@@ -152,7 +158,7 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
                                         }}
                                         onClick={() => setSelectedTheme(() => switchBgTheme(i))}
                                     >
-                                        <input type='radio' checked={selectedTheme.bg === i} />
+                                        <input className='bg__item__icon' type='radio' checked={selectedTheme.bg === i} />
                                         <label className='bg__item__label'> {item.label}</label>
                                     </div>
                                 ))

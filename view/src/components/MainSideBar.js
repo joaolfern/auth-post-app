@@ -30,44 +30,9 @@ import ProfilePicture from './ProfilePicture'
 import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
 import ShadedBox from './ShadedBox'
 
-const navbarItens = [
-    {
-        icon: faTwitter,
-        label: '',
-        class: 'navbar__item--twitter',
-    },
-    {
-        icon: faHome,
-        label: 'Página Inicial',
-        path: '/'
-    },
-    {
-        icon: faHashtag,
-        label: 'Explorar',
-        class: 'navbar__item--hashtag'
-    },
 
-    {
-        icon: faSearch,
-        label: 'Pesquisar',
-        class: 'navbar__item--search'
-    },
-    {
-        icon: farBell,
-        label: 'Notificações'
-    },
-    {
-        icon: farEnvelope,
-        label: 'Mensagens'
-    },
-    {
-        icon: farUser,
-        label: 'Perfil',
-        class: 'navbar__item--profile'
-    }
-]
 
-function MainmainSideBar() {
+function MainmainSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar }) {
     const { token, user, logOff } = useContext(Context)
     const location = useLocation()
 
@@ -83,92 +48,132 @@ function MainmainSideBar() {
         setVisible: setVisibleProfileDetails
     } = useHideOnOutsideClick()
 
+    const navbarItens = [
+        {
+            icon: faTwitter,
+            label: '',
+            class: 'navbar__item--twitter',
+        },
+        {
+            icon: faHome,
+            label: 'Página Inicial',
+            path: '/'
+        },
+        {
+            icon: faHashtag,
+            label: 'Explorar',
+            class: 'navbar__item--hashtag'
+        },
 
+        {
+            icon: faSearch,
+            label: 'Pesquisar',
+            class: 'navbar__item--search'
+        },
+        {
+            icon: farBell,
+            label: 'Notificações'
+        },
+        {
+            icon: farEnvelope,
+            label: 'Mensagens'
+        },
+        {
+            icon: farUser,
+            label: 'Perfil',
+            class: 'navbar__item--profile'
+        }, {
+            icon: faEllipsisH,
+            label: 'Mais',
+            class: 'navbar__item--more',
+            action: () => setVisibleTgSideBar(true)
+        },
+    ]
 
     return (
         <>
-            {token &&
-                <div className='app__mainSideBar'>
-                    <nav className='navbar'>
-                        <ul className='navbar__list'>
-                            {navbarItens.map(item => (
-                                <li className={`navbar__item
+            <div className='app__mainSideBar'>
+                <nav className='navbar'>
+                    <ul className='navbar__list'>
+                        {navbarItens.map(item => (
+                            <li className={`navbar__item
                                     ${item.class ? item.class : ''}
                                     ${item.path === location.pathname ? 'selectedIcon' : ''}
                                     `}
-                                    key={item.label}
-                                >
-                                    <div className={`navbar__item__icon`}>
-                                        <FontAwesomeIcon icon={item.icon} />
-                                    </div>
-                                    {item.label &&
-                                        <p className='navbar__item__label'>{item.label}</p>
-                                    }
-                                </li>
-                            ))}
-                            <li className='navlist__tweetarBtn--circular--mainSideBar'>
-                                <button
-                                    className='blueButton navlist__tweetarBtn--circular--mainSideBar navlist__tweetarBtn--circular'
-                                    onClick={() => setVisibleTweetar(true)}
-                                >
-                                    <div >
-                                        <FontAwesomeIcon
-                                            className='tweetarBtn__icon1'
-                                            icon={faFeatherAlt}
-                                        />
-                                        <FontAwesomeIcon
-                                            className='tweetarBtn__icon2'
-                                            icon={faPlus}
-                                        />
-                                    </div>
-                                </button>
+                                key={item.label}
+                                onClick={item.action}
+                            >
+                                <div className={`navbar__item__icon`}>
+                                    <FontAwesomeIcon icon={item.icon} />
+                                </div>
+                                {item.label &&
+                                    <p className='navbar__item__label'>{item.label}</p>
+                                }
                             </li>
-                        </ul>
-                        <button
-                            className='blueButton navlist__tweetarBtn'
-                            onClick={() => setVisibleTweetar(true)}
-                        >
-                            Tweetar
+                        ))}
+                        <li className='navlist__tweetarBtn--circular--mainSideBar'>
+                            <button
+                                className='blueButton navlist__tweetarBtn--circular--mainSideBar navlist__tweetarBtn--circular'
+                                onClick={() => setVisibleTweetar(true)}
+                            >
+                                <div >
+                                    <FontAwesomeIcon
+                                        className='tweetarBtn__icon1'
+                                        icon={faFeatherAlt}
+                                    />
+                                    <FontAwesomeIcon
+                                        className='tweetarBtn__icon2'
+                                        icon={faPlus}
+                                    />
+                                </div>
+                            </button>
+                        </li>
+                    </ul>
+                    <button
+                        className='blueButton navlist__tweetarBtn'
+                        onClick={() => setVisibleTweetar(true)}
+                    >
+                        Tweetar
                         </button>
-                    </nav>
+                </nav>
 
-                    <div className='mainSideBar__profileCard__wrapper' ref={refProfileDetails}>
-                        <div
-                            className='mainSideBar__profileCard--min mainSideBar__profileCard'
-                            onClick={() => setVisibleProfileDetails(prev => !prev)}
-                        >
+                <div className='mainSideBar__profileCard__wrapper' ref={refProfileDetails}>
+                    <div
+                        className='mainSideBar__profileCard--min mainSideBar__profileCard'
+                        onClick={() => setVisibleProfileDetails(prev => !prev)}
+                    >
+                        <div className='profileCard__photo'>
+                            <ProfilePicture url={user.photo} />
+                        </div>
+                        <div className='profileCard__id profileCard__id--mediaQuerry'>
+                            <h3 className='displayName'>{user['display_name']}</h3>
+                            <h4 className='username'>@{user.name}</h4>
+                        </div>
+                        <FontAwesomeIcon className='tweet__showOptions profileCard__id--mediaQuerry' icon={faEllipsisH} />
+                    </div>
+                    <div
+
+                        className='profileCard__details'
+                        style={{
+                            transform: `scale(${visibleProfileDetails ? '1' : '0'})`
+                        }}
+                    >
+                        <div className='mainSideBar__profileCard profileCard__details__header'>
                             <div className='profileCard__photo'>
                                 <ProfilePicture url={user.photo} />
                             </div>
-                            <div className='profileCard__id profileCard__id--mediaQuerry'>
+                            <div className='profileCard__id'>
                                 <h3 className='displayName'>{user['display_name']}</h3>
                                 <h4 className='username'>@{user.name}</h4>
                             </div>
-                            <FontAwesomeIcon className='tweet__showOptions profileCard__id--mediaQuerry' icon={faEllipsisH} />
                         </div>
-                        <div
-
-                            className='profileCard__details'
-                            style={{
-                                transform: `scale(${visibleProfileDetails ? '1' : '0'})`
-                            }}
-                        >
-                            <div className='mainSideBar__profileCard profileCard__details__header'>
-                                <div className='profileCard__photo'>
-                                    <ProfilePicture url={user.photo} />
-                                </div>
-                                <div className='profileCard__id'>
-                                    <h3 className='displayName'>{user['display_name']}</h3>
-                                    <h4 className='username'>@{user.name}</h4>
-                                </div>
-                            </div>
-                            <p onClick={logOff} className='profileCard__details__logOff'>
-                                Sair de @{user.name}
-                            </p>
-                        </div>
-
+                        <p onClick={logOff} className='profileCard__details__logOff'>
+                            Sair de @{user.name}
+                        </p>
                     </div>
-                </div>}
+
+                </div>
+            </div>
 
             <ShadedBox condition={visibleTweetar}>
                 <div
@@ -192,7 +197,6 @@ function MainmainSideBar() {
                 </div>
             </ShadedBox>
 
-
             <button
                 className='blueButton navlist__tweetarBtn--circular navlist__tweetarBtn--circular--absolute'
                 onClick={() => setVisibleTweetar(true)}
@@ -208,6 +212,7 @@ function MainmainSideBar() {
                     />
                 </div>
             </button>
+
         </>
 
     )

@@ -63,6 +63,53 @@ function TweetCard({ post, user, setPosts }) {
             )
     }
 
+    async function reactToTweet(action) {
+        try {
+            const actionPlural = action + 's'
+            const response = await fetch(`${API}/post/${action}/${post['_id']}`, {
+                method: 'PATCH',
+                headers: {
+                    'auth-token': token
+                }
+            })
+            const data = await response.json()
+
+            if (response.ok) {
+                setPosts(prev => {
+                    if (data.increased) {
+                        return prev.map(item =>
+                            item['_id'] === post['_id'] ?
+                                { ...item, [actionPlural]: [...item[actionPlural], user['_id']] }
+                                : item
+                        )
+                    }
+                    return prev.map(item =>
+                        item['_id'] === post['_id'] ?
+                            { ...item, [actionPlural]: item[actionPlural].filter(record => record !== user['_id']) }
+                            : item
+                    )
+                })
+            }
+        } catch (e) {
+            console.log(e)
+        }
+
+
+    }
+
+    function isThereAReaction(action) {
+        return post[action + 's'].some(liked => liked === user['_id'])
+    }
+
+    function formatNumber(number) {
+        if (number >= 1000000)
+            return `${parseFloat((number / 1000000).toFixed(3))} mi`
+        else if (number >= 1000)
+            return `${parseFloat((number / 1000).toFixed(1))} mil`
+        else
+            return number
+    }
+
     const timeDiff = getTimeDiff(post.date)
 
     return (
@@ -81,7 +128,6 @@ function TweetCard({ post, user, setPosts }) {
                             icon={faEllipsisH}
                             onClick={() => {
                                 setVisibleOptions(true)
-                                console.log(visibleOptions)
                             }}
                         />
 
@@ -89,16 +135,27 @@ function TweetCard({ post, user, setPosts }) {
                     <p className='tweet__post'>{post.post}</p>
                     <div className='tweet__footer'>
                         <div className='tweet__footer__item tweet__footer__item--reply'>
-                            <FontAwesomeIcon icon={faComment} />
-                            <p>{post.replies.length}</p>
+                            <FontAwesomeIcon className='tweet__footer__item__icon' icon={faComment} />
+                            <p className='tweet__footer__item__label'>{post.replies.length ? formatNumber(post.replies.length) : ''}</p>
                         </div>
-                        <div className='tweet__footer__item tweet__footer__item--retweet'>
-                            <FontAwesomeIcon icon={faRetweet} />
-                            <p>{post.retweets.length}</p>
+                        <div className={
+                            `tweet__footer__item tweet__footer__item--retweet ${isThereAReaction('retweet') ? 'retweet--retweeted' : ''}`}
+                        >
+                            <FontAwesomeIcon className='tweet__footer__item__icon'
+                                onClick={() => reactToTweet('retweet')}
+                                icon={faRetweet}
+                            />
+                            <p className='tweet__footer__item__label'>{post.retweets.length ? formatNumber(post.retweets.length) : ''}</p>
                         </div>
-                        <div className='tweet__footer__item tweet__footer__item--heart'>
-                            <FontAwesomeIcon icon={farHeart} />
-                            <p>{post.favorites.length}</p>
+                        <div
+                            className={
+                                `tweet__footer__item tweet__footer__item--heart ${isThereAReaction('like') ? 'heart--liked' : ''}`}
+                        >
+                            <FontAwesomeIcon className='tweet__footer__item__icon'
+                                onClick={() => reactToTweet('like')}
+                                icon={isThereAReaction('like') ? faHeart : farHeart}
+                            />
+                            <p className='tweet__footer__item__label'>{post.likes.length ? formatNumber(post.likes.length) : ''}</p>
                         </div>
                     </div>
                 </div>

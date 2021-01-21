@@ -78,5 +78,22 @@
     display: flex;
     gap: .5rem;
     color: var(--dark-gray);
+}
+
+.tweet__footer__item__icon {
     cursor: pointer;
+}
+
+.tweet__footer__item__label {
+    width: 74px;
+    max-width: 15vw;
+    min-height: 19px;
+}
+
+.heart--liked {
+    color: var(--red);
+}
+
+.retweet--retweeted {
+    color: var(--green);
 }

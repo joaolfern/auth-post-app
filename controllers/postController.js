@@ -104,20 +104,21 @@ module.exports = {
             res.status(400).json(err)
         }
     },
-    favorite: async (req, res) => {
+    like: async (req, res) => {
         const { _id: userId } = req.user
         const { id: postId } = req.params
 
         const result = await Post.updateOne({ _id: postId }, {
-            $addToSet: { favorites: userId }
+            $addToSet: { likes: userId }
         })
 
         if (result.nModified === 0) {
             await Post.updateOne({ _id: postId }, {
-                $pull: { favorites: userId }
+                $pull: { likes: userId }
             })
+
         }
-        res.json(`Post ${postId} was ${result.nModified ? '' : 'un'}liked by ${userId}`)
+        res.json({ post: postId, user: { userId }, increased: result.nModified ? true : false })
     },
     retweet: async (req, res) => {
         const { _id: userId } = req.user
@@ -132,6 +133,6 @@ module.exports = {
                 $pull: { retweets: userId }
             })
         }
-        res.json(`Post ${postId} was ${result.nModified ? '' : 'un'}retweeted by ${userId}`)
+        res.json({ post: postId, user: { userId }, increased: result.nModified ? true : false })
     }
 };

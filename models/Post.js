@@ -12,7 +12,7 @@ const PostSchema = mongoose.Schema({
     user: {
         type: String,
     },
-    favorites: {
+    likes: {
         type: Array,
         default: [],
     },

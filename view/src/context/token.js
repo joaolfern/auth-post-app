@@ -10,8 +10,6 @@ function ContextProvider({ children }) {
         || { color: 0, bg: 0 })
     const [themeLoaded, setThemeLoaded] = useState(false)
 
-    console.log(localStorage.getItem('theme'), selectedTheme)
-
     useEffect(() => {
         if (token && !localStorage.getItem('token')) {
             logIn()

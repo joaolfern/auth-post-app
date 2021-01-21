@@ -8,7 +8,7 @@ router.get('/', verify, postController.index)
 router.post('/', verify, postController.store)
 router.get('/:match', verify, postController.search)
 router.delete('/:id', verify, postController.delete)
-router.patch('/favorite/:id', verify, postController.favorite)
+router.patch('/like/:id', verify, postController.like)
 router.patch('/retweet/:id', verify, postController.retweet)
 
 module.exports = router

@@ -12,13 +12,12 @@
 
 .login__icon {
     font-size: 2.5em;
-    color: var(--main-color); 
+    color: var(--logo); 
 }
 
 .login__title {
     font-size: 1.5em;
 }
-
 
 .login__input {
     width: 98%;

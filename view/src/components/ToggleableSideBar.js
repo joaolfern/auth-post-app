@@ -1,11 +1,13 @@
 import { faTimes, faUser, faCog, faBrush } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useContext, useState } from 'react'
-import ShadedBox from './ShadedBox'
+import React, { useContext } from 'react'
+
 
 import '../styles/toggleableSideBar.css'
 import ProfilePicture from './ProfilePicture'
 import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
+import ShadedBox from './ShadedBox'
+import formatNumber from '../functions/formatNumber'
 
 import { Context } from '../context/token'
 
@@ -93,11 +95,11 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
                     </div>
                     <div className='toggleableSideBar__followingStatus'>
                         <p>
-                            <span className='followingStatus__number'>{user.following.length} </span>
+                            <span className='followingStatus__number'>{formatNumber(user.following.length)} </span>
                             Seguindo
                         </p>
                         <p>
-                            <span className='followingStatus__number'>{user.followers.length} </span>
+                            <span className='followingStatus__number'>{formatNumber(user.followers.length)} </span>
                             Seguidores
                         </p>
                     </div>
@@ -109,7 +111,12 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
                                 ${item.class ? item.class : ''}`
                             }
                             key={item.label}
-                            onClick={item.action ? item.action : () => { }}
+                            onClick={() => {
+                                if (item.action) {
+                                    item.action()
+                                    setVisibleTgSideBar(false)
+                                }
+                            }}
                         >
 
                             {item.icon &&

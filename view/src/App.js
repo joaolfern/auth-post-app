@@ -58,9 +58,12 @@ function App() {
 
                 </Switch>
             </div>
-            <div className='app__trending' style={{ width: 400 }}>
+            {!location.pathname.match(/(\/login|\/sign-up)/) &&
+                <div className='app__trending' style={{ width: 400 }}>
 
-            </div>
+                </div>
+            }
+
         </div >
     )
 }

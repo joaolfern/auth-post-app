@@ -4,6 +4,7 @@ import { Context } from '../context/token'
 import ProfilePicture from './ProfilePicture'
 
 import { getTimeDiff } from '../functions/useDates'
+import formatNumber from '../functions/formatNumber'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
@@ -93,21 +94,10 @@ function TweetCard({ post, user, setPosts }) {
         } catch (e) {
             console.log(e)
         }
-
-
     }
 
     function isThereAReaction(action) {
         return post[action + 's'].some(liked => liked === user['_id'])
-    }
-
-    function formatNumber(number) {
-        if (number >= 1000000)
-            return `${parseFloat((number / 1000000).toFixed(3))} mi`
-        else if (number >= 1000)
-            return `${parseFloat((number / 1000).toFixed(1))} mil`
-        else
-            return number
     }
 
     const timeDiff = getTimeDiff(post.date)

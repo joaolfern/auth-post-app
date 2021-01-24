@@ -12,26 +12,35 @@ module.exports = {
         }
     },
     index: async (req, res) => {
-        const { _id: userId } = req.user
+        let { id: userId } = req.params
 
-        const user = await User.find({ _id: userId })
+        if (!userId) {
+            userId = req.user._id
+            const user = await User.find({ _id: userId })
 
-        if (!user[0]) {
-            return res.json([])
+            if (!user[0]) {
+
+                return res.json([])
+            }
+            const followedUsers = await User.find({ _id: { $in: (user[0].following || []) } })
+            const timelinePosts = [...followedUsers, ...user].reduce(
+                (acc, item) => [...acc, ...item.posts], []
+            )
+
+            const posts = await Post.find({
+                $or:
+                    [{ _id: { $in: timelinePosts } }, { retweets: userId }]
+            })
+
+
+            res.json(posts)
+        } else {
+            const user = await User.find({ _id: userId })
+            const posts = await Post.find({ _id: { $in: user[0].posts } })
+            res.json(posts)
         }
 
-        const followedUsers = await User.find({ _id: { $in: (user[0].following || []) } })
-        const timelinePosts = [...followedUsers, ...user].reduce(
-            (acc, item) => [...acc, ...item.posts], []
-        )
 
-
-        const posts = await Post.find({
-            $or:
-                [{ _id: { $in: timelinePosts } }, { retweets: userId }]
-        })
-
-        res.json(posts)
     },
     store: async (req, res) => {
         const { post, repliedTo } = req.body
@@ -90,16 +99,6 @@ module.exports = {
             deletedRegistry.remove()
 
             res.json(deletedRegistry)
-        } catch (err) {
-            res.status(400).json(err)
-        }
-    },
-    profile: async (req, res) => {
-        const { _id } = req.user
-
-        try {
-            const posts = await Post.find({ user: _id })
-            res.json(posts)
         } catch (err) {
             res.status(400).json(err)
         }

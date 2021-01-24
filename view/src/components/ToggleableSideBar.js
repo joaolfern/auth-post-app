@@ -1,4 +1,4 @@
-import { faTimes, faUser, faCog, faBrush } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faUser, faCog, faBrush, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useContext } from 'react'
 
@@ -10,8 +10,11 @@ import ShadedBox from './ShadedBox'
 import formatNumber from '../functions/formatNumber'
 
 import { Context } from '../context/token'
+import { useHistory } from 'react-router-dom'
 
 function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar }) {
+    const history = useHistory()
+
     const { user,
         logOff,
         getHsla,
@@ -32,7 +35,10 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
     const menuItens = [
         {
             icon: faUser,
-            label: 'Perfil'
+            label: 'Perfil',
+            action: () => {
+                history.push(`/profile/${user.name}`)
+            }
         },
         {
             icon: faCog,
@@ -79,7 +85,7 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
                 <header className='toggleableSideBar__header'>
                     <h1 className='toggleableSideBar__title'>Informações da conta</h1>
                     <button
-                        className='app__tweetar__close'
+                        className='app__tweetar__close navHeader__icon'
                         onClick={() => setVisibleTgSideBar(false)}
                     >
                         <FontAwesomeIcon icon={faTimes} />
@@ -93,7 +99,7 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
                         <h3 className='displayName'>{user['display_name']}</h3>
                         <h4 className='username'>@{user.name}</h4>
                     </div>
-                    <div className='toggleableSideBar__followingStatus'>
+                    <div className='followingStatus'>
                         <p>
                             <span className='followingStatus__number'>{formatNumber(user.following.length)} </span>
                             Seguindo
@@ -118,7 +124,6 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
                                 }
                             }}
                         >
-
                             {item.icon &&
                                 <FontAwesomeIcon className='toggleableSideBar__icon' icon={item.icon} />
                             }
@@ -145,8 +150,13 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
                                         className='color__item__button'
                                         style={{ background: getHsla(item.color) }}
                                         onClick={() => switchColorTheme(i)}
-                                    />
+                                    >
+                                        {selectedTheme.color === i &&
+                                            <FontAwesomeIcon className='color__item__checked' icon={faCheck} />
+                                        }
+                                    </button>
                                     <img className='color__item__icon' src={item.icon} />
+
                                 </div>
                             ))}
                         </div>
@@ -165,7 +175,12 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
                                         }}
                                         onClick={() => setSelectedTheme(() => switchBgTheme(i))}
                                     >
-                                        <input className='bg__item__icon' type='radio' checked={selectedTheme.bg === i} />
+                                        <input
+                                            className='bg__item__icon'
+                                            type='radio'
+                                            checked={selectedTheme.bg === i}
+                                            onClick={() => { }}
+                                        />
                                         <label className='bg__item__label'> {item.label}</label>
                                     </div>
                                 ))

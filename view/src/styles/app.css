@@ -5,6 +5,7 @@
 
 .app__main {
     flex-basis: 600px;
+    margin-bottom: 60px;
 }
 
 .app__mainSideBar {
@@ -104,21 +105,13 @@
 }
 
 .app__tweetar__header {
-    height: 50px;
+    border: none;
     border-bottom: 1px var(--border-color) solid;
-    display: flex;
-    align-items: center;
+    height: 50px;
 }
 
 .app__tweetar__close {
-    background: transparent;
-    border: none;
     margin-left: 1em;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: .4rem .6rem;
-    border-radius: 50%;
-    color: var(--main-color);
 }
 
 .app__tweetar__main {
@@ -164,7 +157,7 @@
     position: absolute;
     z-index: 3;
     background: var(--bg-color);
-    box-shadow: 0 0 3px  black;
+    box-shadow: 0 0 8px -4px  var(--txt-color);
     border-radius: 1rem;
     width: 200px;
     transition: transform .2s ease-in-out;
@@ -178,7 +171,7 @@
 .profileCard__details__logOff{
     padding: 1rem;
     font-size: .75em;
-    border-top: 1px solid var(--x-light-gray);
+    border-top: 1px solid var(--border-color);
     border-radius: 0 0 1rem 1rem;
     cursor:pointer
 }

@@ -8,7 +8,8 @@
 }
 
 .tweet__footer__item--reply:hover,
-.navbar__item:hover
+.navbar__item:hover,
+.profile__nav__item:hover
 {
     color: var(--main-color);
 }
@@ -22,8 +23,10 @@
 }
 
 .navbar__item:hover,
-.app__tweetar__close:hover,
-.mainSideBar__profileCard--min:hover
+.navHeader__icon:hover,
+.mainSideBar__profileCard--min:hover,
+.profile__header__button:hover,
+.profile__nav__item:hover
 {
     background-color: var(--light-main-color);
 }

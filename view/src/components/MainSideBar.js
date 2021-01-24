@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { useLocation } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 
 import { Context } from '../context/token'
 
@@ -32,9 +32,10 @@ import ShadedBox from './ShadedBox'
 
 
 
-function MainmainSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar }) {
+function MainmainSideBar({ setVisibleTgSideBar }) {
     const { token, user, logOff } = useContext(Context)
     const location = useLocation()
+    const history = useHistory()
 
     const {
         ref: refTweetar,
@@ -57,7 +58,8 @@ function MainmainSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar }
         {
             icon: faHome,
             label: 'Página Inicial',
-            path: '/'
+            path: '/',
+            action: () => { history.push(`/`) }
         },
         {
             icon: faHashtag,
@@ -79,9 +81,11 @@ function MainmainSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar }
             label: 'Mensagens'
         },
         {
-            icon: farUser,
+            icon: location.pathname === `/profile/${user.name}` ? faUser : farUser,
             label: 'Perfil',
-            class: 'navbar__item--profile'
+            class: 'navbar__item--profile',
+            path: `/profile/${user.name}`,
+            action: () => { history.push(`/profile/${user.name}`) }
         }, {
             icon: faEllipsisH,
             label: 'Mais',
@@ -180,9 +184,9 @@ function MainmainSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar }
                     className='app__tweetar' ref={refTweetar}
                     style={{ display: visibleTweetar ? 'unset' : 'none' }}
                 >
-                    <div className='app__tweetar__header'>
+                    <div className='app__tweetar__header navHeader'>
                         <button
-                            className='app__tweetar__close'
+                            className='app__tweetar__close navHeader__icon'
                             onClick={() => setVisibleTweetar(false)}
                         >
                             <FontAwesomeIcon icon={faTimes} />

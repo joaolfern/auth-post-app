@@ -1,0 +1,150 @@
+.profile {
+    border: 1px var(--border-color) solid;
+    border-top: none;
+    border-bottom: none;
+}
+
+.profile__header {
+    position: sticky;
+    top: 0;
+    box-sizing: content-box;
+    background-color: var(--bg-color);
+    z-index: 2;
+}
+
+.profile__header__icon {
+    margin: 0 1rem;
+}
+
+.profile__header__desc {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profile__header__desc__name {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.profile__header__desc__tweets {
+    font-size: .8rem;
+    color: var(--dark-gray);
+}
+
+.profile__photos {
+    position: relative;
+}
+
+.profile__photos__cover {
+    max-height: 200px;
+    height: 200px;
+    max-height: 35vw;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.profile__photos__picture {
+    width: 150px;
+    height: 150px;
+    max-width: 30vw;
+    max-height: 30vw;
+    position: absolute;
+    bottom: -50px;
+    left: 1em;
+    border: 5px var(--bg-color) solid;
+    border-radius: 100%;
+}
+
+.profile__header__button {
+    display: block;
+    margin: .5rem 1rem;
+    margin-left: auto;
+    margin-bottom: 0;
+    border: 1px var(--main-color) solid;
+    background: transparent;
+    color: var(--main-color);
+    padding: .6rem .8rem;
+    border-radius: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    min-width: 45px;
+}
+
+.followingLabel::before {
+    content: 'Seguindo';
+}
+
+.followingLabel:hover::before {
+    content: 'Deixar de seguir';
+}
+
+.profile__follow {
+    position: sticky;
+    top: 10px;
+    z-index: 3;
+}
+
+.profile__details {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.profile__details__more {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.profile__id .displayName {
+    font-weight: bold;
+}
+
+.profile__bio {
+    margin: 0 1.2rem;
+}
+
+.profile__details__more {
+    color: var(--dark-gray);
+    gap: .5rem;
+}
+
+.details__more__item {
+    display: flex;
+    gap: .5rem;
+}
+
+.details__more__website {
+    color: var(--main-color);
+}
+
+.profile__nav {
+    display: flex;
+    border-bottom: 1px var(--border-color) solid;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.profile__nav__item {
+    background: transparent;
+    border: none;
+    color: var(--dark-gray);
+    padding: 1em 2em;
+    font-weight: bold;
+    font-family: Helvetica;
+    cursor: pointer;
+    flex-grow: 1;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 600px){
+    .profile__nav {
+        max-width: 100vw;
+    }
+}

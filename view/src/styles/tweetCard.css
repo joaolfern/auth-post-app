@@ -6,8 +6,7 @@
     display: flex;
     padding: .5rem 1rem;
     gap: .5rem;
-    border: .1px var(--border-color) solid;
-    border-top: none;
+    border-bottom: .1px var(--border-color) solid;
 }
 
 .tweet__profilePicture {

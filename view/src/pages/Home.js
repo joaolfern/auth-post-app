@@ -15,35 +15,17 @@ function Home({ setVisibleTgSideBar }) {
         user,
         setUser,
         isFetched,
-        setIsFetched
+        setIsFetched,
+        posts,
+        setPosts,
+        fetchPosts
     } = useContext(Context)
-    const [posts, setPosts] = useState([])
     const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
-        async function getData(url, setter) {
-            const response = await fetch(`${API}/${url}`, {
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'auth-token': token
-                },
-            })
-
-            let data = await response.json()
-            if (url === 'post') {
-                data.sort((a, b) => new Date(b.date) - new Date(a.date))
-            }
-
-            if (response.ok)
-                setter(data)
-            else
-                setErrorMessage(data)
-        }
 
         if (!isFetched) {
-            getData(`post`, setPosts)
-            getData(`user/profile`, setUser)
+            fetchPosts(`post`, setPosts)
             setIsFetched(true)
         }
 

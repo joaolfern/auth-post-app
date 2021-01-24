@@ -4,14 +4,50 @@ const Context = React.createContext()
 
 function ContextProvider({ children }) {
     const [token, setToken] = useState(localStorage.getItem('token') || '')
-    const [user, setUser] = useState({ following: [], followers: [] })
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || { following: [], followers: [] })
+    const [posts, setPosts] = useState([])
     const [isFetched, setIsFetched] = useState(false)
     const [selectedTheme, setSelectedTheme] = useState(JSON.parse(localStorage.getItem('theme'))
         || { color: 0, bg: 0 })
     const [themeLoaded, setThemeLoaded] = useState(false)
+    const [loading, setLoading] = useState(false)
+
+    async function getUser() {
+        const response = await fetch(`${API}/user/profile`, {
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': token
+            },
+        })
+        let data = await response.json()
+
+        if (response.ok) {
+            setUser(data)
+            return data
+        }
+    }
+
+    async function fetchPosts(url, setter) {
+        const response = await fetch(`${API}/${url}`, {
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': token
+            },
+        })
+
+        let data = await response.json()
+        if (url === 'post') {
+            data.sort((a, b) => new Date(b.date) - new Date(a.date))
+        }
+
+        if (response.ok)
+            setter(data)
+    }
 
     useEffect(() => {
-        if (token && !localStorage.getItem('token')) {
+        if (token && (!localStorage.getItem('token') || !localStorage.getItem('user'))) {
             logIn()
         }
         if (!themeLoaded) {
@@ -21,16 +57,19 @@ function ContextProvider({ children }) {
         }
     }, [token, themeLoaded])
 
-    function logIn() {
+    async function logIn() {
         localStorage.setItem('token', token)
+        localStorage.setItem('user', JSON.stringify(await getUser()))
         setIsFetched(false)
     }
 
     function logOff() {
         localStorage.removeItem('token')
+        localStorage.removeItem('user')
         setToken('')
         setUser({ following: [], followers: [] })
     }
+
 
     const colorThemes = [
         [203, 89, 53, 1],
@@ -113,7 +152,10 @@ function ContextProvider({ children }) {
             colorThemes,
             bgThemes,
             selectedTheme,
-            setSelectedTheme
+            setSelectedTheme,
+            fetchPosts,
+            posts,
+            setPosts
         })}>
             {children}
         </Context.Provider>

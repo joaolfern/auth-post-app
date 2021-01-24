@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Context } from '../context/token'
 
 import ProfilePicture from './ProfilePicture'
 
+import { Context } from '../context/token'
 import { getTimeDiff } from '../functions/useDates'
 import formatNumber from '../functions/formatNumber'
+import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComment, faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
@@ -18,20 +19,22 @@ import {
     faTrashAlt
 } from '@fortawesome/free-solid-svg-icons'
 
-
 import '../styles/tweetCard.css'
-import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
+import { useHistory } from 'react-router-dom'
 
 function TweetCard({ post, user, setPosts }) {
     const { API, token } = useContext(Context)
     const [author, setAuthor] = useState({
-        photo: ''
+        photo: '',
+        name: ''
     })
     const {
         ref: refOptions,
         visible: visibleOptions,
         setVisible: setVisibleOptions
     } = useHideOnOutsideClick()
+
+    const history = useHistory()
 
     useEffect(() => {
         async function getAuthor() {
@@ -46,6 +49,10 @@ function TweetCard({ post, user, setPosts }) {
             getAuthor()
 
     }, [API, author.name, post.user])
+
+    function goToProfile() {
+        history.push(`profile/${author.name}`)
+    }
 
     function isFollowed() {
         return user.following.some(followedUser => followedUser === author['_id'])
@@ -106,7 +113,7 @@ function TweetCard({ post, user, setPosts }) {
         <div className='wrapper' key={post['_id']}>
             <div className='tweet'>
                 <div className='tweet__profilePicture'>
-                    <ProfilePicture url={author.photo} />
+                    <ProfilePicture url={author.photo} callback={goToProfile} />
                 </div>
                 <div className='tweet__content'>
                     <div className='tweet__header'>

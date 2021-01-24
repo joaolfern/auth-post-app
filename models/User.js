@@ -40,6 +40,18 @@ const UserSchema = new mongoose.Schema({
     posts: {
         type: Array,
         default: []
+    },
+    location: {
+        type: String,
+        default: ''
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
+    cover: {
+        type: String,
+        default: ''
     }
 })
 

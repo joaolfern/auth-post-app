@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 
-import { Switch, Route, Redirect, useLocation } from "react-router-dom"
+import { Switch, Route, Redirect, useLocation, useParams } from "react-router-dom"
 
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
@@ -10,9 +10,10 @@ import MainSideBar from './components/MainSideBar'
 import { Context } from './context/token'
 import ToggleableSideBar from './components/ToggleableSideBar'
 import useHideOnOutsideClick from './hooks/useHideOnOutsideClick'
+import Profile from './pages/Profile'
 
 function App() {
-    const { token, switchColorTheme, switchBgTheme } = useContext(Context)
+    const { token } = useContext(Context)
     const location = useLocation()
 
     const {
@@ -55,7 +56,9 @@ function App() {
                         <Home setVisibleTgSideBar={setVisibleTgSideBar} />
                     </Route>
 
-
+                    <Route path='/profile/:name'>
+                        <Profile />
+                    </Route>
                 </Switch>
             </div>
             {!location.pathname.match(/(\/login|\/sign-up)/) &&

@@ -3,7 +3,7 @@ const postController = require('../controllers/postController')
 const verify = require('./verifyToken')
 
 router.get('/all', postController.all)
-router.get('/profile/', verify, postController.profile)
+router.get('/profile/:id', postController.index)
 router.get('/', verify, postController.index)
 router.post('/', verify, postController.store)
 router.get('/:match', verify, postController.search)

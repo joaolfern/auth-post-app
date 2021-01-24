@@ -1,12 +1,14 @@
 .home {
     flex-basis: 600px;
-    margin-bottom: 50px;
+    border: 1px var(--border-color) solid;
+    border-top: none;
+    border-bottom: none;
 }
 
 .header{
     display: flex;
-    padding: .7rem 1rem;
-    border: .1px var(--border-color) solid;
+    padding: 1rem 1rem;
+    border-bottom: .1px var(--border-color) solid;
     background-color: var(--bg-color);
     position: sticky;
     top:0;
@@ -32,7 +34,7 @@
 
 .home__tweetar {
     max-width: 600px;
-    border: .1px var(--border-color) solid;
+    border-bottom: .1px var(--border-color) solid;
 }
 
 @media screen and (max-width: 500px) {

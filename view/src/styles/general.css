@@ -32,6 +32,23 @@
     opacity: .8;
 }
 
+.navHeader {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.navHeader__icon {
+    background: transparent;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: .4rem .6rem;
+    border-radius: 50%;
+    color: var(--main-color);
+}
+
 .selectedIcon {
     color: var(--main-color);
 }
@@ -56,4 +73,17 @@
     z-index: 4;
     background: rgba(0, 0, 0, 0.589);
     transition: all .2s;
+}
+
+.followingStatus {
+    color: var(--dark-gray);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em
+}
+
+.followingStatus__number {
+    font-weight: bold;
+    color: var(--txt-color);
+    white-space: nowrap;
 }

@@ -73,12 +73,21 @@ module.exports = {
     },
     search: async (req, res) => {
         const { id } = req.params
+        if (id.match(/^[0-9a-fA-F]{24}$/)) {
+            const foundUsers = (
+                await User.find({
+                    _id: id
+                }))
+            res.json(foundUsers)
+        }
+        else {
+            const pattern = new RegExp(`${id}`, "i")
+            const foundUser = await User.find({ name: { $regex: pattern } })
 
-        foundUsers = (
-            await User.find({
-                _id: id
-            }))
-        res.json(foundUsers)
+            res.json(foundUser)
+        }
+
+
 
     },
     delete: async (req, res) => {
@@ -145,16 +154,29 @@ module.exports = {
         const { id: followed } = req.params
         const { _id: follower } = req.user
 
-        const updatedFollower = await User.updateOne(
-            { _id: follower },
-            { $push: { following: followed } }
-        )
+        const result = await User.updateOne({ _id: follower }, {
+            $addToSet: { following: followed }
+        })
 
-        const updatedFollowed = await User.updateOne(
-            { _id: followed },
-            { $push: { followers: follower } }
-        )
-        res.json(`${follower} followed ${followed}`)
+        if (result.nModified === 0) {
+            await User.updateOne({ _id: follower }, {
+                $pull: { following: followed }
+            })
+
+            await User.updateOne(
+                { _id: followed },
+                { $pull: { followers: follower } }
+            )
+        }
+
+        else {
+            await User.updateOne(
+                { _id: followed },
+                { $push: { followers: follower } }
+            )
+        }
+
+        res.json({ follower, followed, undone: result.nModified ? false : true })
     },
     unfollow: async (req, res) => {
         const { id: unfollowed } = req.params

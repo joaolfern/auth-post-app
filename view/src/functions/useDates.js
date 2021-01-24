@@ -65,4 +65,17 @@ function getTimeDiff(earlierDate, laterDate = Date.now()) {
 
 }
 
-export { getYearList, getMonthList, getDayList, getTimeDiff }
+function getMonthYear(date) {
+    if (date) {
+        date = new Date(date)
+
+        const dateTimeFormat = new Intl.DateTimeFormat('pt-BR', { month: 'long' })
+
+        return `${dateTimeFormat.format(date)} de ${date.getFullYear()}`
+
+    }
+}
+
+export { getYearList, getMonthList, getDayList, getTimeDiff, getMonthYear }
+
+

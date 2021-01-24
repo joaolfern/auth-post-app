@@ -5,7 +5,7 @@
     --secondary-bg-color: #f5f3fa;
     --bg-color: #ffffff;
     --border-color: #f5f3fa;
-    --dark-gray: #6b7b88;
+    --dark-gray:#8899a6;
     --logo: #1da0f2;
     --txt-color: #0f1419;
     --light-gray: #AAB8C2;
@@ -32,4 +32,9 @@
 
 ul {
     list-style: none;
+}
+
+a {
+    color: unset;
+    text-decoration: none;
 }

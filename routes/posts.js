@@ -1,10 +1,11 @@
 const router = require('express').Router()
 const postController = require('../controllers/postController')
-const verify = require('./verifyToken')
+const verify = require('../middlewares/verifyToken')
+const pagination = require('../middlewares/pagination')
 
 router.get('/all', postController.all)
-router.get('/profile/:id', postController.index)
-router.get('/', verify, postController.index)
+router.get('/profile/:id', postController.index, pagination)
+router.get('/', verify, postController.index, pagination)
 router.post('/', verify, postController.store)
 router.get('/:match', verify, postController.search)
 router.delete('/:id', verify, postController.delete)
@@ -12,6 +13,3 @@ router.patch('/like/:id', verify, postController.like)
 router.patch('/retweet/:id', verify, postController.retweet)
 
 module.exports = router
-
-//5ffb16156eb7991c54e96d4b
-//5ffb16156eb7991c54e96d4b

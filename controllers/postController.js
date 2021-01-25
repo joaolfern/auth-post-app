@@ -11,15 +11,15 @@ module.exports = {
             res.status(400).json(e)
         }
     },
-    index: async (req, res) => {
+    index: async (req, res, next) => {
         let { id: userId } = req.params
+        let posts, user
 
         if (!userId) {
             userId = req.user._id
-            const user = await User.find({ _id: userId })
+            user = await User.find({ _id: userId })
 
             if (!user[0]) {
-
                 return res.json([])
             }
             const followedUsers = await User.find({ _id: { $in: (user[0].following || []) } })
@@ -27,20 +27,18 @@ module.exports = {
                 (acc, item) => [...acc, ...item.posts], []
             )
 
-            const posts = await Post.find({
+            posts = await Post.find({
                 $or:
                     [{ _id: { $in: timelinePosts } }, { retweets: userId }]
-            })
+            }).sort({ 'date': -1 })
 
-
-            res.json(posts)
         } else {
-            const user = await User.find({ _id: userId })
-            const posts = await Post.find({ _id: { $in: user[0].posts } })
-            res.json(posts)
+            user = await User.find({ _id: userId })
+            posts = await Post.find({ _id: { $in: user[0].posts } }).sort({ 'date': -1 })
         }
+        req.model = posts
 
-
+        next()
     },
     store: async (req, res) => {
         const { post, repliedTo } = req.body

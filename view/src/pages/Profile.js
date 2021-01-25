@@ -5,11 +5,14 @@ import { Context } from '../context/token'
 import { Link, useParams } from 'react-router-dom'
 
 import formatNumber from '../functions/formatNumber'
-import '../styles/profile.css'
 import ProfilePicture from '../components/ProfilePicture'
+import TweetCard from '../components/TweetCard'
+import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
+import ShadedBox from '../components/ShadedBox'
 
 import { getMonthYear } from '../functions/useDates'
-import TweetCard from '../components/TweetCard'
+
+import '../styles/profile.css'
 
 function Profile() {
     const [whose, setWhose] = useState({ posts: [], followers: [], following: [] })
@@ -17,22 +20,30 @@ function Profile() {
     const { name } = useParams()
     const [posts, setPosts] = useState([])
     const [isFetched, setIsFetched] = useState(false)
+    const {
+        ref: refEdit,
+        visible: visibleEdit,
+        setVisible: setVisibleEdit
+    } = useHideOnOutsideClick()
 
     useEffect(() => {
         async function getWhose() {
             const response = await fetch(`${API}/user/${name}`)
-            const data = await response.json()
 
-            if (response.ok)
+            if (response.ok) {
+                const data = await response.json()
                 setWhose(data[0])
+
+            }
         }
 
         async function getPosts() {
             const response = await fetch(`${API}/post/profile/${whose['_id']}`)
-            const data = await response.json()
 
-            if (response.ok)
-                setPosts(data)
+            if (response.ok) {
+                const data = await response.json()
+                setPosts(data.results)
+            }
         }
 
         if (name !== whose.name) {
@@ -114,7 +125,12 @@ function Profile() {
             </div>
             {
                 whose['_id'] === user['_id'] ?
-                    <button className='profile__header__button'>Editar perfil</button> :
+                    <button
+                        className='profile__header__button'
+                        onClick={() => setVisibleEdit(true)}
+                    >
+                        Editar perfil
+                    </button> :
                     <button
                         className={`profile__header__button profile__follow 
                         ${whose.followers.includes(user['_id']) ? 'followingLabel' : ''}`
@@ -193,6 +209,10 @@ function Profile() {
                         />
                     ))
                 }
+            </div>
+            <ShadedBox condition={visibleEdit}></ShadedBox>
+            <div>
+
             </div>
         </div >
     )

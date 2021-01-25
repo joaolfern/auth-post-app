@@ -52,7 +52,7 @@
 }
 
 .signUp__picture__icon {
-    color: var(--bg-color);
+    color: var(--txt-color);
     font-size: 1.5em;
     position: absolute;
     left: 50%;

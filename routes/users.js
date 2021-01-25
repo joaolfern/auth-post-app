@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const verify = require('./verifyToken')
+const verify = require('../middlewares/verifyToken')
 const multer = require('multer')
 const multerConfig = require('../config/multer')
 

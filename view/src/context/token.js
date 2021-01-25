@@ -38,12 +38,9 @@ function ContextProvider({ children }) {
         })
 
         let data = await response.json()
-        if (url === 'post') {
-            data.sort((a, b) => new Date(b.date) - new Date(a.date))
-        }
 
         if (response.ok)
-            setter(data)
+            setter(data.results)
     }
 
     useEffect(() => {

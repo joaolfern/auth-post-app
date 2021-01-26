@@ -11,6 +11,7 @@ import '../styles/signUp.css'
 import ProfilePicture from '../components/ProfilePicture'
 import { Helmet } from 'react-helmet'
 import { Redirect } from 'react-router-dom'
+import useUploadImage from '../hooks/useUploadImage'
 
 function SignUp() {
     const inpFileRef = useRef(null)
@@ -28,8 +29,14 @@ function SignUp() {
     })
     const [errorMessage, setErrorMessage] = useState('');
     const [page, setPage] = useState(0)
-    const [photoUrl, setPhotoUrl] = useState('')
-    const [photoFile, setPhotoFile] = useState(null)
+    const {
+        ref: refPhoto,
+        updatePhoto,
+        photoUrl,
+        hasItBeenUsed,
+        photoFile,
+        setPhotoUrl
+    } = useUploadImage()
 
     useEffect(() => {
         return () => {
@@ -107,21 +114,6 @@ function SignUp() {
             return
         }
         setErrorMessage(parseMessage[data] || data)
-    }
-
-    async function updatePhoto(e) {
-        const file = e.target.files[0]
-        const reader = new FileReader()
-
-        setPhotoFile(file)
-
-        reader.addEventListener('load', function () {
-            setPhotoUrl(reader.result)
-        }, false)
-
-        if (file) {
-            reader.readAsDataURL(file)
-        }
     }
 
     async function storeImage() {
@@ -257,7 +249,7 @@ function SignUp() {
                                 <p className='signUp__birth__text'>Have a like selfie? Upload it now.</p>
 
                                 <input
-                                    ref={inpFileRef}
+                                    ref={refPhoto}
                                     style={{ display: 'none' }}
                                     type="file"
                                     accept=".jpeg, .png, .jpg"
@@ -265,8 +257,8 @@ function SignUp() {
                                     name={'photo'}
                                 />
                                 <div className='signUp__picture'>
-                                    <ProfilePicture url={photoUrl} callback={() => inpFileRef.current.click()}>
-                                        {<FontAwesomeIcon className='signUp__picture__icon' icon={faCamera} />}
+                                    <ProfilePicture url={photoUrl} callback={() => refPhoto.current.click()}>
+                                        {<FontAwesomeIcon className='uploadPhotoIcon' icon={faCamera} />}
                                     </ProfilePicture>
                                 </div>
                             </section>

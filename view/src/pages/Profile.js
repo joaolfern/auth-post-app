@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { faArrowLeft, faCalendarAlt, faLink, faMapPin, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faCalendarAlt, faCamera, faLink, faMapPin, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Context } from '../context/token'
 import { Link, useParams } from 'react-router-dom'
@@ -18,17 +18,31 @@ import '../styles/profile.css'
 import { Helmet } from 'react-helmet'
 
 function Profile() {
-    const [whose, setWhose] = useState({ posts: [], followers: [], following: [] })
+    const [whose, setWhose] = useState({ display_name: '', name: '', posts: [], followers: [], following: [] })
     const { API, user, setUser, token, setReloadUser } = useContext(Context)
     const { name } = useParams()
     const [posts, setPosts] = useState([])
     const [isFetched, setIsFetched] = useState(false)
     const [reload, setReload] = useState(false)
+
     const {
         ref: refEdit,
         visible: visibleEdit,
         setVisible: setVisibleEdit
     } = useHideOnOutsideClick()
+
+    const {
+        ref: refExpandProfilePicture,
+        visible: visibleProfilePicture,
+        setVisible: setVisibleProfilePicture
+    } = useHideOnOutsideClick()
+
+    const {
+        ref: refExpandCoverPicture,
+        visible: visibleCoverPicture,
+        setVisible: setvisibleCoverPicture
+    } = useHideOnOutsideClick()
+
     const {
         ref: refProfilePhoto,
         updatePhoto: updateProfilePhoto,
@@ -200,9 +214,10 @@ function Profile() {
                         backgroundColor: 'var(--secondary-bg-color)',
                         backgroundImage: `url(${whose.cover})`
                     }}
+                    onClick={() => setvisibleCoverPicture(true)}
                 ></div>
                 <div className='profile__photos__picture'>
-                    <ProfilePicture url={whose.photo} />
+                    <ProfilePicture url={whose.photo} callback={() => setVisibleProfilePicture(true)} />
                 </div>
             </div>
             {
@@ -292,6 +307,22 @@ function Profile() {
                     ))
                 }
             </div>
+            <ShadedBox condition={visibleProfilePicture} customClass='expandedProfilePicture'>
+                <FontAwesomeIcon className='expandedPicture__close' icon={faTimes} />
+                <div className='expandedProfilePicture__img' ref={refExpandProfilePicture}>
+                    <ProfilePicture url={whose.photo} />
+                </div>
+            </ShadedBox>
+
+            <ShadedBox condition={visibleCoverPicture} customClass='expandedProfilePicture'>
+                <FontAwesomeIcon className='expandedPicture__close' icon={faTimes} />
+                <img
+                    className='expandedCoverPicture__img'
+                    src={whose.cover}
+                    ref={refExpandCoverPicture}
+                />
+            </ShadedBox>
+
             <ShadedBox condition={visibleEdit}>
                 <div ref={refEdit} className='edit'>
                     <div className='navHeader edit__header'>
@@ -329,7 +360,9 @@ function Profile() {
                                 backgroundImage: `url(${coverPhotoUrl})`
                             }}
                             onClick={() => refCoverPhoto.current.click()}
-                        ></div>
+                        >
+                            {<FontAwesomeIcon className='uploadPhotoIcon' icon={faCamera} />}
+                        </div>
 
                         <input
                             ref={refProfilePhoto}
@@ -343,7 +376,9 @@ function Profile() {
                             <ProfilePicture
                                 url={profilePhotoUrl}
                                 callback={() => refProfilePhoto.current.click()}
-                            />
+                            >
+                                {<FontAwesomeIcon className='uploadPhotoIcon' icon={faCamera} />}
+                            </ProfilePicture>
                         </div>
                     </div>
                     <div className='edit__input'>
@@ -376,7 +411,6 @@ function Profile() {
                         </div>
                     </div>
                 </div>
-
             </ShadedBox>
         </div >
     )

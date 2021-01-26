@@ -71,6 +71,7 @@ function Tweetar({ customClass, setVisible }) {
                         `tweetar__input ${customClass.input ?
                             customClass.input + '__tweetar__input' : ''
                         }`}
+                    maxRows={7}
                 />
             </div>
             <div className='tweetar__footer'>

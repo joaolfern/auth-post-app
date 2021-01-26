@@ -34,3 +34,8 @@
 .details__more__webpage:hover {
     text-decoration: underline;
 }
+
+.uploadPhotoIcon:hover,
+.expandedPicture__close:hover {
+    background-color: var(--dark-gray);
+}

@@ -48,15 +48,7 @@
 }
 
 .signUp__picture {
+    height: 200px;
+    width: 200px; 
     margin: 2em auto;
-}
-
-.signUp__picture__icon {
-    color: var(--txt-color);
-    font-size: 1.5em;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;;
 }

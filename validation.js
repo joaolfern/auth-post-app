@@ -59,7 +59,25 @@ module.exports = {
                 .min(6)
                 .max(300),
             date_of_birth: Joi
-                .date()
+                .date(),
+            bio: Joi
+                .string()
+                .max(600)
+                .allow(null, ''),
+            location: Joi
+                .string()
+                .max(30)
+                .allow(null, ''),
+            webpage: Joi
+                .string()
+                .max(100)
+                .allow(null, ''),
+            photo: Joi
+                .string()
+                .allow(null, ''),
+            cover: Joi
+                .string()
+                .allow(null, '')
         }).validate(req.body)
     },
     postValidation: (req, res) => {

@@ -11,6 +11,7 @@ import { Context } from './context/token'
 import ToggleableSideBar from './components/ToggleableSideBar'
 import useHideOnOutsideClick from './hooks/useHideOnOutsideClick'
 import Profile from './pages/Profile'
+import { Helmet } from 'react-helmet'
 
 function App() {
     const { token } = useContext(Context)
@@ -24,6 +25,9 @@ function App() {
 
     return (
         <div className='app'>
+            <Helmet>
+                <title>Twitter</title>
+            </Helmet>
             {!token && <Redirect to="/login" />}
             {!location.pathname.match(/(\/login|\/sign-up)/) &&
                 <>

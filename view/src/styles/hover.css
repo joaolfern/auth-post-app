@@ -30,3 +30,7 @@
 {
     background-color: var(--light-main-color);
 }
+
+.details__more__webpage:hover {
+    text-decoration: underline;
+}

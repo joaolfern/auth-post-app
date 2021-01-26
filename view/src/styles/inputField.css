@@ -9,8 +9,19 @@
 .txtField__input {
     width: 100%;
     margin: 0 auto;
-    padding-top: 1.7em;
+    padding-top: 1.3rem;
     padding-bottom: .5em;
+    padding-left: .5em;
+    font-size: 1.1rem;
+    background-color: var(--bg-color);
+    border: 1px var(--dark-gray) solid;
+    border-radius: 5px;
+    color: var(--txt-color);
+}
+
+.txtField__input--txtarea {
+    min-height: 100px;
+    max-width: 100%;
 }
 
 .txtField__label {

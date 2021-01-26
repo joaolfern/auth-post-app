@@ -28,7 +28,7 @@ function SignUp() {
     })
     const [errorMessage, setErrorMessage] = useState('');
     const [page, setPage] = useState(0)
-    const [photoUrl, setPhotoUrl] = useState('https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png')
+    const [photoUrl, setPhotoUrl] = useState('')
     const [photoFile, setPhotoFile] = useState(null)
 
     useEffect(() => {
@@ -126,7 +126,7 @@ function SignUp() {
 
     async function storeImage() {
         if (!photoFile) {
-            storeSignUp(photoUrl)
+            storeSignUp()
             return
         }
         const photo = new FormData()
@@ -147,8 +147,7 @@ function SignUp() {
         }
     }
 
-
-    async function storeSignUp(photoUrl) {
+    async function storeSignUp(photoUrl = '') {
         const reqJson = {
             "display_name": input.name,
             "email": input.email,
@@ -218,7 +217,6 @@ function SignUp() {
                                 <p className='signUp__birth__text'>This will not be shown publicly. Confirm your own age, even if this account is for a business, a pet, or something else.</p>
 
                                 <div className='signUp__date'>
-
                                     <DateInput
                                         input={input}
                                         setInput={setInput}

@@ -38,7 +38,7 @@
     position: relative;
 }
 
-.profile__photos__cover {
+.cover {
     max-height: 200px;
     height: 200px;
     max-height: 35vw;
@@ -107,7 +107,7 @@
 }
 
 .profile__bio {
-    margin: 0 1.2rem;
+    margin: .5em 0;
 }
 
 .profile__details__more {
@@ -117,10 +117,10 @@
 
 .details__more__item {
     display: flex;
-    gap: .5rem;
+    gap: .2rem;
 }
 
-.details__more__website {
+.details__more__webpage {
     color: var(--main-color);
 }
 
@@ -128,7 +128,6 @@
     display: flex;
     border-bottom: 1px var(--border-color) solid;
     max-width: 87vw;
-    overflow-x: auto;
 }
 
 .profile__nav__item {
@@ -142,6 +141,70 @@
     flex-grow: 1;
     white-space: nowrap;
     box-sizing:  content-box;
+}
+
+.edit {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 90vh;
+    background-color: var(--bg-color);
+    border-radius: 1rem;
+    overflow-y: auto;
+}
+
+.edit__header {
+    gap: 1em;
+    padding: 0 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: var(--bg-color);
+}
+
+.edit__header__close {
+    box-sizing: content-box;
+    padding: .3rem .5rem;
+}
+
+.edit__header__close--arrow {
+    display: none;
+}
+
+.edit__header__title {
+    font-size: 1.4rem;
+}
+
+.edit__header__button {
+    margin-left: auto;
+}
+
+.edit__input {
+    margin-top: 60px;
+    margin-bottom: 2rem;
+}
+
+.edit__input__item {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 600px){
+    .edit {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .edit__header__close--arrow {
+        display: block;  
+    }
+
+    .edit__header__close--x {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 500px){

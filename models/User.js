@@ -52,6 +52,10 @@ const UserSchema = new mongoose.Schema({
     cover: {
         type: String,
         default: ''
+    },
+    webpage: {
+        type: String,
+        default: ''
     }
 })
 

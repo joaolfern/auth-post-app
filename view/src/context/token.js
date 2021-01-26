@@ -11,6 +11,7 @@ function ContextProvider({ children }) {
         || { color: 0, bg: 0 })
     const [themeLoaded, setThemeLoaded] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [reloadUser, setReloadUser] = useState(false)
 
     async function getUser() {
         const response = await fetch(`${API}/user/profile`, {
@@ -44,15 +45,16 @@ function ContextProvider({ children }) {
     }
 
     useEffect(() => {
-        if (token && (!localStorage.getItem('token') || !localStorage.getItem('user'))) {
+        if (token && (!localStorage.getItem('token') || !localStorage.getItem('user')) || reloadUser) {
             logIn()
+            setReloadUser(false)
         }
         if (!themeLoaded) {
             switchBgTheme()
             switchColorTheme()
             setThemeLoaded(true)
         }
-    }, [token, themeLoaded])
+    }, [token, themeLoaded, reloadUser])
 
     async function logIn() {
         localStorage.setItem('token', token)
@@ -152,7 +154,8 @@ function ContextProvider({ children }) {
             setSelectedTheme,
             fetchPosts,
             posts,
-            setPosts
+            setPosts,
+            setReloadUser
         })}>
             {children}
         </Context.Provider>

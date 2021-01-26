@@ -87,3 +87,9 @@
     color: var(--txt-color);
     white-space: nowrap;
 }
+
+.ellipsized {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

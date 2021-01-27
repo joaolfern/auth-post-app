@@ -10,26 +10,11 @@ import '../styles/home.css'
 
 function Home({ setVisibleTgSideBar }) {
     const {
-        API,
-        token,
         user,
-        setUser,
-        isFetched,
-        setIsFetched,
         posts,
-        setPosts,
-        fetchPosts
+        setPosts
     } = useContext(Context)
     const [errorMessage, setErrorMessage] = useState('')
-
-    useEffect(() => {
-
-        if (!isFetched) {
-            fetchPosts(`post`, setPosts)
-            setIsFetched(true)
-        }
-
-    }, [API, token, isFetched])
 
     const timeline = posts.map(post => (
         <TweetCard

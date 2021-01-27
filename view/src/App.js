@@ -1,17 +1,20 @@
 import React, { useContext } from 'react'
 
-import { Switch, Route, Redirect, useLocation, useParams } from "react-router-dom"
+import { Switch, Route, Redirect, useLocation } from "react-router-dom"
 
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import Home from './pages/Home'
 import MainSideBar from './components/MainSideBar'
+import Explore from './pages/Explore'
 
 import { Context } from './context/token'
 import ToggleableSideBar from './components/ToggleableSideBar'
 import useHideOnOutsideClick from './hooks/useHideOnOutsideClick'
 import Profile from './pages/Profile'
 import { Helmet } from 'react-helmet'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
     const { token } = useContext(Context)
@@ -45,7 +48,6 @@ function App() {
             }
             <div className='app__main'>
                 <Switch>
-
                     <Route path='/login'>
                         <Login />
                     </Route>
@@ -63,11 +65,22 @@ function App() {
                     <Route path='/profile/:name'>
                         <Profile />
                     </Route>
+
+                    <Route path='/explore'>
+                        <Explore />
+                    </Route>
                 </Switch>
             </div>
             {!location.pathname.match(/(\/login|\/sign-up)/) &&
-                <div className='app__trending' style={{ width: 400 }}>
-
+                <div className='app__explore' >
+                    <div className='searchBar'>
+                        <input
+                            type='text'
+                            placeholder='Buscar no Twitter'
+                            className='searchBar__input'
+                        />
+                        <FontAwesomeIcon className='searchBar__icon' icon={faSearch} />
+                    </div>
                 </div>
             }
 

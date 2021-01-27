@@ -22,8 +22,8 @@ import {
 import '../styles/tweetCard.css'
 import { useHistory } from 'react-router-dom'
 
-function TweetCard({ post, user, setPosts }) {
-    const { API, token } = useContext(Context)
+function TweetCard({ post, setPosts, reloadAuthor, reloadLoggedUser }) {
+    const { API, token, user, setUser, setIsFetched } = useContext(Context)
     const [author, setAuthor] = useState({
         photo: '',
         name: ''
@@ -56,6 +56,42 @@ function TweetCard({ post, user, setPosts }) {
 
     function isFollowed() {
         return user.following.some(followedUser => followedUser === author['_id'])
+    }
+
+    async function handleFollow() {
+        try {
+            const response = await fetch(`${API}/user/follow/${author['_id']}`, {
+                method: 'PATCH',
+                headers: {
+                    'auth-token': token
+                }
+            })
+            if (response.ok) {
+                const data = await response.json()
+                if (data.undone) {
+                    setAuthor(prev => ({
+                        ...prev, followers: [...prev.followers.filter(follower =>
+                            follower['_id'] === user['_id']
+                        )]
+                    }))
+                    setUser(prev => ({
+                        ...prev, following: [...prev.following.filter(followed =>
+                            followed['_id'] === author['_id']
+                        )]
+                    }))
+                } else {
+                    setAuthor(prev => ({ ...prev, followers: [...prev.followers, user['_id']] }))
+                    setUser(prev => ({ ...prev, following: [...prev.following, author['_id']] }))
+                }
+                if (reloadAuthor)
+                    reloadAuthor(true)
+                if (reloadLoggedUser)
+                    reloadLoggedUser(true)
+                setIsFetched(false)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     async function deleteTweet() {
@@ -167,32 +203,25 @@ function TweetCard({ post, user, setPosts }) {
                 {author['_id'] !== user['_id'] ?
                     <>
                         {isFollowed() ?
-                            <button className='options__btn'>
+                            <button
+                                className='options__btn'
+                                onClick={handleFollow}
+                            >
                                 <FontAwesomeIcon
                                     className='options__icon'
                                     icon={faUserPlus}
                                 />  Deixar de seguir @{author.name}
                             </button> :
-                            <button className='options__btn'>
+                            <button
+                                className='options__btn'
+                                onClick={handleFollow}
+                            >
                                 <FontAwesomeIcon
                                     className='options__icon'
                                     icon={faUserPlus}
                                 />  Seguir @{author.name}
                             </button>
                         }
-
-                        <button className='options__btn'>
-                            <FontAwesomeIcon
-                                className='options__icon'
-                                icon={faVolumeMute}
-                            />  Silenciar @{author.name}
-                        </button>
-                        <button className='options__btn'>
-                            <FontAwesomeIcon
-                                className='options__icon'
-                                icon={faBan}
-                            />  Bloquear @{author.name}
-                        </button>
                     </> :
                     <button onClick={deleteTweet} className='options__btn options__delete'>
                         <FontAwesomeIcon

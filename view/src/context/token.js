@@ -30,6 +30,7 @@ function ContextProvider({ children }) {
     }
 
     async function fetchPosts(url, setter) {
+        console.log('ei')
         const response = await fetch(`${API}/${url}`, {
             mode: 'cors',
             headers: {
@@ -49,12 +50,18 @@ function ContextProvider({ children }) {
             logIn()
             setReloadUser(false)
         }
+
+        if (!isFetched) {
+            fetchPosts(`post`, setPosts)
+            setIsFetched(true)
+        }
+
         if (!themeLoaded) {
             switchBgTheme()
             switchColorTheme()
             setThemeLoaded(true)
         }
-    }, [token, themeLoaded, reloadUser])
+    }, [token, themeLoaded, reloadUser, isFetched])
 
     async function logIn() {
         localStorage.setItem('token', token)
@@ -68,7 +75,6 @@ function ContextProvider({ children }) {
         setToken('')
         setUser({ following: [], followers: [] })
     }
-
 
     const colorThemes = [
         [203, 89, 53, 1],

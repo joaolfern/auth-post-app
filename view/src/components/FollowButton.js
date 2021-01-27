@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Context } from '../context/token'
 
 function FollowButton({ whom = { followers: '' }, setWhom, updateOne }) {
-    const { API, token, user, setUser } = useContext(Context)
+    const { API, token, user, setUser, setIsFetched } = useContext(Context)
 
     async function handleFollow() {
         try {
@@ -48,6 +48,7 @@ function FollowButton({ whom = { followers: '' }, setWhom, updateOne }) {
                         ))
                     setUser(prev => ({ ...prev, following: [...prev.following, whom['_id']] }))
                 }
+                setIsFetched(false)
             }
         } catch (error) {
             console.log(error)

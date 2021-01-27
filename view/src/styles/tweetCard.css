@@ -1,8 +1,8 @@
-.wrapper { 
+.wrapper {
     position: relative;
 }
 
-.tweet { 
+.tweet {
     display: flex;
     padding: .5rem 1rem;
     gap: .5rem;
@@ -11,6 +11,7 @@
 
 .tweet__profilePicture {
     width: 50px;
+    min-width: 50px;
     height: 50px;
 }
 
@@ -42,12 +43,13 @@
 .options__btn {
     padding: .7rem 1rem;
     border: none;
-    background: transparent;    
+    background: transparent;
     font-size: 16px;
     font-family: 'Arial';
     cursor: pointer;
     width: 100%;
     text-align: left;
+    color: var(--txt-color);
 }
 
 .options__icon {

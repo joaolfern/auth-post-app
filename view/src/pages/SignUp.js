@@ -246,7 +246,7 @@ function SignUp() {
                             :
                             <section className='signUp__one'>
                                 <h3 className='signUp__title'>Pick a pofile picture</h3>
-                                <p className='signUp__birth__text'>Have a like selfie? Upload it now.</p>
+                                <p className='signUp__birth__text'>Have a favorite selfie? Upload it now.</p>
 
                                 <input
                                     ref={refPhoto}

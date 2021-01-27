@@ -1,16 +1,8 @@
-
-.tweet:hover,
-.options__btn:hover,
-.profileCard__details__logOff:hover,
-.toggleableSideBar__buttons__item:hover
-{
+.tweet:hover, .options__btn:hover, .profileCard__details__logOff:hover, .toggleableSideBar__buttons__item:hover {
     background: var(--secondary-bg-color);
 }
 
-.tweet__footer__item--reply:hover,
-.navbar__item:hover,
-.profile__nav__item:hover
-{
+.tweet__footer__item--reply:hover, .navbar__item:hover, .profile__nav__item:hover {
     color: var(--main-color);
 }
 
@@ -22,20 +14,22 @@
     color: var(--red)
 }
 
-.navbar__item:hover,
-.navHeader__icon:hover,
-.mainSideBar__profileCard--min:hover,
-.profile__header__button:hover,
-.profile__nav__item:hover
-{
+.navbar__item:hover, .navHeader__icon:hover, .mainSideBar__profileCard--min:hover, .profile__header__button:hover, .profile__nav__item:hover {
     background-color: var(--light-main-color);
 }
 
-.details__more__webpage:hover {
+a:hover {
     text-decoration: underline;
 }
 
-.uploadPhotoIcon:hover,
-.expandedPicture__close:hover {
+.noUnderline:hover {
+    text-decoration: none;
+}
+
+.followersOptions__item:hover {
+    background-color: var(--light-main-color);
+}
+
+.uploadPhotoIcon:hover, .expandedPicture__close:hover {
     background-color: var(--dark-gray);
 }

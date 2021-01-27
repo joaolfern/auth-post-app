@@ -22,7 +22,12 @@ module.exports = {
             if (!user[0]) {
                 return res.json([])
             }
-            const followedUsers = await User.find({ _id: { $in: (user[0].following || []) } })
+            let followedUsers
+            if (user[0].following.length > 0) {
+                followedUsers = await User.find({ _id: { $in: (user[0].following || []) } })
+            }
+            else
+                followedUsers = []
             const timelinePosts = [...followedUsers, ...user].reduce(
                 (acc, item) => [...acc, ...item.posts], []
             )

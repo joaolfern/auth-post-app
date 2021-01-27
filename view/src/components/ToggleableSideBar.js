@@ -11,6 +11,7 @@ import formatNumber from '../functions/formatNumber'
 
 import { Context } from '../context/token'
 import { useHistory } from 'react-router-dom'
+import FollowingStatus from './FollowingStatus'
 
 function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar }) {
     const history = useHistory()
@@ -99,16 +100,12 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
                         <h3 className='displayName'>{user['display_name']}</h3>
                         <h4 className='username'>@{user.name}</h4>
                     </div>
-                    <div className='followingStatus'>
-                        <p>
-                            <span className='followingStatus__number'>{formatNumber(user.following.length)} </span>
-                            Seguindo
-                        </p>
-                        <p>
-                            <span className='followingStatus__number'>{formatNumber(user.followers.length)} </span>
-                            Seguidores
-                        </p>
-                    </div>
+                    <FollowingStatus
+                        username={user.name}
+                        following={user.following.length}
+                        followers={user.followers.length}
+                        callback={() => setVisibleTgSideBar(false)}
+                    />
                 </div>
                 <div className='toggleableSideBar__buttons'>
                     {menuItens.map(item => (

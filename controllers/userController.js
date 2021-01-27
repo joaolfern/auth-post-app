@@ -73,22 +73,26 @@ module.exports = {
     },
     search: async (req, res) => {
         const { id } = req.params
+        let foundUsers
         if (id.match(/^[0-9a-fA-F]{24}$/)) {
-            const foundUsers = (
+            foundUsers =
                 await User.find({
                     _id: id
-                }))
-            res.json(foundUsers)
+                })
         }
         else {
             const pattern = new RegExp(`${id}`, "i")
-            const foundUser = await User.find({ name: { $regex: pattern } })
-
-            res.json(foundUser)
+            foundUsers = await User.find({ name: { $regex: pattern } })
         }
+        res.json(foundUsers)
+    },
+    searchBody: async (req, res, next) => {
+        const { ids } = req.body
 
+        const users = await User.find({ _id: { $in: ids } })
 
-
+        req.model = users
+        next()
     },
     delete: async (req, res) => {
         try {

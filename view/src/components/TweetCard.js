@@ -180,12 +180,6 @@ function TweetCard({ post, user, setPosts }) {
                                 />  Seguir @{author.name}
                             </button>
                         }
-                        <button className='options__btn'>
-                            <FontAwesomeIcon
-                                className='options__icon'
-                                icon={faUserPlus}
-                            />  Seguir @{author.name}
-                        </button>
 
                         <button className='options__btn'>
                             <FontAwesomeIcon

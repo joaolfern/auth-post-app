@@ -1,0 +1,36 @@
+.noUsersFound {
+    display: block;
+    padding: 1em 0;
+    text-align: center;
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.userCard {
+    padding: .5em;
+    display: flex;
+    gap: .5rem;
+}
+
+.userCard--wrapper {
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.userCard__picture {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+}
+
+.userCard__main {
+    width: 100%;
+}
+
+.userCard__header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.userCard__bio {
+    margin-top: .25em;
+}

@@ -76,6 +76,16 @@
     min-width: 45px;
 }
 
+.followingLabel {
+    color: var(--white);
+    background: var(--main-color);
+    border: 1px transparent solid;
+}
+
+.followingLabel:hover {
+    background: var(--red);
+}
+
 .followingLabel::before {
     content: 'Seguindo';
 }
@@ -102,14 +112,11 @@
     flex-wrap: wrap;
 }
 
-
 .profile__id .displayName {
     font-weight: bold;
 }
 
-.profile__bio {
-    margin: .5em 0;
-}
+.profile__bio {}
 
 .profile__details__more {
     color: var(--dark-gray);
@@ -141,12 +148,12 @@
     cursor: pointer;
     flex-grow: 1;
     white-space: nowrap;
-    box-sizing:  content-box;
+    box-sizing: content-box;
 }
 
 .edit {
     position: absolute;
-    top:50%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 600px;
@@ -229,23 +236,37 @@
     background-repeat: no-repeat;
 }
 
-@media screen and (max-width: 600px){
+.followersOptions {
+    display: flex;
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.followersOptions__item {
+    flex-grow: 1;
+    text-align: center;
+    padding: 1em 0;
+}
+
+.followersOptions__item--selected {
+    color: var(--maincolor);
+    border-bottom: 1px var(--main-color) solid;
+}
+
+@media screen and (max-width: 600px) {
     .edit {
         width: 100%;
         height: 100%;
         border-radius: 0;
     }
-
     .edit__header__close--arrow {
-        display: block;  
+        display: block;
     }
-
     .edit__header__close--x {
         display: none;
     }
 }
 
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
     .profile__nav {
         max-width: 100vw;
     }

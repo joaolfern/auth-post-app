@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const verify = require('../middlewares/verifyToken')
+const pagination = require('../middlewares/pagination')
 const multer = require('multer')
 const multerConfig = require('../config/multer')
 
@@ -10,6 +11,7 @@ router.get('/', userController.index)
 router.get('/profile', verify, userController.profile)
 router.post('/register', userController.store)
 
+router.post('/search', userController.searchBody, pagination)
 router.post('/image', multer(multerConfig).single('photo'), imageController.store)
 router.get('/image', imageController.index)
 router.delete('/image/:id', imageController.delete)

@@ -33,9 +33,7 @@ function SignUp() {
         ref: refPhoto,
         updatePhoto,
         photoUrl,
-        hasItBeenUsed,
-        photoFile,
-        setPhotoUrl
+        photoFile
     } = useUploadImage()
 
     useEffect(() => {
@@ -139,7 +137,7 @@ function SignUp() {
         }
     }
 
-    async function storeSignUp(photoUrl = '') {
+    async function storeSignUp(photoUrl = 'https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png') {
         const reqJson = {
             "display_name": input.name,
             "email": input.email,

@@ -7,7 +7,6 @@ import '../styles/toggleableSideBar.css'
 import ProfilePicture from './ProfilePicture'
 import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
 import ShadedBox from './ShadedBox'
-import formatNumber from '../functions/formatNumber'
 
 import { Context } from '../context/token'
 import { useHistory } from 'react-router-dom'
@@ -152,7 +151,11 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
                                             <FontAwesomeIcon className='color__item__checked' icon={faCheck} />
                                         }
                                     </button>
-                                    <img className='color__item__icon' src={item.icon} />
+                                    <img
+                                        className='color__item__icon'
+                                        src={item.icon}
+                                        alt={item.display_name}
+                                    />
 
                                 </div>
                             ))}

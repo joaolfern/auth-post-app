@@ -11,8 +11,6 @@ function UserList({ list }) {
     const { API, user: loggedUser } = useContext(Context)
     const history = useHistory()
 
-    console.log(list)
-
     useEffect(() => {
         async function getUsers() {
             const response = await fetch(`${API}/user/search`, {
@@ -31,7 +29,7 @@ function UserList({ list }) {
         if (list.length > 0 && users.length === 0) {
             getUsers()
         }
-    }, [])
+    }, [list, users, API])
 
     return (
         <div className='userList'>

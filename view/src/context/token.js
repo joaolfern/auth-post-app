@@ -10,7 +10,6 @@ function ContextProvider({ children }) {
     const [selectedTheme, setSelectedTheme] = useState(JSON.parse(localStorage.getItem('theme'))
         || { color: 0, bg: 0 })
     const [themeLoaded, setThemeLoaded] = useState(false)
-    const [loading, setLoading] = useState(false)
     const [reloadUser, setReloadUser] = useState(false)
 
     async function getUser() {
@@ -30,7 +29,6 @@ function ContextProvider({ children }) {
     }
 
     async function fetchPosts(url, setter) {
-        console.log('ei')
         const response = await fetch(`${API}/${url}`, {
             mode: 'cors',
             headers: {
@@ -39,14 +37,16 @@ function ContextProvider({ children }) {
             },
         })
 
-        let data = await response.json()
 
-        if (response.ok)
+        if (response.ok) {
+            let data = await response.json()
             setter(data.results)
+
+        }
     }
 
     useEffect(() => {
-        if (token && (!localStorage.getItem('token') || !localStorage.getItem('user')) || reloadUser) {
+        if ((token && (!localStorage.getItem('token') || !localStorage.getItem('user'))) || reloadUser) {
             logIn()
             setReloadUser(false)
         }
@@ -61,7 +61,7 @@ function ContextProvider({ children }) {
             switchColorTheme()
             setThemeLoaded(true)
         }
-    }, [token, themeLoaded, reloadUser, isFetched])
+    }, [token, themeLoaded, reloadUser, isFetched])// eslint-disable-line 
 
     async function logIn() {
         localStorage.setItem('token', token)
@@ -129,8 +129,7 @@ function ContextProvider({ children }) {
         setSelectedTheme(prev => ({ ...prev, bg: option }))
     }
 
-
-    const API = "http://localhost:1234/api"
+    const API = `${process.env.REACT_APP_API}/api`
 
     const parseMessage = {
         ['"display_name" is not allowed to be empty']: 'Name is required',

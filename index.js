@@ -4,7 +4,6 @@ const app = express()
 const mongoose = require('mongoose')
 const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
-const path = require('path')
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')

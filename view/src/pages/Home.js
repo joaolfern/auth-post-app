@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { Helmet } from "react-helmet";
 
 import ProfilePicture from "../components/ProfilePicture"
@@ -14,7 +14,7 @@ function Home({ setVisibleTgSideBar }) {
         posts,
         setPosts
     } = useContext(Context)
-    const [errorMessage, setErrorMessage] = useState('')
+    const [errorMessage,] = useState('')
 
     const timeline = posts.map(post => (
         <TweetCard

@@ -6,9 +6,7 @@ import { Context } from '../context/token'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faHome,
-    faBell,
     faHashtag,
-    faEnvelope,
     faUser,
     faSearch,
     faTimes,
@@ -33,7 +31,7 @@ import ShadedBox from './ShadedBox'
 
 
 function MainmainSideBar({ setVisibleTgSideBar }) {
-    const { token, user, logOff } = useContext(Context)
+    const { user, logOff } = useContext(Context)
     const location = useLocation()
     const history = useHistory()
 
@@ -70,7 +68,9 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
         {
             icon: faSearch,
             label: 'Pesquisar',
-            class: 'navbar__item--search'
+            class: 'navbar__item--search',
+            path: '/explore',
+            action: () => { history.push('/explore') }
         },
         {
             icon: farBell,

@@ -116,8 +116,6 @@
     font-weight: bold;
 }
 
-.profile__bio {}
-
 .profile__details__more {
     color: var(--dark-gray);
     gap: .5rem;
@@ -174,7 +172,7 @@
 
 .edit__header__close {
     box-sizing: content-box;
-    padding: .3rem .5rem;
+    padding: .5rem;
 }
 
 .edit__header__close--arrow {

@@ -14,8 +14,6 @@ import {
     faHeart,
     faEllipsisH,
     faUserPlus,
-    faBan,
-    faVolumeMute,
     faTrashAlt
 } from '@fortawesome/free-solid-svg-icons'
 

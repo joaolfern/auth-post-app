@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { faArrowLeft, faCalendarAlt, faCamera, faLink, faMapPin, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Context } from '../context/token'
@@ -22,7 +22,7 @@ import FollowingStatus from '../components/FollowingStatus'
 
 function Profile() {
     const [whose, setWhose] = useState({ display_name: '', name: '', posts: [], followers: [], following: [] })
-    const { API, user, setUser, token, setReloadUser } = useContext(Context)
+    const { API, user, setReloadUser } = useContext(Context)
     const { name } = useParams()
 
     const [posts, setPosts] = useState([])
@@ -112,7 +112,7 @@ function Profile() {
         }
 
 
-    }, [whose, isFetched, name, reload])
+    }, [whose, isFetched, name, reload])// eslint-disable-line 
 
 
     async function handleEditUser() {
@@ -234,9 +234,11 @@ function Profile() {
                                 <div className='details__more__item'>
                                     <FontAwesomeIcon icon={faLink} />
                                     <a
+                                        href='/'
+                                        target='_blank'
                                         className='details__more__webpage'
-                                        href={whose.webpage}
-                                        target='_blank'>{whose.webpage}
+                                    >
+                                        {whose.webpage}
                                     </a>
                                 </div>
                             }
@@ -265,8 +267,9 @@ function Profile() {
                                 <TweetCard
                                     key={post['_id']}
                                     post={post}
-                                    user={whose}
                                     setPosts={setPosts}
+                                    reloadAuthor={setReload}
+                                    reloadLoggedUser={setReloadUser}
                                 />
                             ))
                         }
@@ -284,6 +287,7 @@ function Profile() {
                             className='expandedCoverPicture__img'
                             src={whose.cover}
                             ref={refExpandCoverPicture}
+                            alt={whose.display_name}
                         />
                     </ShadedBox>
 
@@ -378,6 +382,7 @@ function Profile() {
                     </ShadedBox>
                 </Route>
                 <Route path={`/profile/${whose.name}/following`}>
+                    <span></span>
                     <nav className='followersOptions'>
                         <Link
                             to={`/profile/${whose.name}/followers`}

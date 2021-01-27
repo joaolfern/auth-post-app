@@ -38,6 +38,7 @@
     box-shadow: 0 0 4px black;
     transition: transform .2s;
     transform-origin: top;
+    z-index: 5;
 }
 
 .options__btn {

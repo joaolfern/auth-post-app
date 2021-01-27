@@ -8,6 +8,10 @@
     margin-bottom: 60px;
 }
 
+.app__explore {
+    width: 400px;
+}
+
 .app__mainSideBar {
     width: 245px;
     display: flex;
@@ -17,7 +21,7 @@
     z-index: 4;
     max-height: 99vh;
     margin: 0 .5rem 0 .5rem;
-    top:0;
+    top: 0;
 }
 
 .navbar__list {
@@ -72,7 +76,8 @@
 }
 
 .navlist__tweetarBtn--circular--absolute {
-    display: none;;
+    display: none;
+    ;
 }
 
 .tweetarBtn__icon2 {
@@ -96,7 +101,7 @@
 
 .app__tweetar__wrapper {
     position: absolute;
-    top:0;
+    top: 0;
     width: 100%;
     height: 100%;
     z-index: 4;
@@ -157,7 +162,7 @@
     position: absolute;
     z-index: 3;
     background: var(--bg-color);
-    box-shadow: 0 0 8px -4px  var(--txt-color);
+    box-shadow: 0 0 8px -4px var(--txt-color);
     border-radius: 1rem;
     width: 200px;
     transition: transform .2s ease-in-out;
@@ -168,14 +173,13 @@
     padding: 1.25rem 1rem .5rem 1rem;
 }
 
-.profileCard__details__logOff{
+.profileCard__details__logOff {
     padding: 1rem;
     font-size: .75em;
     border-top: 1px solid var(--border-color);
     border-radius: 0 0 1rem 1rem;
-    cursor:pointer
+    cursor: pointer
 }
-
 
 @media screen and (max-width: 1277px) {
     .app__mainSideBar {
@@ -193,26 +197,22 @@
     .navlist__tweetarBtn {
         display: none;
     }
-    .navlist__tweetarBtn--circular--mainSideBar{
+    .navlist__tweetarBtn--circular--mainSideBar {
         display: block;
     }
     .profileCard__id--mediaQuerry {
         display: none;
     }
-
     .mainSideBar__profileCard--min {
         padding-right: 0;
     }
-
-    .mainSideBar__profileCard--min:hover,
-    .navbar__item--twitter
-    {
+    .mainSideBar__profileCard--min:hover, .navbar__item--twitter {
         background: none!important;
     }
 }
 
 @media screen and (max-width: 1000px) {
-    .app__trending {
+    .app__explore {
         display: none;
     }
 }
@@ -221,11 +221,9 @@
     .app__mainSideBar {
         margin: 0 .25rem 0 .25rem;
     }
-
     .navbar__list {
         padding: 0;
     }
-
     .app__tweetar {
         height: 100%;
         width: 100%;
@@ -233,23 +231,19 @@
         border: none;
         border-radius: 0;
     }
-
     .app__tweetar__button {
         position: absolute;
         top: .35rem;
     }
-
     .navbar__item--search {
         display: block;
     }
-
     .navbar__item--hashtag {
         display: none;
     }
 }
 
 @media screen and (max-width: 500px) {
-
     .app__mainSideBar {
         background-color: var(--bg-color);
         position: fixed;
@@ -261,12 +255,10 @@
         max-height: 50px;
         border-top: 1px var(--border-color) solid;
     }
-
     .navbar__list {
         flex-direction: row;
         justify-content: space-around;
     }
-
     .navlist__tweetarBtn--circular--absolute {
         display: block;
         position: fixed;
@@ -275,14 +267,7 @@
         box-shadow: 0 0 8px -4px var(--txt-color);
         z-index: 3;
     }
-
-    .navbar__item--profile,
-    .navbar__item--more,
-    .navbar__item--twitter,
-    .navlist__tweetarBtn--circular--mainSideBar,
-    .mainSideBar__profileCard__wrapper 
-    {
+    .navbar__item--profile, .navbar__item--more, .navbar__item--twitter, .navlist__tweetarBtn--circular--mainSideBar, .mainSideBar__profileCard__wrapper {
         display: none;
     }
-
 }

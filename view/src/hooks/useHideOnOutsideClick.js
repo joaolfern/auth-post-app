@@ -18,7 +18,7 @@ const useHideOnOutsideClick = () => {
             document.addEventListener('click', handleClickOutside, true)
             setVisible(false)
         }
-    }, [ref])
+    }, [ref])// eslint-disable-line 
 
 
     return { ref, visible, setVisible }

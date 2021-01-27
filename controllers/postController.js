@@ -134,6 +134,13 @@ module.exports = {
             await Post.updateOne({ _id: postId }, {
                 $pull: { retweets: userId }
             })
+            await User.updateOne({ _id: userId }, {
+                $pull: { posts: postId }
+            })
+        } else {
+            await User.updateOne({ _id: userId }, {
+                $push: { posts: postId }
+            })
         }
         res.json({ post: postId, user: { userId }, increased: result.nModified ? true : false })
     }

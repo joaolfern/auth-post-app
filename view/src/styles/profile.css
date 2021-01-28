@@ -130,25 +130,6 @@
     color: var(--main-color);
 }
 
-.profile__nav {
-    display: flex;
-    border-bottom: 1px var(--border-color) solid;
-    max-width: 87vw;
-}
-
-.profile__nav__item {
-    background: transparent;
-    border: none;
-    color: var(--dark-gray);
-    padding: 1em 2em;
-    font-weight: bold;
-    font-family: Helvetica;
-    cursor: pointer;
-    flex-grow: 1;
-    white-space: nowrap;
-    box-sizing: content-box;
-}
-
 .edit {
     position: absolute;
     top: 50%;
@@ -261,11 +242,5 @@
     }
     .edit__header__close--x {
         display: none;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .profile__nav {
-        max-width: 100vw;
     }
 }

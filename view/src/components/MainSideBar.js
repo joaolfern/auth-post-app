@@ -62,7 +62,9 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
         {
             icon: faHashtag,
             label: 'Explorar',
-            class: 'navbar__item--hashtag'
+            class: 'navbar__item--hashtag',
+            path: '/explore',
+            action: () => { history.push('/explore') }
         },
 
         {
@@ -102,7 +104,7 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
                         {navbarItens.map(item => (
                             <li className={`navbar__item
                                     ${item.class ? item.class : ''}
-                                    ${item.path === location.pathname ? 'selectedIcon' : ''}
+                                    ${location.pathname === item.path ? 'selectedIcon' : ''}
                                     `}
                                 key={item.label}
                                 onClick={item.action}

@@ -143,5 +143,17 @@ module.exports = {
             })
         }
         res.json({ post: postId, user: { userId }, increased: result.nModified ? true : false })
+    },
+    explore: async (req, res) => {
+        const { id } = req.params
+        const pattern = new RegExp(`\\b${id}\\b`, "ig")
+
+        const posts = await Post.find({ post: { $regex: pattern } })
+        const users = await User.find({
+            $or:
+                [{ name: { $regex: pattern } }, { display_name: { $regex: pattern } }]
+        })
+
+        res.json({ users, posts })
     }
 };

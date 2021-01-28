@@ -11,5 +11,6 @@ router.get('/:match', verify, postController.search)
 router.delete('/:id', verify, postController.delete)
 router.patch('/like/:id', verify, postController.like)
 router.patch('/retweet/:id', verify, postController.retweet)
+router.get('/explore/:id', postController.explore)
 
 module.exports = router

@@ -1,31 +1,12 @@
 .explore {
-    padding: 1em;
-    position: sticky;
-    top: 0;
-}
-
-.explore__users {
-    background-color: var(--bg-color);
-    margin-top: -1px;
+    min-height: 99vh;
     position: relative;
-    box-shadow: 0 0 8px -4px var(--txt-color);
-    z-index: 2;
-    max-height: 300px;
-    overflow-y: auto;
 }
 
-.explore__userCard {
-    cursor: pointer;
-    padding: .5em;
-    display: flex;
-    gap: .5rem;
-}
-
-.explore__userCard__photo {
-    height: 40px;
-    min-height: 40px;
-    width: 40px;
-    min-width: 40px;
+.explore__placeholder {
+    padding: 1em;
+    color: var(--dark-gray);
+    text-align: center;
 }
 
 .searchBar {
@@ -44,6 +25,41 @@
     width: 100%;
 }
 
+.explore__users {
+    background-color: var(--bg-color);
+    position: absolute;
+    width: 95%;
+    margin-left: 13px;
+    box-shadow: 0 1px 8px -4px var(--txt-color);
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: .5rem;
+    z-index: 5;
+}
+
+.explore__users--wrapper {}
+
+.explore__userCard {
+    cursor: pointer;
+    padding: .5em;
+    display: flex;
+    gap: .5rem;
+}
+
+.explore__userCard__photo {
+    height: 40px;
+    min-height: 40px;
+    width: 40px;
+    min-width: 40px;
+}
+
+.explore__topbar {
+    position: sticky;
+    top: 0;
+    padding: .5em;
+    background-color: var(--bg-color);
+}
+
 .searchBar__input:focus {
     background-color: var(--bg-color);
     border: 1px var(--main-color) solid;
@@ -56,3 +72,14 @@
     z-index: 2;
     color: var(--dark-gray);
 }
+
+.results__navbar {
+    background-color: var(--bg-color);
+    position: sticky;
+    top: 53px;
+    z-index: 4;
+}
+
+.explore__results__main {}
+
+.results__users {}

@@ -2,7 +2,7 @@
     background: var(--secondary-bg-color);
 }
 
-.tweet__footer__item--reply:hover, .navbar__item:hover, .profile__nav__item:hover {
+.tweet__footer__item--reply:hover, .navbar__item:hover, .profile__nav__item:hover, .defaultNavbar__item:hover {
     color: var(--main-color);
 }
 
@@ -14,7 +14,7 @@
     color: var(--red)
 }
 
-.navbar__item:hover, .navHeader__icon:hover, .mainSideBar__profileCard--min:hover, .profile__header__button:hover, .profile__nav__item:hover {
+.navbar__item:hover, .navHeader__icon:hover, .mainSideBar__profileCard--min:hover, .profile__header__button:hover, .profile__nav__item:hover, .defaultNavbar__item:hover {
     background-color: var(--light-main-color);
 }
 

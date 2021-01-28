@@ -255,11 +255,11 @@ function Profile() {
                             username={whose.name}
                         />
                     </div>
-                    <nav className='profile__nav' style={{ overflowX: visibleEdit ? 'hidden' : 'auto' }}>
-                        <button className='profile__nav__item'>Tweets</button>
-                        <button className='profile__nav__item'>Tweets e respostas</button>
-                        <button className='profile__nav__item'>Mídia</button>
-                        <button className='profile__nav__item'>Curtidas</button>
+                    <nav className='defaultNavbar' style={{ overflowX: visibleEdit ? 'hidden' : 'auto' }}>
+                        <button className='defaultNavbar__item'>Tweets</button>
+                        <button className='defaultNavbar__item'>Tweets e respostas</button>
+                        <button className='defaultNavbar__item'>Mídia</button>
+                        <button className='defaultNavbar__item'>Curtidas</button>
                     </nav>
 
                     <div className='profile__posts'>

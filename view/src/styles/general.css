@@ -107,27 +107,3 @@
     border-radius: 100%;
     padding: .5rem;
 }
-
-.searchBar {
-    position: relative;
-    margin: 1em;
-}
-
-.searchBar__input {
-    font-size: 1rem;
-    border-radius: 2rem;
-    border: 1px var(--main-color) solid;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    padding: .5rem;
-    padding-left: 2.5em;
-    width: 100%;
-}
-
-.searchBar__icon {
-    position: absolute;
-    left: .8em;
-    top: .6em;
-    z-index: 2;
-    color: var(--dark-gray);
-}

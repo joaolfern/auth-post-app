@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 
-const useHideOnOutsideClick = () => {
+const useHideOnOutsideClick = (initialState = false) => {
     const ref = useRef(null)
-    const [visible, setVisible] = useState(false)
+    const [visible, setVisible] = useState(initialState)
 
     function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {

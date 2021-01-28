@@ -49,7 +49,7 @@ function TweetCard({ post, setPosts, reloadAuthor, reloadLoggedUser }) {
     }, [API, author.name, post.user])
 
     function goToProfile() {
-        history.push(`profile/${author.name}`)
+        history.push(`/profile/${author.name}`)
     }
 
     function isFollowed() {

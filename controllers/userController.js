@@ -81,8 +81,8 @@ module.exports = {
                 })
         }
         else {
-            const pattern = new RegExp(`${id}`, "i")
-            foundUsers = await User.find({ name: { $regex: pattern } })
+            const pattern = new RegExp(`^(${id})`, "i")
+            foundUsers = await User.find({ $or: [{ name: { $regex: pattern } }, { display_name: { $regex: pattern } }] })
         }
         res.json(foundUsers)
     },

@@ -40,10 +40,7 @@ function UserList({ list }) {
                             <div className='userCard'>
                                 <div className='userCard__picture'>
                                     <ProfilePicture url={user.photo} callback={() => {
-                                        history.go(-2)
-                                        setTimeout(() => {
-                                            history.push(`profile/${user.name}`)
-                                        }, 1000)
+                                        history.push(`/profile/${user.name}`)
                                     }} />
                                 </div>
                                 <div className='userCard__main'>

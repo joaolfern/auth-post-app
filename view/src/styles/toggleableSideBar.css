@@ -52,7 +52,8 @@
 }
 
 .toggleableSideBar__buttons__item--sair {
-    border-top: 1px var(--border-color) solid;;
+    border-top: 1px var(--border-color) solid;
+    ;
 }
 
 .themes {
@@ -124,7 +125,7 @@
 .color__item__checked {
     position: absolute;
     top: 50%;
-    left:50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     font-size: 1.2rem;
@@ -181,7 +182,6 @@
         height: 100vh;
         padding: 0;
     }
-
     .themes__header {
         padding: .8em 1em;
         justify-content: flex-start;
@@ -190,29 +190,24 @@
         top: 0;
         background-color: var(--bg-color);
     }
-
     .themes__close {
         display: block;
     }
-
     .themes__color__item {
         width: 25%;
     }
 }
 
 @media screen and (min-width: 500px) {
-
-    .toggleableSideBar__header{
+    .toggleableSideBar__header {
         display: none;
     }
-
     .toggleableSideBar__profile {
         display: none;
     }
-
     .toggleableSideBar {
         height: auto;
-        box-shadow: 0 0 3px var(--txt-color);
+        box-shadow: 0 0 8px -4px var(--txt-color);
         top: 15vh;
         left: 5vw;
     }

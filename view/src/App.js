@@ -13,8 +13,6 @@ import ToggleableSideBar from './components/ToggleableSideBar'
 import useHideOnOutsideClick from './hooks/useHideOnOutsideClick'
 import Profile from './pages/Profile'
 import { Helmet } from 'react-helmet'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
     const { token } = useContext(Context)
@@ -73,14 +71,7 @@ function App() {
             </div>
             {!location.pathname.match(/(\/login|\/sign-up)/) &&
                 <div className='app__explore' >
-                    <div className='searchBar'>
-                        <input
-                            type='text'
-                            placeholder='Buscar no Twitter'
-                            className='searchBar__input'
-                        />
-                        <FontAwesomeIcon className='searchBar__icon' icon={faSearch} />
-                    </div>
+                    <Explore hideBar={location.pathname.match(/\/explore/)} />
                 </div>
             }
 

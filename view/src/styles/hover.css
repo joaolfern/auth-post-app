@@ -1,4 +1,4 @@
-.tweet:hover, .options__btn:hover, .profileCard__details__logOff:hover, .toggleableSideBar__buttons__item:hover {
+.tweet:hover, .options__btn:hover, .profileCard__details__logOff:hover, .toggleableSideBar__buttons__item:hover, .explore__userCard:hover {
     background: var(--secondary-bg-color);
 }
 
@@ -18,7 +18,7 @@
     background-color: var(--light-main-color);
 }
 
-a:hover {
+.underline:hover {
     text-decoration: underline;
 }
 

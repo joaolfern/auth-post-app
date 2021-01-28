@@ -234,9 +234,10 @@ function Profile() {
                                 <div className='details__more__item'>
                                     <FontAwesomeIcon icon={faLink} />
                                     <a
-                                        href='/'
+                                        className='details__more__webpage underline'
                                         target='_blank'
-                                        className='details__more__webpage'
+                                        href={`https://${whose.webpage}`}
+                                        rel="noreferrer"
                                     >
                                         {whose.webpage}
                                     </a>

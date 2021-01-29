@@ -230,7 +230,7 @@ function SignUp() {
 
                         </section>
                         :
-                        page == 1 ?
+                        page === 1 ?
                             <section className='signUp__one'>
                                 <h3 className='signUp__title'>You'll need a password</h3>
                                 <p className='signUp__birth__text'>Make sure it’s 8 characters or more.</p>

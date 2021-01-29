@@ -98,7 +98,7 @@ function TweetCard({ post, setPosts, reloadAuthor }) {
         })
         if (response.ok)
             setPosts(prev =>
-                prev.filter(timelinePost => timelinePost['_id'] != post['_id'])
+                prev.filter(timelinePost => timelinePost['_id'] !== post['_id'])
             )
     }
 

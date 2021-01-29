@@ -132,10 +132,10 @@ function ContextProvider({ children }) {
     const API = `${process.env.REACT_APP_API}/api`
 
     const parseMessage = {
-        ['"display_name" is not allowed to be empty']: 'Name is required',
-        ['"email" is not allowed to be empty']: 'Email is required',
-        ['"email" must be a valid email']: 'Invalid email',
-        ['"password" is not allowed to be empty']: 'Password is required',
+        ['"display_name" is not allowed to be empty']: 'Name is required',// eslint-disable-line 
+        ['"email" is not allowed to be empty']: 'Email is required',// eslint-disable-line 
+        ['"email" must be a valid email']: 'Invalid email',// eslint-disable-line 
+        ['"password" is not allowed to be empty']: 'Password is required', // eslint-disable-line 
         ['"password" length must be at least 8 characters long']: 'Password must be at least 8 characters long'// eslint-disable-line 
     }
 

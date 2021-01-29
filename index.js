@@ -4,17 +4,9 @@ const app = express()
 const mongoose = require('mongoose')
 const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
+const cors = require('./cors')
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Headers', '*')
-
-    if (req.method == 'OPTIONS') {
-        res.header('Access-COntrol-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET')
-        return res.status(200).json({})
-    }
-    next()
-})
+app.use(cors())
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())

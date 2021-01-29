@@ -35,4 +35,4 @@ mongoose.connect(
     () => console.log('connected to db')
 )
 
-app.listen(1234, () => console.log('Server Up'))
+app.listen(process.env.PORT || 1234, () => console.log('Server Up'))

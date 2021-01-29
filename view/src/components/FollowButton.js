@@ -17,9 +17,9 @@ function FollowButton({ whom = { followers: '' }, setWhom, updateOne }) {
                 if (data.undone) {
                     if (setWhom)
                         setWhom(prev => ({
-                            ...prev, followers: [...prev.followers.filter(follower =>
-                                follower['_id'] === user['_id']
-                            )]
+                            ...prev, followers: prev.followers.filter(follower =>
+                                follower !== user['_id']
+                            )
                         }))
 
                     if (updateOne) {

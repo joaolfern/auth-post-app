@@ -20,7 +20,7 @@ import {
 import '../styles/tweetCard.css'
 import { useHistory } from 'react-router-dom'
 
-function TweetCard({ post, setPosts, reloadAuthor, reloadLoggedUser }) {
+function TweetCard({ post, setPosts, reloadAuthor }) {
     const { API, token, user, setUser, setIsFetched } = useContext(Context)
     const [author, setAuthor] = useState({
         photo: '',
@@ -81,11 +81,8 @@ function TweetCard({ post, setPosts, reloadAuthor, reloadLoggedUser }) {
                     setAuthor(prev => ({ ...prev, followers: [...prev.followers, user['_id']] }))
                     setUser(prev => ({ ...prev, following: [...prev.following, author['_id']] }))
                 }
-                if (reloadAuthor)
-                    reloadAuthor(true)
-                if (reloadLoggedUser)
-                    reloadLoggedUser(true)
                 setIsFetched(false)
+                reloadAuthor(true)
             }
         } catch (error) {
             console.log(error)
@@ -131,6 +128,7 @@ function TweetCard({ post, setPosts, reloadAuthor, reloadLoggedUser }) {
                             : item
                     )
                 })
+                setIsFetched(false)
             }
         } catch (e) {
             console.log(e)

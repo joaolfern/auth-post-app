@@ -270,7 +270,6 @@ function Profile() {
                                     post={post}
                                     setPosts={setPosts}
                                     reloadAuthor={setReload}
-                                    reloadLoggedUser={setReloadUser}
                                 />
                             ))
                         }

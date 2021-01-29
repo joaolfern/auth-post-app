@@ -35,9 +35,9 @@
     overflow-y: auto;
     border-radius: .5rem;
     z-index: 5;
+    transform-origin: top;
+    transition: transform .2s;
 }
-
-.explore__users--wrapper {}
 
 .explore__userCard {
     cursor: pointer;
@@ -82,4 +82,19 @@
 
 .explore__results__main {}
 
-.results__users {}
+.results__tweetCard {
+    border: 1px var(--border-color) solid;
+    border-bottom: none;
+}
+
+.results__users {
+    border: 1px var(--border-color) solid;
+    border-bottom: none;
+    margin: 5px 0;
+}
+
+.results__users__title {
+    font-size: 1.4rem;
+    border-bottom: 1px var(--border-color) solid;
+    padding: .5rem 1rem;
+}

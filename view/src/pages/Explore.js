@@ -1,10 +1,11 @@
+import React, { useContext, useEffect, useState } from 'react'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useContext, useEffect, useState } from 'react'
 import { Link, Route, useHistory, useParams } from 'react-router-dom'
 
 import ProfilePicture from '../components/ProfilePicture'
 import UserList from '../components/UserList'
+import TweetCard from '../components/TweetCard'
 
 import { Context } from '../context/token'
 import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
@@ -110,16 +111,17 @@ function Explore({ hideBar = false }) {
 function ExploreResults() {
     const { id } = useParams()
     const { API } = useContext(Context)
-    const [results, setResults] = useState({ users: [], posts: [] })
     const [isFetched, setIsFetched] = useState(false)
     const [tab, setTab] = useState(0)
+    const [posts, setPosts] = useState([])
+    const [users, setUsers] = useState([])
 
     function wasIdUpdated() {
         const pattern = new RegExp(`\\b${id}\\b`, "ig")
 
         if (
-            results.users.some(user => !user.name.match(pattern))
-            || results.posts.some(post => !post.post.match(pattern))
+            users.some(user => !user.name.match(pattern))
+            || posts.some(post => !post.post.match(pattern))
         )
             return true
 
@@ -131,7 +133,8 @@ function ExploreResults() {
             const response = await fetch(`${API}/post/explore/${id}`)
             if (response.ok) {
                 const data = await response.json()
-                setResults(data)
+                setUsers(data.users)
+                setPosts(data.posts)
             }
         }
 
@@ -142,7 +145,18 @@ function ExploreResults() {
             fetchResults()
             setIsFetched(false)
         }
-    }, [isFetched, id, API])
+    }, [isFetched, id, API]) //eslint-disable-line
+
+    const MatchingTweets =
+        <div className='results__tweetCard'>
+            {posts.map(post => (
+                <TweetCard
+                    post={post}
+                    setPosts={setPosts}
+                    reloadAuthor={() => { }}
+                />
+            ))}
+        </div>
 
     return (
         <div className='explore__results'>
@@ -191,21 +205,23 @@ function ExploreResults() {
             <div className='explore__results__main'>
                 {
                     tab === 0 ?
-                        <div className='results__users'>
-                            <h2>Pessoas</h2>
-                            {
-                                results.users.length === 0 ?
-                                    <p>Nenhum usuário encontrado</p> :
+                        <>
+                            {users.length !== 0 &&
+                                <div className='results__users'>
+                                    <h2 className='results__users__title'>Pessoas</h2>
                                     <div>
-                                        <UserList list={results.users} />
+                                        <UserList list={users} />
                                     </div>
+                                </div>
                             }
-                        </div> :
+                            {MatchingTweets}
+                        </> :
                         tab === 1 ?
                             <div>
+                                {MatchingTweets}
                             </div> :
                             tab === 2 ?
-                                <UserList list={results.users} /> :
+                                <UserList list={users} /> :
                                 tab === 3 ?
                                     <div>
                                     </div> :

@@ -28,8 +28,6 @@ import ProfilePicture from './ProfilePicture'
 import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
 import ShadedBox from './ShadedBox'
 
-
-
 function MainmainSideBar({ setVisibleTgSideBar }) {
     const { user, logOff } = useContext(Context)
     const location = useLocation()
@@ -63,7 +61,7 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
             icon: faHashtag,
             label: 'Explorar',
             class: 'navbar__item--hashtag',
-            path: '/explore',
+            path: new RegExp('/explore', 'i'),
             action: () => { history.push('/explore') }
         },
 
@@ -71,28 +69,31 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
             icon: faSearch,
             label: 'Pesquisar',
             class: 'navbar__item--search',
-            path: '/explore',
+            path: new RegExp('/explore', 'i'),
             action: () => { history.push('/explore') }
         },
         {
             icon: farBell,
-            label: 'Notificações'
+            label: 'Notificações',
+            path: new RegExp('/notifications', 'i'),
         },
         {
             icon: farEnvelope,
-            label: 'Mensagens'
+            label: 'Mensagens',
+            path: new RegExp('/messages', 'i'),
         },
         {
             icon: location.pathname === `/profile/${user.name}` ? faUser : farUser,
             label: 'Perfil',
             class: 'navbar__item--profile',
-            path: `/profile/${user.name}`,
+            path: new RegExp(`/profile/${user.name}`, 'i'),
             action: () => { history.push(`/profile/${user.name}`) }
         }, {
             icon: faEllipsisH,
             label: 'Mais',
             class: 'navbar__item--more',
-            action: () => setVisibleTgSideBar(true)
+            action: () => setVisibleTgSideBar(true),
+            path: null
         },
     ]
 
@@ -104,7 +105,12 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
                         {navbarItens.map(item => (
                             <li className={`navbar__item
                                     ${item.class ? item.class : ''}
-                                    ${location.pathname === item.path ? 'selectedIcon' : ''}
+                                    ${(
+                                    item.path === '/' ?
+                                        item.path === location.pathname :
+                                        location.pathname.match(item.path)
+                                ) ?
+                                    'selectedIcon' : ''}
                                     `}
                                 key={item.label}
                                 onClick={item.action}

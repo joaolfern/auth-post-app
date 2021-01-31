@@ -38,15 +38,24 @@
     border-bottom: 1px var(--border-color) solid;
 }
 
+.circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+}
+
 .navHeader__icon {
     background: transparent;
     border: none;
     font-size: 1.2rem;
-    cursor: pointer;
-    box-sizing: content-box;
-    padding: .4rem .6rem;
-    border-radius: 50%;
+    line-height: 1rem;
     color: var(--main-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
 }
 
 .selectedIcon {

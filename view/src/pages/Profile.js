@@ -171,10 +171,10 @@ function Profile() {
             </Helmet>
             <div className='navHeader profile__header'>
                 <Link
-                    className='navHeader__icon profile__header__icon'
+                    className='circle profile__header__circle'
                     to='/'
                 >
-                    <FontAwesomeIcon icon={faArrowLeft} />
+                    <FontAwesomeIcon className='navHeader__icon' icon={faArrowLeft} />
                 </Link>
                 <div className='profile__header__desc'>
                     <p className='profile__header__desc__name'>{whose.display_name}</p>

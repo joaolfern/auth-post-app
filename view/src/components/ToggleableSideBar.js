@@ -84,12 +84,13 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
             >
                 <header className='toggleableSideBar__header'>
                     <h1 className='toggleableSideBar__title'>Informações da conta</h1>
-                    <button
-                        className='app__tweetar__close navHeader__icon'
-                        onClick={() => setVisibleTgSideBar(false)}
-                    >
-                        <FontAwesomeIcon icon={faTimes} />
-                    </button>
+                    <div className='circle' onClick={() => setVisibleTgSideBar(false)}>
+                        <button
+                            className='app__tweetar__close navHeader__icon'
+                        >
+                            <FontAwesomeIcon icon={faTimes} />
+                        </button>
+                    </div>
                 </header>
                 <div className='toggleableSideBar__profile'>
                     <div className='toggleableSideBar__picture'>
@@ -131,10 +132,11 @@ function ToggleableSideBar({ visibleTgSideBar, setVisibleTgSideBar, refTgSideBar
             <ShadedBox condition={visibleThemes}>
                 <div className='themes' ref={refThemes}>
                     <div className='themes__header' >
-                        <FontAwesomeIcon
-                            className='themes__close' icon={faTimes}
-                            onClick={() => setVisibleThemes(false)}
-                        />
+                        <div className='circle themes__circle' onClick={() => setVisibleThemes(false)}>
+                            <FontAwesomeIcon
+                                className='navHeader__icon ' icon={faTimes}
+                            />
+                        </div>
                         <h1 className='themes__title'>Personalizar sua exibição</h1>
                     </div>
                     <div className='themes--wrapper'>

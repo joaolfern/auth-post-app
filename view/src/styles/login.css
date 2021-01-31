@@ -7,12 +7,12 @@
     width: 90vw;
     max-width: 540px;
     margin: 0 auto;
-    height: 80vh;
+    height: 80%;
 }
 
 .login__icon {
     font-size: 2.5em;
-    color: var(--logo); 
+    color: var(--logo);
 }
 
 .login__title {

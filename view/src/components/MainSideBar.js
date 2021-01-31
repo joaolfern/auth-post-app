@@ -193,12 +193,14 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
                     style={{ display: visibleTweetar ? 'unset' : 'none' }}
                 >
                     <div className='app__tweetar__header navHeader'>
-                        <button
-                            className='app__tweetar__close navHeader__icon'
-                            onClick={() => setVisibleTweetar(false)}
-                        >
-                            <FontAwesomeIcon icon={faTimes} />
-                        </button>
+                        <div className='circle tweetar__header__circle'>
+                            <button
+                                className='app__tweetar__close navHeader__icon'
+                                onClick={() => setVisibleTweetar(false)}
+                            >
+                                <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                        </div>
                     </div>
                     <div className='app__tweetar__main'>
                         <Tweetar

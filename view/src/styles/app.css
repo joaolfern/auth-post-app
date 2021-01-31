@@ -1,6 +1,7 @@
 .app {
     display: flex;
     justify-content: center;
+    overflow-x: hidden;
 }
 
 .app__main {
@@ -115,7 +116,7 @@
     height: 50px;
 }
 
-.app__tweetar__close {
+.tweetar__header__circle {
     margin-left: 1em;
 }
 

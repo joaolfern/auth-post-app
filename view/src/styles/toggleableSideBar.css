@@ -11,7 +11,8 @@
 
 .toggleableSideBar__header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
+    justify-content: space-between;
     padding: .5rem 1em;
     border-bottom: 1px var(--border-color) solid;
 }
@@ -84,11 +85,8 @@
     font-size: 1.5rem;
 }
 
-.themes__close {
-    color: var(--main-color);
-    font-size: 1.3rem;
+.themes__circle {
     display: none;
-    cursor: pointer;
 }
 
 .themes__box {
@@ -190,7 +188,7 @@
         top: 0;
         background-color: var(--bg-color);
     }
-    .themes__close {
+    .themes__circle {
         display: block;
     }
     .themes__color__item {

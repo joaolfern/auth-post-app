@@ -1,7 +1,6 @@
 .app {
     display: flex;
     justify-content: center;
-    overflow-x: hidden;
 }
 
 .app__main {
@@ -270,6 +269,9 @@
 }
 
 @media screen and (max-width: 500px) {
+    .profile {
+        border: none;
+    }
     .app__mainSideBar {
         background-color: var(--bg-color);
         position: fixed;

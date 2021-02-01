@@ -116,19 +116,20 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
                                 onClick={item.action}
                             >
                                 <div className={`navbar__item__icon`}>
-                                    <FontAwesomeIcon icon={item.icon} />
+                                    <FontAwesomeIcon className='navbar__item__icon__content' icon={item.icon} />
                                 </div>
                                 {item.label &&
                                     <p className='navbar__item__label'>{item.label}</p>
                                 }
                             </li>
                         ))}
-                        <li className='navlist__tweetarBtn--circular--mainSideBar'>
+                        <li >
                             <button
-                                className='blueButton navlist__tweetarBtn--circular--mainSideBar navlist__tweetarBtn--circular'
+                                className='blueButton navlist__tweetarBtn--circular--mainSideBar
+                                navlist__tweetarBtn--circular circularContainer'
                                 onClick={() => setVisibleTweetar(true)}
                             >
-                                <div >
+                                <div className='circularBtn__item'>
                                     <FontAwesomeIcon
                                         className='tweetarBtn__icon1'
                                         icon={faFeatherAlt}
@@ -214,10 +215,11 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
             </ShadedBox>
 
             <button
-                className='blueButton navlist__tweetarBtn--circular navlist__tweetarBtn--circular--absolute'
+                className='blueButton navlist__tweetarBtn--circular
+                 navlist__tweetarBtn--circular--absolute circularContainer'
                 onClick={() => setVisibleTweetar(true)}
             >
-                <div >
+                <div className='circularBtn__item'>
                     <FontAwesomeIcon
                         className='tweetarBtn__icon1'
                         icon={faFeatherAlt}

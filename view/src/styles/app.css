@@ -44,9 +44,16 @@
 
 .navbar__item__icon {
     width: 20px;
-    display: flex;
-    justify-content: center;
+    height: 20px;
+    position: relative;
     font-size: 1.2em;
+}
+
+.navbar__item__icon__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .navbar__item--twitter {
@@ -67,13 +74,12 @@
 .navlist__tweetarBtn--circular {
     display: none;
     border-radius: 50%;
-    padding: 1em;
     font-size: 1rem;
 }
 
 .navlist__tweetarBtn--circular--mainSideBar {
     position: relative;
-    margin-top: .25rem;
+    margin-top: .5rem;
 }
 
 .navlist__tweetarBtn--circular--absolute {
@@ -81,11 +87,30 @@
     ;
 }
 
+.circularContainer {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.circularItem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .tweetarBtn__icon2 {
     position: absolute;
-    top: 20%;
+    top: 25%;
     left: 25%;
     font-size: .7em;
+}
+
+.tweetarBtn__icon1 {
+    position: absolute;
+    top: 35%;
+    left: 35%;
 }
 
 .app__tweetar {

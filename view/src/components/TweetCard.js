@@ -20,12 +20,17 @@ import {
 import '../styles/tweetCard.css'
 import { useHistory } from 'react-router-dom'
 
-function TweetCard({ post, setPosts, reloadAuthor }) {
-    const { API, token, user, setUser, setIsFetched } = useContext(Context)
-    const [author, setAuthor] = useState({
+function TweetCard({
+    post,
+    setPosts,
+    reloadAuthor,
+    doNotDetail = false,
+    fetchedAuthor = {
         photo: '',
         name: ''
-    })
+    } }) {
+    const { API, token, user, setUser, setIsFetched } = useContext(Context)
+    const [author, setAuthor] = useState(fetchedAuthor)
     const {
         ref: refOptions,
         visible: visibleOptions,
@@ -161,7 +166,10 @@ function TweetCard({ post, setPosts, reloadAuthor }) {
                         />
 
                     </div>
-                    <p className='tweet__post'>{post.post}</p>
+                    <p className='tweet__post' onClick={() => {
+                        if (!doNotDetail)
+                            history.push(`/status/${post['_id']}`)
+                    }}>{post.post}</p>
                     <div className='tweet__footer'>
                         <div className='tweet__footer__item tweet__footer__item--reply'>
                             <FontAwesomeIcon className='tweet__footer__item__icon' icon={faComment} />

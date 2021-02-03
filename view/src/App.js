@@ -13,6 +13,7 @@ import ToggleableSideBar from './components/ToggleableSideBar'
 import useHideOnOutsideClick from './hooks/useHideOnOutsideClick'
 import Profile from './pages/Profile'
 import { Helmet } from 'react-helmet'
+import TweetDetails from './components/TweetDetails'
 
 function App() {
     const { token } = useContext(Context)
@@ -66,6 +67,10 @@ function App() {
 
                     <Route path='/explore'>
                         <Explore />
+                    </Route>
+
+                    <Route path='/status/:id'>
+                        <TweetDetails />
                     </Route>
                 </Switch>
             </div>

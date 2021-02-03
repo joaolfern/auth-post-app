@@ -7,6 +7,7 @@
     padding: .5rem 1rem;
     gap: .5rem;
     border-bottom: .1px var(--border-color) solid;
+    cursor: pointer;
 }
 
 .tweet__profilePicture {
@@ -18,7 +19,6 @@
 .tweet__header {
     display: flex;
     gap: .5em;
-    cursor: pointer;
     font-weight: 300;
     color: var(--dark-gray);
     flex-wrap: wrap;

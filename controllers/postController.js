@@ -74,18 +74,13 @@ module.exports = {
         }
     },
     search: async (req, res) => {
-        const { match } = req.params
-        const pattern = new RegExp(`${match}`, "ig")
-
+        const { id } = req.params
         try {
-            const possibleUser = await User.findOne({ name: { $regex: pattern } })
+            const post = await Post.find({ _id: id })
+            res.json(post)
 
-            const foundRegistry = await Post.find(
-                { $or: [{ post: { $regex: pattern } }, { user: possibleUser['_id'] }] }
-            );
-
-            res.json(foundRegistry)
         } catch (err) {
+            console.log(err)
             res.status(400).json(err)
         }
     },

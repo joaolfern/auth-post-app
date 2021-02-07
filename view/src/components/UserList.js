@@ -7,13 +7,12 @@ import FollowButton from './FollowButton'
 import { useHistory } from 'react-router-dom'
 
 function UserList({ list }) {
-    const [users, setUsers] = useState(list.name ? list : [])
+    const [users, setUsers] = useState(list[0].name ? list : [])
     const { API, user: loggedUser } = useContext(Context)
     const history = useHistory()
 
     useEffect(() => {
         async function getUsers() {
-
             const response = await fetch(`${API}/user/search`, {
                 method: 'POST',
                 headers: {
@@ -21,15 +20,14 @@ function UserList({ list }) {
                 },
                 body: JSON.stringify({ ids: list })
             })
+
             if (response.ok) {
                 const data = await response.json()
                 setUsers(data.results)
             }
-
-
         }
 
-        if (!list.name) {
+        if (!list[0].name) {
             getUsers()
         }
     }, [list, users, API])

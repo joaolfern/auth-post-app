@@ -87,8 +87,8 @@ function ContextProvider({ children }) {
 
     const bgThemes = [
         { primary: [0, 100, 100, 1], secondary: [257, 41, 97, 1], txt: '#000000', border: '#f5f3fa' },
-        { primary: [210, 34, 13, 1], txt: '#ffffff', border: '#38444d' },
-        { primary: [0, 0, 0, 1], txt: '#ffffff', border: '#2f3336' },
+        { primary: [210, 34, 13, 1], secondary: [208.9, 35.1, 15.1, 1], txt: '#ffffff', border: '#38444d' },
+        { primary: [0, 0, 0, 1], secondary: [214.3, 14.3, 9.6, 1], txt: '#ffffff', border: '#2f3336' },
     ]
 
     function getHsla(values, modifier = 0, lighter = false) {
@@ -118,12 +118,6 @@ function ContextProvider({ children }) {
             document.documentElement.style.setProperty('--logo', '#1da0f2')
         }
 
-        else {
-            document.documentElement.style.setProperty('--secondary-bg-color',
-                getHsla(bgThemes[option].primary, 5, true)
-            )
-            document.documentElement.style.setProperty('--logo', '#ffffff')
-        }
         localStorage.setItem('theme', JSON.stringify({ color: selectedTheme.color, bg: option }))
 
         setSelectedTheme(prev => ({ ...prev, bg: option }))

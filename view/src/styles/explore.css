@@ -58,6 +58,7 @@
     top: 0;
     padding: .5em;
     background-color: var(--bg-color);
+    z-index: 5;
 }
 
 .searchBar__input:focus {
@@ -97,4 +98,27 @@
     font-size: 1.4rem;
     border-bottom: 1px var(--border-color) solid;
     padding: .5rem 1rem;
+}
+
+.suggestion {
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: var(--secondary-bg-color);
+    padding: 1rem 0;
+}
+
+.suggestion__title {
+    font-size: 1.3em;
+    text-indent: 1rem;
+    padding-bottom: 1em;
+    border-bottom: 1px var(--border-color) solid;
+}
+
+.suggestion .userCard {
+    padding-left: 1rem;
+    padding-right: .5rem;
+}
+
+.suggestion .userCard:hover {
+    background-color: var(--bg-color);
 }

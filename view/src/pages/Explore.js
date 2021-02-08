@@ -11,6 +11,7 @@ import { Context } from '../context/token'
 import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
 
 import '../styles/explore.css'
+import FollowSuggestion from '../components/FollowSuggestion'
 
 function Explore({ hideBar = false }) {
     const [input, setInput] = useState('')
@@ -56,7 +57,6 @@ function Explore({ hideBar = false }) {
             {
                 !hideBar &&
                 <>
-
                     <div className='explore__topbar'>
                         <div className='searchBar' ref={refUsers}>
                             <input
@@ -104,6 +104,7 @@ function Explore({ hideBar = false }) {
                     </Route>
                 </>
             }
+            <FollowSuggestion />
         </div>
     )
 }

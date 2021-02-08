@@ -10,6 +10,8 @@ const imageController = require('../controllers/imageController')
 router.get('/', userController.index)
 router.get('/profile', verify, userController.profile)
 router.post('/register', userController.store)
+router.get('/suggest', verify, userController.suggest)
+
 
 router.post('/search', userController.searchBody, pagination)
 router.post('/image', multer(multerConfig).single('photo'), imageController.store)

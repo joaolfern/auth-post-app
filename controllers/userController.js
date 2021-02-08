@@ -204,4 +204,19 @@ module.exports = {
 
         res.json(user[0])
     },
+    suggest: async (req, res) => {
+        const { _id: userId } = req.user
+
+        const user = await User.findOne({ _id: userId })
+        const notFollowedUsers = await User.find({ _id: { $not: { $in: [...user.following, user['_id']] } } })
+
+        const randomIndex = notFollowedUsers.length > 3 && Math.floor(Math.random() * (notFollowedUsers.length - 2))
+        let suggestion
+        if (randomIndex || randomIndex === 0)
+            suggestion = [notFollowedUsers[randomIndex], notFollowedUsers[randomIndex + 1], notFollowedUsers[randomIndex + 2]]
+        else
+            suggestion = notFollowedUsers
+
+        res.json(suggestion)
+    }
 } 

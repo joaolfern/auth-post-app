@@ -6,7 +6,7 @@ import '../styles/userList.css'
 import FollowButton from './FollowButton'
 import { useHistory } from 'react-router-dom'
 
-function UserList({ list }) {
+function UserList({ list = [{}] }) {
     const [users, setUsers] = useState(list[0].name ? list : [])
     const { API, user: loggedUser } = useContext(Context)
     const history = useHistory()

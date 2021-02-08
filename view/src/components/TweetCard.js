@@ -101,10 +101,12 @@ function TweetCard({
                 'auth-token': token
             }
         })
-        if (response.ok)
+        if (response.ok) {
             setPosts(prev =>
                 prev.filter(timelinePost => timelinePost['_id'] !== post['_id'])
             )
+            reloadAuthor(true)
+        }
     }
 
     async function reactToTweet(action) {

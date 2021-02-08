@@ -54,8 +54,6 @@ function App() {
                     <Route path='/sign-up'>
                         <SignUp />
                     </Route>
-                    <Route path='/aa'>
-                    </Route>
 
                     <Route exact path='/'>
                         <Home setVisibleTgSideBar={setVisibleTgSideBar} />
@@ -72,6 +70,11 @@ function App() {
                     <Route path='/status/:id'>
                         <TweetDetails />
                     </Route>
+
+                    <Route path='/'>
+                        <Redirect to='/' />
+                    </Route>
+
                 </Switch>
             </div>
             {!location.pathname.match(/(\/login|\/sign-up)/) &&

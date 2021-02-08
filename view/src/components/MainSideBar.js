@@ -123,7 +123,7 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
                                 }
                             </li>
                         ))}
-                        <li >
+                        <li className='navbar__item--tweetar'>
                             <button
                                 className='blueButton navlist__tweetarBtn--circular--mainSideBar
                                 navlist__tweetarBtn--circular circularContainer'

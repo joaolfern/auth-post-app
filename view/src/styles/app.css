@@ -295,7 +295,7 @@
         box-shadow: 0 0 8px -4px var(--txt-color);
         z-index: 3;
     }
-    .navbar__item--profile, .navbar__item--more, .navbar__item--twitter, .navlist__tweetarBtn--circular--mainSideBar, .mainSideBar__profileCard__wrapper {
+    .navbar__item--profile, .navbar__item--more, .navbar__item--twitter, .navlist__tweetarBtn--circular--mainSideBar, .mainSideBar__profileCard__wrapper, .navbar__item--tweetar {
         display: none;
     }
 }

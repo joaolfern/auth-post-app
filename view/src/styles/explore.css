@@ -100,7 +100,7 @@
 
 .suggestion {
     border: 1px var(--border-color) solid;
-    margin: 1em;
+    margin: 1em 0;
 }
 
 .suggestion--sideBar {
@@ -108,6 +108,7 @@
     background-color: var(--secondary-bg-color);
     border: none;
     padding-bottom: .5rem;
+    margin: 1em;
 }
 
 .suggestion .suggetion__title {

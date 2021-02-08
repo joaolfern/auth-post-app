@@ -294,16 +294,18 @@ function Profile() {
                     <ShadedBox condition={visibleEdit}>
                         <div ref={refEdit} className='edit'>
                             <div className='navHeader edit__header'>
-                                <FontAwesomeIcon
-                                    className='navHeader__icon edit__header__close edit__header__close--x'
-                                    icon={faTimes}
-                                    onClick={() => setVisibleEdit(false)}
-                                />
-                                <FontAwesomeIcon
-                                    className='navHeader__icon edit__header__close edit__header__close--arrow'
-                                    icon={faArrowLeft}
-                                    onClick={() => setVisibleEdit(false)}
-                                />
+                                <div className='circle'>
+                                    <FontAwesomeIcon
+                                        className='navHeader__icon edit__header__close edit__header__close--x'
+                                        icon={faTimes}
+                                        onClick={() => setVisibleEdit(false)}
+                                    />
+                                    <FontAwesomeIcon
+                                        className='navHeader__icon edit__header__close edit__header__close--arrow'
+                                        icon={faArrowLeft}
+                                        onClick={() => setVisibleEdit(false)}
+                                    />
+                                </div>
                                 <h2 className='edit__header__title ellipsized'>Editar perfil</h2>
                                 <button
                                     className='blueButton edit__header__button'

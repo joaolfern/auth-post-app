@@ -57,14 +57,14 @@ module.exports = {
 
         try {
             const savedPost = await newPost.save()
-            const updatedUser = await User.updateOne(
+            await User.updateOne(
                 { _id },
-                { $push: { posts: savedPost['_id'] } }
+                { $push: { posts: `${newPost._id}` } }
             )
 
             if (repliedTo) {
                 await Post.updateOne({ _id: repliedTo }, {
-                    $push: { replies: savedPost['_id'] }
+                    $push: { replies: `${newPost._id}` }
                 })
             }
 
@@ -93,11 +93,16 @@ module.exports = {
             if (post.user != userId)
                 return res.status(401).json('Access denied')
 
-            const deletedRegistry = await Post.findById(postId)
-            deletedRegistry.remove()
+            await User.updateOne(
+                { _id: userId },
+                { $pull: { posts: postId } }
+            )
 
-            res.json(deletedRegistry)
+            await post.remove()
+
+            res.json(postId + ' was deleted')
         } catch (err) {
+            console.error(err)
             res.status(400).json(err)
         }
     },

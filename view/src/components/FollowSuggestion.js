@@ -23,7 +23,7 @@ function FollowSuggestion({ sideBar }) {
         if (users.length === 0) {
             getSuggestion()
         }
-    }, [users])
+    }, [users])// eslint-disable-line 
 
     return (
 

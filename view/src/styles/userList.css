@@ -33,4 +33,5 @@
 
 .userCard__bio {
     margin-top: .25em;
+    min-height: .5em;
 }

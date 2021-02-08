@@ -156,8 +156,8 @@ function TweetCard({
                 </div>
                 <div className='tweet__content'>
                     <div className='tweet__header'>
-                        <h3 className='displayName'>{author['display_name']}</h3>
-                        <h4 className='username'>@{author.name}</h4>
+                        <h3 className='displayName ellipsized'>{author['display_name']}</h3>
+                        <h4 className='username ellipsized'>@{author.name}</h4>
                         <p>· {timeDiff.label ? `${timeDiff.value} ${timeDiff.label}` : timeDiff}</p>
                         <FontAwesomeIcon
                             className='tweet__showOptions'

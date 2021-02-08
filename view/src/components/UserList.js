@@ -6,8 +6,8 @@ import '../styles/userList.css'
 import FollowButton from './FollowButton'
 import { useHistory } from 'react-router-dom'
 
-function UserList({ list = [{}] }) {
-    const [users, setUsers] = useState(list[0].name ? list : [])
+function UserList({ list }) {
+    const [users, setUsers] = useState(typeof list === 'array' ? list : [])
     const { API, user: loggedUser } = useContext(Context)
     const history = useHistory()
 
@@ -27,7 +27,7 @@ function UserList({ list = [{}] }) {
             }
         }
 
-        if (!list[0].name) {
+        if (typeof list !== 'array') {
             getUsers()
         }
     }, [list, users, API])

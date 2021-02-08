@@ -174,12 +174,17 @@
 
 .profileCard__photo {
     width: 2.7rem;
+    min-width: 2.7rem;
     height: 2.7rem;
 }
 
 .profileCard__id {
     display: flex;
     flex-direction: column;
+}
+
+.profileCard__id .ellipsized {
+    max-width: 60%;
 }
 
 .profileCard__details {

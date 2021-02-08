@@ -159,8 +159,8 @@ function MainmainSideBar({ setVisibleTgSideBar }) {
                             <ProfilePicture url={user.photo} />
                         </div>
                         <div className='profileCard__id profileCard__id--mediaQuerry'>
-                            <h3 className='displayName'>{user['display_name']}</h3>
-                            <h4 className='username'>@{user.name}</h4>
+                            <h3 className='displayName ellipsized'>{user['display_name']}</h3>
+                            <h4 className='username ellipsized'>@{user.name}</h4>
                         </div>
                         <FontAwesomeIcon className='tweet__showOptions profileCard__id--mediaQuerry' icon={faEllipsisH} />
                     </div>

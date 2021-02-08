@@ -13,7 +13,7 @@ import useHideOnOutsideClick from '../hooks/useHideOnOutsideClick'
 import '../styles/explore.css'
 import FollowSuggestion from '../components/FollowSuggestion'
 
-function Explore({ hideBar = false }) {
+function Explore({ hideBar = false, sideBar = true }) {
     const [input, setInput] = useState('')
     const [users, setUsers] = useState([])
     const { API, token } = useContext(Context)
@@ -104,7 +104,7 @@ function Explore({ hideBar = false }) {
                     </Route>
                 </>
             }
-            <FollowSuggestion />
+            <FollowSuggestion sideBar={sideBar ? true : false} />
         </div>
     )
 }

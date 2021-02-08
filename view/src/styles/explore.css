@@ -1,6 +1,6 @@
 .explore {
-    min-height: 99vh;
-    position: relative;
+    position: sticky;
+    top: 0;
 }
 
 .explore__placeholder {
@@ -81,8 +81,6 @@
     z-index: 4;
 }
 
-.explore__results__main {}
-
 .results__tweetCard {
     border: 1px var(--border-color) solid;
     border-bottom: none;
@@ -101,16 +99,25 @@
 }
 
 .suggestion {
-    margin: 1rem;
+    border: 1px var(--border-color) solid;
+    margin: 1em;
+}
+
+.suggestion--sideBar {
     border-radius: 1rem;
     background-color: var(--secondary-bg-color);
-    padding: 1rem 0;
+    border: none;
+    padding-bottom: .5rem;
+}
+
+.suggestion .suggetion__title {
+    padding-bottom: 1em;
 }
 
 .suggestion__title {
+    padding: .5em 0;
     font-size: 1.3em;
     text-indent: 1rem;
-    padding-bottom: 1em;
     border-bottom: 1px var(--border-color) solid;
 }
 

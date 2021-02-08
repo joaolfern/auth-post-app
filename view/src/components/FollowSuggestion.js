@@ -4,9 +4,8 @@ import { Context } from '../context/token'
 
 import UserList from '../components/UserList'
 
-function FollowSuggestion() {
+function FollowSuggestion({ sideBar }) {
     const [users, setUsers] = useState([])
-
     const { API, token } = useContext(Context)
 
     useEffect(() => {
@@ -26,17 +25,13 @@ function FollowSuggestion() {
         }
     }, [users])
 
-    console.log(users)
-
     return (
 
         users.length > 0 &&
 
-        <div className='suggestion'>
+        <div className={`suggestion suggestion${sideBar ? '--sideBar' : ''}`}>
             <h2 className='suggestion__title'>Quem seguir</h2>
-            <UserList list={users} customClasses={{
-                userCard: 'suggestion'
-            }} />
+            <UserList list={users} />
         </div>
 
     )

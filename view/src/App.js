@@ -66,7 +66,7 @@ function App() {
                     </Route>
 
                     <Route path='/explore'>
-                        <Explore />
+                        <Explore sideBar={false} />
                     </Route>
 
                     <Route path='/status/:id'>
